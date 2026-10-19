@@ -1,0 +1,70 @@
+---
+// Click any photo with data-full (set by rehype-media) to view it full screen. Arrow keys / swipe to move.
+---
+
+<dialog class="lightbox" aria-label="Photo viewer">
+  <img alt="" />
+  <button class="lb-btn lb-close" aria-label="Close">×</button>
+  <button class="lb-btn lb-prev" aria-label="Previous photo">‹</button>
+  <button class="lb-btn lb-next" aria-label="Next photo">›</button>
+</dialog>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('dialog.lightbox')!;
+  const view = dialog.querySelector('img')!;
+  const photos = [...document.querySelectorAll<HTMLImageElement>('.prose img[data-full]')];
+  let index = 0;
+
+  function show(i: number) {
+    index = (i + photos.length) % photos.length;
+    view.src = photos[index].dataset.full!;
+    view.alt = photos[index].alt;
+  }
+  photos.forEach((img, i) => img.addEventListener('click', () => { show(i); dialog.showModal(); }));
+  dialog.querySelector('.lb-close')!.addEventListener('click', () => dialog.close());
+  dialog.querySelector('.lb-prev')!.addEventListener('click', () => show(index - 1));
+  dialog.querySelector('.lb-next')!.addEventListener('click', () => show(index + 1));
+  dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+  dialog.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') show(index - 1);
+    if (e.key === 'ArrowRight') show(index + 1);
+  });
+  let startX = 0;
+  dialog.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+  dialog.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 50) show(index + (dx < 0 ? 1 : -1));
+  });
+</script>
+
+<style>
+  .lightbox {
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: rgb(0 0 0 / 0.94);
+  }
+  .lightbox::backdrop { background: rgb(0 0 0 / 0.94); }
+  .lightbox[open] { display: grid; place-items: center; }
+  .lightbox img { max-width: 96vw; max-height: 92vh; width: auto; height: auto; object-fit: contain; }
+  .lb-btn {
+    position: absolute;
+    border: 0;
+    background: rgb(255 255 255 / 0.12);
+    color: #fff;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .lb-btn:hover { background: rgb(255 255 255 / 0.25); }
+  .lb-close { top: 16px; right: 16px; }
+  .lb-prev { left: 16px; top: 50%; translate: 0 -50%; }
+  .lb-next { right: 16px; top: 50%; translate: 0 -50%; }
+</style>

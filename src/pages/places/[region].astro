@@ -1,0 +1,35 @@
+---
+import { render } from 'astro:content';
+import RegionView from '@theme/views/RegionView.astro';
+import {
+  childRegions, excerpt, getRegions, getTrips, regionAncestors, regionTitles, withCounts, type Region, type Trip,
+} from '@lib/content';
+
+export async function getStaticPaths() {
+  const regions = await getRegions();
+  return regions.map((region) => ({ params: { region: region.id }, props: { region } }));
+}
+
+const { region } = Astro.props as { region: Region };
+const [regions, trips] = await Promise.all([getRegions(), getTrips()]);
+const own = trips.filter((t) => t.data.region.id === region.id);
+
+// Group by area, keeping first-seen order; trips without an area first.
+const groups = new Map<string | undefined, Trip[]>();
+for (const t of own) groups.set(t.data.area, [...(groups.get(t.data.area) ?? []), t]);
+const tripGroups = [...groups].map(([heading, trips]) => ({ heading, trips }))
+  .sort((a, b) => Number(a.heading !== undefined) - Number(b.heading !== undefined));
+
+const { Content } = await render(region);
+---
+
+<RegionView
+  region={region}
+  ancestors={regionAncestors(regions, region)}
+  subRegions={withCounts(childRegions(regions, region), regions, trips)}
+  tripGroups={tripGroups}
+  description={excerpt(region)}
+  regionTitles={regionTitles(regions)}
+>
+  <Content />
+</RegionView>

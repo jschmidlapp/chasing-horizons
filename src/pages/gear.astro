@@ -1,0 +1,10 @@
+---
+import { getCollection } from 'astro:content';
+import GearView from '@theme/views/GearView.astro';
+import { getPage } from '@lib/content';
+
+const page = await getPage('gear');
+const items = (await getCollection('gear', (g) => !g.data.retired)).sort((a, b) => a.data.order - b.data.order);
+---
+
+<GearView page={page} items={items} />

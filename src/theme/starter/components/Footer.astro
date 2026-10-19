@@ -1,0 +1,14 @@
+---
+import siteConfig from '../../../../site.config.mjs';
+---
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>© {new Date().getFullYear()} {siteConfig.author} · {siteConfig.title}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer { border-top: 1px solid var(--line); margin-top: 48px; padding-block: 28px; color: var(--muted); font-size: 0.9rem; }
+  p { margin: 0; }
+</style>

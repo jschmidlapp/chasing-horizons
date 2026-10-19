@@ -1,0 +1,45 @@
+---
+import siteConfig from '../../../../site.config.mjs';
+import { activityUrl, url } from '@lib/content';
+
+const nav = [
+  { href: url('/places/'), label: 'Places' },
+  { href: activityUrl('hike'), label: 'Hiking' },
+  { href: activityUrl('mtb'), label: 'Biking' },
+  { href: url('/gear/'), label: 'Gear' },
+];
+const here = Astro.url.pathname;
+---
+
+<div class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href={url('/')}>{siteConfig.title}</a>
+    <nav aria-label="Main">
+      <ul>
+        {nav.map((n) => (
+          <li><a href={n.href} aria-current={here.startsWith(n.href) ? 'page' : undefined}>{n.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 60px; flex-wrap: wrap; }
+  .brand { font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; color: var(--text); text-decoration: none; }
+  ul { display: flex; gap: clamp(12px, 3vw, 28px); margin: 0; padding: 0; list-style: none; }
+  nav a { color: var(--muted); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+  nav a:hover, nav a[aria-current='page'] { color: var(--text); }
+  @media (max-width: 480px) {
+    .bar { padding-block: 10px; }
+    ul { width: 100%; justify-content: space-between; }
+  }
+</style>

@@ -1,0 +1,24 @@
+---
+// Responsive image for a "/media/..." ref (or any URL). All themes should render images via
+// imageAttrs() so R2 URLs, srcset and dimensions stay consistent.
+import { imageAttrs } from '@lib/media-core.mjs';
+
+interface Props {
+  src: string;
+  alt: string;
+  sizes?: string;
+  class?: string;
+  eager?: boolean;
+}
+const { src, alt, sizes = '100vw', class: className, eager = false } = Astro.props;
+const { 'data-full': _full, ...attrs } = imageAttrs(src, { sizes });
+---
+
+<img
+  {...attrs}
+  alt={alt}
+  class={className}
+  loading={eager ? 'eager' : 'lazy'}
+  fetchpriority={eager ? 'high' : undefined}
+  decoding="async"
+/>

@@ -1,0 +1,19 @@
+---
+import HomeView from '@theme/views/HomeView.astro';
+import { getPage, getRegions, getTrips, regionTitles, topLevelRegions, withCounts } from '@lib/content';
+import { ACTIVITIES } from '../content.config';
+
+const [page, regions, trips] = await Promise.all([getPage('home'), getRegions(), getTrips()]);
+const activityCounts = Object.fromEntries(ACTIVITIES.map((a) => [a, trips.filter((t) => t.data.activities.includes(a)).length]));
+// Until trips have dates, "featured" = the multi-section trip reports (longest bodies) first.
+const featuredTrips = [...trips].sort((a, b) => (b.body?.length ?? 0) - (a.body?.length ?? 0)).slice(0, 6);
+const featured = trips.some((t) => t.data.date) ? trips.slice(0, 6) : featuredTrips;
+---
+
+<HomeView
+  page={page}
+  regions={withCounts(topLevelRegions(regions), regions, trips)}
+  featuredTrips={featured}
+  activityCounts={activityCounts as any}
+  regionTitles={regionTitles(regions)}
+/>

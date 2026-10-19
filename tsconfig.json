@@ -1,0 +1,14 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist", ".media"],
+  "compilerOptions": {
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "paths": {
+      // Active theme. To try another theme, point this at its folder (see docs/theming.md).
+      "@theme/*": ["./src/theme/starter/*"],
+      "@lib/*": ["./src/lib/*"]
+    }
+  }
+}

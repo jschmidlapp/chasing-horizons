@@ -1,0 +1,131 @@
+/* Starter theme. Everything visual lives under src/theme/starter; see docs/theming.md. */
+
+:root {
+  --bg: #f7f5f0;
+  --surface: #ffffff;
+  --text: #1f2421;
+  --muted: #5d665f;
+  --line: #e2ded4;
+  --accent: #2f6b4f;
+  --accent-strong: #234f3b;
+  --chip-bg: #e8efe9;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.05), 0 6px 20px rgb(0 0 0 / 0.06);
+
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+
+  --radius: 10px;
+  --wrap: 1180px;
+  --prose: 760px;
+  --gutter: clamp(16px, 4vw, 32px);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141715;
+    --surface: #1c201d;
+    --text: #e8ebe7;
+    --muted: #9aa49c;
+    --line: #2c322e;
+    --accent: #7cc39c;
+    --accent-strong: #a2d9b9;
+    --chip-bg: #24302a;
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 6px 20px rgb(0 0 0 / 0.3);
+    color-scheme: dark;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.65 var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--accent); text-underline-offset: 0.15em; }
+a:hover { color: var(--accent-strong); }
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height: 1.15; letter-spacing: -0.01em; }
+
+.wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: var(--gutter); }
+.section { padding-block: clamp(32px, 6vw, 64px); }
+.section-title { font-size: clamp(1.5rem, 3vw, 2rem); margin: 0 0 20px; }
+.muted { color: var(--muted); }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---------- grids & cards ---------- */
+.card-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.card:hover { transform: translateY(-2px); color: inherit; }
+.card-media { aspect-ratio: 3 / 2; background: var(--line); overflow: hidden; }
+.card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+.card:hover .card-media img { transform: scale(1.03); }
+.card-body { padding: 14px 16px 18px; display: grid; gap: 6px; }
+.card-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; margin: 0; line-height: 1.25; }
+.card-text { margin: 0; color: var(--muted); font-size: 0.92rem; }
+.card-eyebrow { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.chip {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--chip-bg);
+  color: var(--accent-strong);
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+a.chip:hover { background: var(--accent); color: var(--surface); }
+
+/* ---------- prose (Markdown bodies) ---------- */
+.prose { max-width: var(--prose); margin-inline: auto; font-size: 1.06rem; }
+.prose h2 { font-size: 1.6rem; margin: 2.2em 0 0.6em; }
+.prose h3 { font-size: 1.25rem; margin: 1.8em 0 0.5em; }
+.prose p { margin: 0 0 1.1em; }
+.prose > img, .prose p > img { border-radius: var(--radius); margin: 1.5em 0; cursor: zoom-in; }
+
+/* Photo groups from consecutive image lines in Markdown (rehype-media.mjs). */
+.prose .gallery {
+  display: grid;
+  gap: 8px;
+  margin: 1.5em 0;
+  grid-template-columns: repeat(2, 1fr);
+}
+.prose .gallery[data-count='1'] { grid-template-columns: 1fr; }
+.prose .gallery[data-count='3'] { grid-template-columns: repeat(3, 1fr); }
+.prose .gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: zoom-in;
+}
+.prose .gallery:not([data-count='1']) img { aspect-ratio: 4 / 3; }
+/* Lone photos: keep portraits from towering over the page. */
+.prose .gallery[data-count='1'] img { width: auto; max-width: 100%; max-height: 85vh; margin-inline: auto; }
+@media (max-width: 560px) {
+  .prose .gallery[data-count='3'] { grid-template-columns: repeat(2, 1fr); }
+  .prose .gallery[data-count='3'] img:first-child { grid-column: span 2; }
+}
+/* Let the photos breathe wider than the text column on large screens. */
+@media (min-width: 1100px) {
+  .prose .gallery { margin-inline: -120px; }
+}

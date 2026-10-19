@@ -1,0 +1,50 @@
+---
+import Img from './Img.astro';
+
+interface Props {
+  image?: string;
+  title: string;
+  eyebrow?: string;
+  subtitle?: string;
+  /** "tall" for the home page, "short" for inner pages. */
+  size?: 'tall' | 'short';
+}
+const { image, title, eyebrow, subtitle, size = 'short' } = Astro.props;
+---
+
+<header class:list={['hero', size, { 'no-image': !image }]}>
+  {image && <Img src={image} alt="" sizes="100vw" class="hero-img" eager />}
+  <div class="hero-shade"></div>
+  <div class="wrap hero-content">
+    {(eyebrow || Astro.slots.has('eyebrow')) && <div class="hero-eyebrow"><slot name="eyebrow">{eyebrow}</slot></div>}
+    <h1 class="hero-title">{title}</h1>
+    {subtitle && <p class="hero-subtitle">{subtitle}</p>}
+    <slot />
+  </div>
+</header>
+
+<style>
+  .hero {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    min-height: clamp(260px, 42vw, 440px);
+    color: #fff;
+    background: #2b322d;
+    overflow: hidden;
+  }
+  .hero.tall { min-height: clamp(380px, 70vh, 720px); }
+  .hero.no-image { min-height: 200px; }
+  .hero :global(.hero-img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hero-shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgb(0 0 0 / 0.65), rgb(0 0 0 / 0.1) 55%, rgb(0 0 0 / 0.25));
+  }
+  .hero-content { position: relative; width: 100%; padding-block: 40px 36px; }
+  .hero-eyebrow { margin: 0 0 8px; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.9; }
+  .hero-eyebrow :global(a) { color: inherit; }
+  .hero-title { margin: 0; font-size: clamp(2rem, 5.5vw, 3.6rem); text-shadow: 0 2px 16px rgb(0 0 0 / 0.3); }
+  .tall .hero-title { font-size: clamp(2.6rem, 8vw, 5rem); }
+  .hero-subtitle { margin: 10px 0 0; font-size: clamp(1rem, 2vw, 1.25rem); max-width: 40ch; opacity: 0.95; }
+</style>

@@ -1,0 +1,20 @@
+---
+import Img from './Img.astro';
+import { regionUrl, type Region } from '@lib/content';
+
+interface Props {
+  region: Region;
+  count?: number;
+}
+const { region, count } = Astro.props;
+---
+
+<a class="card region-card" href={regionUrl(region)}>
+  <div class="card-media">
+    {region.data.cover && <Img src={region.data.cover} alt="" sizes="(min-width: 1180px) 380px, (min-width: 600px) 45vw, 100vw" />}
+  </div>
+  <div class="card-body">
+    <h3 class="card-title">{region.data.title}</h3>
+    {count !== undefined && <p class="card-text">{count} {count === 1 ? 'trip' : 'trips'}</p>}
+  </div>
+</a>

@@ -1,0 +1,82 @@
+// Content model — the contract between content (src/content), themes (src/theme), and a future
+// CMS (TinaCMS). Field docs: docs/content-model.md. Keep this theme-agnostic.
+import { defineCollection, reference } from 'astro:content';
+import { glob } from 'astro/loaders';
+import { z } from 'astro/zod';
+
+/** An image reference: "/media/<key>" (see docs/media.md) or an absolute URL. */
+const image = z.string();
+
+export const ACTIVITIES = ['hike', 'mtb', 'gravel', 'road', 'scenic'] as const;
+
+const regions = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/content/regions' }),
+  schema: z.object({
+    title: z.string(),
+    parent: reference('regions').optional(),
+    order: z.number().default(100),
+    summary: z.string().optional(),
+    cover: image.optional(),
+    banner: image.optional(),
+    legacy: z.object({ page: z.string() }).optional(),
+  }),
+});
+
+const trips = defineCollection({
+  // One folder per trip: src/content/trips/<slug>/index.md (+ optional track.gpx). Id = <slug>.
+  loader: glob({
+    pattern: '*/index.md',
+    base: './src/content/trips',
+    generateId: ({ entry }) => entry.split('/')[0],
+  }),
+  schema: z.object({
+    title: z.string(),
+    region: reference('regions'),
+    /** Sub-area within the region, e.g. "Fort Collins" in Colorado. */
+    area: z.string().optional(),
+    activities: z.array(z.enum(ACTIVITIES)).min(1),
+    date: z.coerce.date().optional(),
+    summary: z.string().optional(),
+    cover: image.optional(),
+    banner: image.optional(),
+    stats: z
+      .object({
+        distanceMiles: z.number().optional(),
+        elevationGainFeet: z.number().optional(),
+        duration: z.string().optional(),
+        difficulty: z.enum(['easy', 'moderate', 'hard', 'extreme']).optional(),
+      })
+      .optional(),
+    /** GPX file name, relative to the trip folder (e.g. "track.gpx"). */
+    gpx: z.string().optional(),
+    links: z.array(z.object({ label: z.string(), url: z.url() })).default([]),
+    tags: z.array(z.string()).default([]),
+    draft: z.boolean().default(false),
+    legacy: z.object({ page: z.string(), order: z.number() }).optional(),
+  }),
+});
+
+const gear = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/content/gear' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    image: image.optional(),
+    order: z.number().default(100),
+    retired: z.boolean().default(false),
+  }),
+});
+
+/** Singleton pages (home, places, gear) — hero images, taglines, optional body text. */
+const pages = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/content/pages' }),
+  schema: z.object({
+    title: z.string(),
+    tagline: z.string().optional(),
+    hero: image.optional(),
+    placesCard: image.optional(),
+    gearCard: image.optional(),
+  }),
+});
+
+export const collections = { regions, trips, gear, pages };

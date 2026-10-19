@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import RegionCard from '../components/RegionCard.astro';
+import type { PlacesViewProps } from '../../types';
+
+type Props = PlacesViewProps;
+const { page, regions } = Astro.props;
+---
+
+<BaseLayout title={page.data.title} description={page.data.tagline} image={page.data.hero}>
+  <Hero image={page.data.hero} title={page.data.title} subtitle={page.data.tagline} />
+  <section class="section wrap">
+    <div class="card-grid">
+      {regions.map(({ region, count }) => <RegionCard region={region} count={count} />)}
+    </div>
+  </section>
+</BaseLayout>

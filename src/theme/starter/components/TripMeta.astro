@@ -1,0 +1,46 @@
+---
+// Facts strip under a trip's hero: activities, date, stats, external links.
+import { ACTIVITY_LABELS, activityUrl, formatDate, type Trip } from '@lib/content';
+import type { Track } from '@lib/gpx';
+
+interface Props {
+  trip: Trip;
+  track?: Track;
+}
+const { trip, track } = Astro.props;
+const { activities, date, stats, links } = trip.data;
+// Frontmatter stats win; fall back to values computed from the GPX track.
+const distance = stats?.distanceMiles ?? track?.distanceMiles;
+const gain = stats?.elevationGainFeet ?? track?.elevationGainFeet;
+const facts = [
+  date && { label: 'Date', value: formatDate(date) },
+  distance && { label: 'Distance', value: `${distance} mi` },
+  gain && { label: 'Elevation gain', value: `${gain.toLocaleString('en-US')} ft` },
+  stats?.duration && { label: 'Time', value: stats.duration },
+  stats?.difficulty && { label: 'Difficulty', value: stats.difficulty[0].toUpperCase() + stats.difficulty.slice(1) },
+].filter(Boolean) as { label: string; value: string }[];
+---
+
+<div class="trip-meta">
+  <ul class="chips">
+    {activities.map((a) => <li><a class="chip" href={activityUrl(a)}>{ACTIVITY_LABELS[a]}</a></li>)}
+  </ul>
+  {facts.length > 0 && (
+    <dl class="facts">
+      {facts.map((f) => <div><dt>{f.label}</dt><dd>{f.value}</dd></div>)}
+    </dl>
+  )}
+  {links.length > 0 && (
+    <ul class="links">
+      {links.map((l) => <li><a href={l.url} rel="noopener" target="_blank">{l.label} ↗</a></li>)}
+    </ul>
+  )}
+</div>
+
+<style>
+  .trip-meta { max-width: var(--prose); margin: 0 auto 28px; display: grid; gap: 16px; }
+  .facts { display: flex; flex-wrap: wrap; gap: 12px 32px; margin: 0; padding: 16px 0; border-block: 1px solid var(--line); }
+  dt { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+  dd { margin: 2px 0 0; font-weight: 600; font-size: 1.05rem; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 0; padding: 0; list-style: none; }
+</style>

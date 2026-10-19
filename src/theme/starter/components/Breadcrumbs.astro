@@ -1,0 +1,21 @@
+---
+interface Props {
+  items: { href: string; label: string }[];
+}
+const { items } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb" class="crumbs">
+  {items.map((it, i) => (
+    <>
+      {i > 0 && <span aria-hidden="true"> / </span>}
+      <a href={it.href}>{it.label}</a>
+    </>
+  ))}
+</nav>
+
+<style>
+  .crumbs { font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; opacity: 0.92; }
+  .crumbs a { color: inherit; text-decoration: none; }
+  .crumbs a:hover { text-decoration: underline; }
+</style>
