@@ -1,6 +1,6 @@
 ---
 title: "Elderberry Spring Trail"
-region: "henry-coe-sp"
+region: "henry-coe-mahoney-zone"
 activities: ["mtb"]
 cover: "/media/trips/elderberry-spring-trail/43643686b5.jpg"
 legacy:

@@ -1,6 +1,6 @@
 ---
 title: "Wagon Road"
-region: "henry-coe-sp"
+region: "henry-coe-phegley-zone"
 activities: ["mtb"]
 cover: "/media/trips/wagon-road/73131e3aea.jpg"
 legacy:

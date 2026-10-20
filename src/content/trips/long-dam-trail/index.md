@@ -1,6 +1,6 @@
 ---
 title: "Long Dam Trail"
-region: "henry-coe-sp"
+region: "henry-coe-phegley-zone"
 activities: ["mtb"]
 cover: "/media/trips/long-dam-trail/b2bb4edfca.jpg"
 legacy:

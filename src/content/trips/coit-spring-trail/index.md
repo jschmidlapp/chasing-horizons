@@ -1,6 +1,6 @@
 ---
 title: "Coit Spring Trail"
-region: "henry-coe-sp"
+region: "henry-coe-mahoney-zone"
 activities: ["mtb"]
 cover: "/media/trips/coit-spring-trail/9f0f7353d1.jpg"
 legacy:

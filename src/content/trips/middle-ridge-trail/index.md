@@ -1,6 +1,6 @@
 ---
 title: "Middle Ridge Trail"
-region: "henry-coe-sp"
+region: "henry-coe-western-zone"
 activities: ["hike"]
 cover: "/media/trips/middle-ridge-trail/2674dc3508.jpg"
 legacy:

@@ -26,21 +26,27 @@ The content in `src/content` was generated once from the Google Sites export at 
 
 Result: 68 trips, 15 regions, 4 gear items.
 
+## Post-import edits (2026-10-19)
+
+- "12 Mile Drive" renamed to **17-Mile Drive** (slug `17-mile-drive`, media keys moved too).
+- **Henry Coe** split into zone sub-regions (`henry-coe-<zone>`, parent `henry-coe-sp`):
+  Grizzly Gulch, Phegley, Coit, Kelly, Mahoney, and Western (hiking trails). **Rodeo Pond** and
+  **Manzanita Point Road** are still directly under the park while we wait for the owner to assign a zone.
+
+(The importer config still has the original structure. Another reason not to re-run it.)
+
 ## Needs human review
 
 - **Activities** were assigned by page defaults, so check them: Henry Coe trails default to `mtb`, except
   for the hiking-only trails. Los Gatos, San Jose, Saratoga and Palo Alto default to `mtb`. North Bay and
-  Ohio default to `hike`. Big Sur and "12 Mile Drive" are `scenic`.
+  Ohio default to `hike`. Big Sur and 17-Mile Drive are `scenic`.
 - **Dates and stats**: none in the source (photos had no EXIF), so they're all empty for now.
 - **Alt text**: every image's alt is its section heading. Improve it gradually.
-- **Possible typos in the source**: "12 Mile Drive" (17-Mile Drive?), "Henry CoeState Park" (fixed in
-  the region title).
-- **Trips with no text** (photos only): Grand Canyon, Rodeo Pond, 12 Mile Drive, Mt Tam, Pt Reyes,
+- **Possible typos in the source**: "Henry CoeState Park" (fixed in the region title).
+- **Trips with no text** (photos only): Grand Canyon, Rodeo Pond, 17-Mile Drive, Mt Tam, Pt Reyes,
   Monte Bello, Russian Ridge, Henry Cowell, Wilder Ranch, John Nicholas Trail, Skyline Trail, Arches.
 - **Trips with no photos**: Grapevine Trail.
 - **Slug collision**: Mt Umunhum appears under both Los Gatos and San Jose, so the second became
   `mt-umunhum-san-jose`. Consider merging them.
-- **Granularity**: Henry Coe was split into 30 per-trail entries. If that feels too fragmented, merge
-  them into a few ride reports. The region intro stays either way.
 - Several Sky Pond and Lake Trails photos are screenshots of maps or elevation profiles. A GPX file
   would replace them with a live map.

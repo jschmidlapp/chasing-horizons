@@ -1,6 +1,6 @@
 ---
 title: "Coit Lake"
-region: "henry-coe-sp"
+region: "henry-coe-coit-zone"
 activities: ["mtb"]
 cover: "/media/trips/coit-lake/e87726e803.jpg"
 legacy:

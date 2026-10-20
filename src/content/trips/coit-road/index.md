@@ -1,6 +1,6 @@
 ---
 title: "Coit Road"
-region: "henry-coe-sp"
+region: "henry-coe-coit-zone"
 activities: ["mtb"]
 cover: "/media/trips/coit-road/8d4ddc389b.jpg"
 legacy:

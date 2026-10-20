@@ -1,6 +1,6 @@
 ---
 title: "Mile Trail"
-region: "henry-coe-sp"
+region: "henry-coe-western-zone"
 activities: ["hike"]
 cover: "/media/trips/mile-trail/c8847694ff.jpg"
 legacy:

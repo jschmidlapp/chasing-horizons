@@ -29,7 +29,7 @@ const crumbs = [{ href: url('/places/'), label: 'Places' }, ...ancestors.map((r)
 
     {tripGroups.map((g) => (
       <section class="section">
-        {(g.heading || tripGroups.length > 1) && <h2 class="section-title">{g.heading ?? 'Other trips'}</h2>}
+        {(g.heading || tripGroups.length > 1 || subRegions.length > 0) && <h2 class="section-title">{g.heading ?? 'Other trips'}</h2>}
         <div class="card-grid">
           {g.trips.map((t) => <TripCard trip={t} eyebrow={t.data.region.id !== region.id ? regionTitles[t.data.region.id] : undefined} />)}
         </div>

@@ -1,6 +1,6 @@
 ---
 title: "Fish Pond"
-region: "henry-coe-sp"
+region: "henry-coe-phegley-zone"
 activities: ["mtb"]
 cover: "/media/trips/fish-pond/f03ade4ca9.jpg"
 legacy:

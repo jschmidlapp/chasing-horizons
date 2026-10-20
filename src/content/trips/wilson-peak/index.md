@@ -1,6 +1,6 @@
 ---
 title: "Wilson Peak"
-region: "henry-coe-sp"
+region: "henry-coe-grizzly-gulch-zone"
 activities: ["mtb"]
 cover: "/media/trips/wilson-peak/b227928e74.jpg"
 legacy:

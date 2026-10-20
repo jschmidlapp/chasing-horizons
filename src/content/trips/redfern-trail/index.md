@@ -1,6 +1,6 @@
 ---
 title: "Redfern Trail"
-region: "henry-coe-sp"
+region: "henry-coe-phegley-zone"
 activities: ["mtb"]
 cover: "/media/trips/redfern-trail/6ecd8b8491.jpg"
 legacy:

@@ -1,6 +1,6 @@
 ---
 title: "Cattle Duster Trail"
-region: "henry-coe-sp"
+region: "henry-coe-mahoney-zone"
 activities: ["mtb"]
 cover: "/media/trips/cattle-duster-trail/be6d06d671.jpg"
 legacy:

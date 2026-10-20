@@ -65,8 +65,14 @@ Upload before pushing. Otherwise the deployed page links to variants that aren't
 
 `.env` (gitignored, template in `.env.example`) needs `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`,
 `R2_SECRET_ACCESS_KEY` and `R2_BUCKET`. Create the token in the Cloudflare dashboard under R2 → Manage
-API tokens, with **Object Read & Write** on this bucket only. CI does not need these; it only needs the
-public URL (see [deployment.md](deployment.md)).
+API tokens, with **Object Read & Write** on this bucket only.
+
+> Gotcha: the token page shows three values. `R2_ACCESS_KEY_ID` is the 32-character **Access Key ID**,
+> not the longer token value that starts with `cfut_`. The token value is optional; keep it as
+> `R2_API_TOKEN` for Cloudflare REST API calls. Cloudflare derives the S3 pair from it:
+> Access Key ID = the token's ID (`GET /user/tokens/verify`) and secret = SHA-256 of the token value.
+
+CI does not need these; it only needs the public URL (see [deployment.md](deployment.md)).
 
 ## Future options
 

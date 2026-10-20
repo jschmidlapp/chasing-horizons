@@ -1,6 +1,6 @@
 ---
 title: "Kelly Lake"
-region: "henry-coe-sp"
+region: "henry-coe-kelly-zone"
 activities: ["mtb"]
 cover: "/media/trips/kelly-lake/b81e53f310.jpg"
 legacy:

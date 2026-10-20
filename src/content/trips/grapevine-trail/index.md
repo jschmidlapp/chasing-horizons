@@ -1,6 +1,6 @@
 ---
 title: "Grapevine Trail"
-region: "henry-coe-sp"
+region: "henry-coe-mahoney-zone"
 activities: ["mtb"]
 legacy:
   page: "Henry Coe SP.html"

@@ -1,6 +1,6 @@
 ---
 title: "Grizzly Gulch Trail"
-region: "henry-coe-sp"
+region: "henry-coe-grizzly-gulch-zone"
 activities: ["mtb"]
 cover: "/media/trips/grizzly-gulch-trail/da4749f861.jpg"
 legacy:

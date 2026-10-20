@@ -1,6 +1,6 @@
 ---
 title: "Jackson Trail"
-region: "henry-coe-sp"
+region: "henry-coe-mahoney-zone"
 activities: ["mtb"]
 cover: "/media/trips/jackson-trail/7e54943cf9.jpg"
 legacy:

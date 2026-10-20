@@ -1,6 +1,6 @@
 ---
 title: "Madrone Soda Springs Trail"
-region: "henry-coe-sp"
+region: "henry-coe-western-zone"
 activities: ["hike"]
 cover: "/media/trips/madrone-soda-springs-trail/16ef1a3ee8.jpg"
 legacy:

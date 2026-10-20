@@ -1,6 +1,6 @@
 ---
 title: "China Hole"
-region: "henry-coe-sp"
+region: "henry-coe-western-zone"
 activities: ["hike"]
 cover: "/media/trips/china-hole/f2bc173690.jpg"
 legacy:

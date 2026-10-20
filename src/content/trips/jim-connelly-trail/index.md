@@ -1,6 +1,6 @@
 ---
 title: "Jim Connelly Trail"
-region: "henry-coe-sp"
+region: "henry-coe-grizzly-gulch-zone"
 activities: ["mtb"]
 cover: "/media/trips/jim-connelly-trail/5fadac88bf.jpg"
 legacy:

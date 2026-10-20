@@ -1,6 +1,6 @@
 ---
 title: "Springs Trail"
-region: "henry-coe-sp"
+region: "henry-coe-western-zone"
 activities: ["hike"]
 cover: "/media/trips/springs-trail/f784485f7e.jpg"
 legacy:

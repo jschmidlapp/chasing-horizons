@@ -1,6 +1,6 @@
 ---
 title: "Anza Trail"
-region: "henry-coe-sp"
+region: "henry-coe-mahoney-zone"
 activities: ["mtb"]
 cover: "/media/trips/anza-trail/f21260bbb4.jpg"
 legacy:

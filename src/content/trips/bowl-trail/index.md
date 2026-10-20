@@ -1,6 +1,6 @@
 ---
 title: "Bowl Trail"
-region: "henry-coe-sp"
+region: "henry-coe-grizzly-gulch-zone"
 activities: ["mtb"]
 cover: "/media/trips/bowl-trail/2be6ebcbac.jpg"
 legacy:

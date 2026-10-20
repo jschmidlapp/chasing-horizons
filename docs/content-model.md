@@ -57,7 +57,7 @@ Intro paragraph.
 ## Regions: `src/content/regions/<slug>.md`
 
 Places that group trips (parks, areas, states). They can nest via `parent` (e.g. Los Gatos → South Bay).
-The region page lists its sub-regions and its own trips (grouped by `area`). Trip counts include sub-regions.
+Henry Coe uses this for park zones (`henry-coe-grizzly-gulch-zone`, …). The region page lists its sub-regions and its own trips (grouped by `area`). Trip counts include sub-regions.
 
 | Field | Notes |
 | --- | --- |

@@ -9,8 +9,10 @@ Status key: ✅ done · 🔜 next · 💡 idea
 - ✅ Image pipeline (WebP variants, manifest, local dev serving)
 - ✅ GPX route maps and stats, external links, activities pages
 - ✅ GitHub Actions → GitHub Pages workflow
-- 🔜 Create R2 bucket, upload media, set `MEDIA_BASE_URL` (needs Cloudflare credentials)
-- 🔜 Enable Pages (Settings → Pages → GitHub Actions) and verify the first deploy
+- ✅ R2 bucket `chasing-horizons-media` (r2.dev public URL), media uploaded, `MEDIA_BASE_URL` set
+- ✅ GitHub Pages enabled (source: GitHub Actions)
+- ✅ Henry Coe split into park zones; 17-Mile Drive fixed
+- 🔜 Assign zones for Rodeo Pond and Manzanita Point Road
 - 🔜 Content review pass (see [migration.md](migration.md) → "Needs human review")
 
 ## Phase 2: polish

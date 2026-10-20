@@ -1,6 +1,6 @@
 ---
 title: "Crest Rd / Willow Ridge Rd"
-region: "henry-coe-sp"
+region: "henry-coe-coit-zone"
 activities: ["mtb"]
 cover: "/media/trips/crest-rd-willow-ridge-rd/193e4e481a.jpg"
 legacy:

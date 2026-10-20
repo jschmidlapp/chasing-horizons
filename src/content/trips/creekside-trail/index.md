@@ -1,6 +1,6 @@
 ---
 title: "Creekside Trail"
-region: "henry-coe-sp"
+region: "henry-coe-western-zone"
 activities: ["hike"]
 cover: "/media/trips/creekside-trail/b0bf979827.jpg"
 legacy:

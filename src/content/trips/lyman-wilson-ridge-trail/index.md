@@ -1,6 +1,6 @@
 ---
 title: "Lyman Wilson Ridge Trail"
-region: "henry-coe-sp"
+region: "henry-coe-grizzly-gulch-zone"
 activities: ["mtb"]
 cover: "/media/trips/lyman-wilson-ridge-trail/5b435b123c.jpg"
 legacy:

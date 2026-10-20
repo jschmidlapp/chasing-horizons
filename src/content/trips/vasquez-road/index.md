@@ -1,6 +1,6 @@
 ---
 title: "Vasquez Road"
-region: "henry-coe-sp"
+region: "henry-coe-phegley-zone"
 activities: ["mtb"]
 cover: "/media/trips/vasquez-road/788334bd18.jpg"
 legacy:

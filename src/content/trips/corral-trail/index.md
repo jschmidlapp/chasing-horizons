@@ -1,6 +1,6 @@
 ---
 title: "Corral Trail"
-region: "henry-coe-sp"
+region: "henry-coe-western-zone"
 activities: ["hike"]
 cover: "/media/trips/corral-trail/eec04d0668.jpg"
 legacy:

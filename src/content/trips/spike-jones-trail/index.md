@@ -1,6 +1,6 @@
 ---
 title: "Spike Jones Trail"
-region: "henry-coe-sp"
+region: "henry-coe-grizzly-gulch-zone"
 activities: ["mtb"]
 cover: "/media/trips/spike-jones-trail/d2ab661b25.jpg"
 legacy:
