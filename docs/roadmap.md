@@ -13,7 +13,6 @@ Status key: ✅ done · 🔜 next · 💡 idea
 - ✅ GitHub Pages enabled (source: GitHub Actions)
 - ✅ Henry Coe split into park zones; 17-Mile Drive fixed
 - ✅ Trips vs. spots split (see [decisions.md](decisions.md))
-- 🔜 Assign zones for Rodeo Pond and Manzanita Point Road
 - 🔜 Content review pass (see [migration.md](migration.md) → "Needs human review")
 
 ## Phase 2: polish

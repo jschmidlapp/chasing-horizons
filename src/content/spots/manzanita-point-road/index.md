@@ -1,6 +1,6 @@
 ---
 title: "Manzanita Point Road"
-region: "henry-coe-sp"
+region: "henry-coe-western-zone"
 activities: ["mtb"]
 cover: "/media/trips/manzanita-point-road/a704bd7b9e.jpg"
 legacy:

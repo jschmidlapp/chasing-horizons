@@ -30,8 +30,8 @@ Result: 68 trips, 15 regions, 4 gear items.
 
 - "12 Mile Drive" renamed to **17-Mile Drive** (slug `17-mile-drive`, media keys moved too).
 - **Henry Coe** split into zone sub-regions (`henry-coe-<zone>`, parent `henry-coe-sp`):
-  Grizzly Gulch, Phegley, Coit, Kelly, Mahoney, and Western (hiking trails). **Rodeo Pond** and
-  **Manzanita Point Road** are still directly under the park while we wait for the owner to assign a zone.
+  Grizzly Gulch, Phegley, Coit, Kelly, Mahoney, and Western (hiking trails). Rodeo Pond → Grizzly Gulch,
+  Manzanita Point Road → Western (assigned 2026-10-21).
 
 - **Trips vs. spots** (2026-10-20): entries in Henry Coe, South Bay (and sub-regions), Santa Cruz,
   North Bay and Monterey moved from `trips/` to `spots/` (54 spots, 14 trips).

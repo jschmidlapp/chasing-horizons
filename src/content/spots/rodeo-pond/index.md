@@ -1,6 +1,6 @@
 ---
 title: "Rodeo Pond"
-region: "henry-coe-sp"
+region: "henry-coe-grizzly-gulch-zone"
 activities: ["mtb"]
 cover: "/media/trips/rodeo-pond/e69f4091d4.jpg"
 legacy:
