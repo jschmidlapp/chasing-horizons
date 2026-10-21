@@ -41,6 +41,26 @@ Sketch:
   photos via `media:add`, and print the file to edit. Later, TinaCMS makes this a form.
 - Theme contract: add `visits` to `EntryViewProps` (spots) and a `VisitCard` / timeline component.
 
+### Activity stats import (planned)
+
+The owner records nearly all hikes and rides on **Garmin** (they also show up in Trailforks). Findings as of 2026-10:
+- **Trailforks API**: approval-only, generally not granted to individuals, and focused on trail data,
+  not personal ride logs. Not viable.
+- **Garmin Connect Developer Program**: for approved businesses only, and new applications were paused
+  in 2026. Not viable.
+- **Garmin Connect manual export** (per-activity GPX/FIT, or a bulk account export): works. **Start here.**
+- **Strava API** (if Garmin → Strava sync is active): personal apps are allowed. This is the path to
+  automatic sync, e.g. a scheduled GitHub Action that opens a PR with new visits. Check that the sync
+  still works given the 2026 Garmin–Strava dispute.
+- Unofficial Garmin Connect client libraries: possible fallback; may break when Garmin changes its login.
+
+Plan:
+1. `npm run gpx:add -- <trips|spots|visits>/<slug> activity.gpx|.fit`: copy the track into the entry
+   folder, set `gpx`, and fill `date`/`lastVisited` and `stats.duration` from the timestamps (distance
+   and gain are already computed at build time). FIT needs a parser (e.g. `fit-file-parser`).
+2. Backfill: match a bulk Garmin export to existing entries by start location and date range.
+3. Optional: Strava sync feeding the visit log.
+
 ## Phase 3: paid theme
 
 - 💡 Pick a theme. Port it per [theming.md](theming.md) (new `src/theme/<name>/` implementing the views)
