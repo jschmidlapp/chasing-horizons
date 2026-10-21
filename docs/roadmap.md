@@ -12,6 +12,7 @@ Status key: ✅ done · 🔜 next · 💡 idea
 - ✅ R2 bucket `chasing-horizons-media` (r2.dev public URL), media uploaded, `MEDIA_BASE_URL` set
 - ✅ GitHub Pages enabled (source: GitHub Actions)
 - ✅ Henry Coe split into park zones; 17-Mile Drive fixed
+- ✅ Trips vs. spots split (see [decisions.md](decisions.md))
 - 🔜 Assign zones for Rodeo Pond and Manzanita Point Road
 - 🔜 Content review pass (see [migration.md](migration.md) → "Needs human review")
 
@@ -23,6 +24,23 @@ Status key: ✅ done · 🔜 next · 💡 idea
 - 💡 Search (Pagefind works well with static Astro sites)
 - 💡 RSS feed, sitemap (`@astrojs/sitemap`)
 - 💡 Tags and difficulty filters
+
+### Visit log for spots (planned)
+
+Requested by the owner (2026-10-20): a quick way to record "rode Calero today, here are 6 photos"
+without creating a trip or rewriting the spot page.
+
+Sketch:
+- New collection `visits`: `src/content/visits/<yyyy-mm-dd>-<spot>/index.md` with `spot` (reference),
+  `date`, `activities` (optional, defaults to the spot's), optional `gpx`, `stats`, and a short body
+  of notes and photos.
+- Spot page: a dated timeline of its visits under the main write-up. `lastVisited` is derived from the
+  newest visit, so it no longer needs maintaining by hand.
+- Home page: a "Recent outings" strip mixing new trips and visits, so the site shows activity.
+- Optional: a trip can include visits (e.g. day 2 of a trip = a visit to a spot).
+- Tooling: `npm run new:visit -- calero-county-park ~/photos/*.jpg` to scaffold the folder, add the
+  photos via `media:add`, and print the file to edit. Later, TinaCMS makes this a form.
+- Theme contract: add `visits` to `EntryViewProps` (spots) and a `VisitCard` / timeline component.
 
 ## Phase 3: paid theme
 

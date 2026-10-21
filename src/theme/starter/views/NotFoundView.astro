@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import { url } from '@lib/content';
+import type { NotFoundViewProps } from '../../types';
+
+type Props = NotFoundViewProps;
+const { title, message } = Astro.props;
+---
+
+<BaseLayout title={title}>
+  <Hero title={title} subtitle={message} />
+  <section class="section wrap">
+    <p><a href={url('/')}>Back to the home page</a></p>
+  </section>
+</BaseLayout>

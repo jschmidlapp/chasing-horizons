@@ -6,6 +6,7 @@ import path from 'node:path';
 import siteConfig from './site.config.mjs';
 import rehypeMedia from './src/lib/rehype-media.mjs';
 import { LOCAL_MEDIA_PREFIX } from './src/lib/media-core.mjs';
+import redirects from './src/data/redirects.json' with { type: 'json' };
 
 /** Dev-only: serve .media/variants at /_media so the site works before/without R2. */
 /** @type {import('astro').AstroIntegration} */
@@ -31,6 +32,11 @@ export default defineConfig({
   site: siteConfig.siteUrl,
   base: siteConfig.basePath,
   trailingSlash: 'always',
+  // Old URL -> new URL (src/data/redirects.json, paths without the base), e.g. after moving an entry
+  // between trips/ and spots/. Astro prefixes the base on the source but not the destination.
+  redirects: Object.fromEntries(
+    Object.entries(redirects).map(([from, to]) => [from, `${siteConfig.basePath.replace(/\/$/, '')}${to}`]),
+  ),
   integrations: [localMedia],
   markdown: {
     processor: unified({ rehypePlugins: [rehypeMedia] }),

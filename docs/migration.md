@@ -33,6 +33,9 @@ Result: 68 trips, 15 regions, 4 gear items.
   Grizzly Gulch, Phegley, Coit, Kelly, Mahoney, and Western (hiking trails). **Rodeo Pond** and
   **Manzanita Point Road** are still directly under the park while we wait for the owner to assign a zone.
 
+- **Trips vs. spots** (2026-10-20): entries in Henry Coe, South Bay (and sub-regions), Santa Cruz,
+  North Bay and Monterey moved from `trips/` to `spots/` (54 spots, 14 trips).
+
 (The importer config still has the original structure. Another reason not to re-run it.)
 
 ## Needs human review

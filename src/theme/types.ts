@@ -1,23 +1,30 @@
 // The view contract: props each theme's views/ must accept. Pages in src/pages compute these and
 // render `@theme/views/<Name>.astro`. A new theme implements the same views (see docs/theming.md).
 import type { CollectionEntry } from 'astro:content';
-import type { Activity, Region, Trip } from '../lib/content';
+import type { Activity, Entry, Region, Spot, Trip } from '../lib/content';
 import type { Track } from '../lib/gpx';
 
 export interface RegionWithCount {
   region: Region;
-  /** Trips in this region and its sub-regions. */
-  count: number;
+  /** Trips and spots in this region and its sub-regions. */
+  trips: number;
+  spots: number;
 }
 
-/** region id -> title, for labelling trip cards. */
+/** region id -> title, for labelling cards. */
 export type RegionTitles = Record<string, string>;
+
+export interface EntryGroup<T extends Entry> {
+  /** Area name; undefined = no area. */
+  heading?: string;
+  entries: T[];
+}
 
 export interface HomeViewProps {
   page: CollectionEntry<'pages'>;
   regions: RegionWithCount[];
   featuredTrips: Trip[];
-  activityCounts: Record<Activity, number>;
+  featuredSpots: Spot[];
   regionTitles: RegionTitles;
 }
 
@@ -31,31 +38,42 @@ export interface RegionViewProps {
   region: Region;
   ancestors: Region[];
   subRegions: RegionWithCount[];
-  /** Trips grouped by `area`; heading undefined = no area. */
-  tripGroups: { heading?: string; trips: Trip[] }[];
+  /** This region's own trips and spots (not sub-regions'), grouped by area. */
+  tripGroups: EntryGroup<Trip>[];
+  spotGroups: EntryGroup<Spot>[];
   description?: string;
   regionTitles: RegionTitles;
 }
 
-/** Rendered trip body (Markdown) is passed as the default slot. */
-export interface TripViewProps {
-  trip: Trip;
-  /** Top-level region down to the trip's own region. */
+/** Rendered entry body (Markdown) is passed as the default slot. Used for both trips and spots. */
+export interface EntryViewProps {
+  entry: Entry;
+  /** Top-level region down to the entry's own region. */
   regionChain: Region[];
   track?: Track;
-  related: Trip[];
+  /** Trip → spots it visited; spot → trips that visited it. */
+  linked: Entry[];
+  /** More of the same kind from the same region. */
+  related: Entry[];
   description?: string;
 }
 
-export interface TripListViewProps {
+/** All trips or all spots, with client-side activity filter (?activity=hike). */
+export interface EntryListViewProps {
   title: string;
   subtitle?: string;
   image?: string;
-  trips: Trip[];
+  entries: Entry[];
+  activities: Activity[];
   regionTitles: RegionTitles;
 }
 
 export interface GearViewProps {
   page: CollectionEntry<'pages'>;
   items: CollectionEntry<'gear'>[];
+}
+
+export interface NotFoundViewProps {
+  title: string;
+  message: string;
 }

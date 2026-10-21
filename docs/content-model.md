@@ -3,18 +3,36 @@
 Defined in `src/content.config.ts`. Everything is Markdown with YAML frontmatter, which suits git
 diffs, theme swaps, and TinaCMS. Images are referenced as `/media/<key>` (see [media.md](media.md)).
 
-## Trips: `src/content/trips/<slug>/index.md`
+## Trips vs. spots
 
-One hike, ride, or place visit. The folder name is the URL slug (`/trips/<slug>/`). Supporting files,
-such as the GPX track, live in the same folder.
+There are two kinds of write-up. Both live in Places (regions) and share most fields:
+
+| | **Trips**: `src/content/trips/<slug>/index.md` | **Spots**: `src/content/spots/<slug>/index.md` |
+| --- | --- | --- |
+| What | Something that happened once: a hike, ride, or outing, usually on a trip away | A park or trail visited regularly. An evergreen page, updated over time |
+| Examples | Hike to Sky Pond, Horsetooth Mountain, Arches | Calero County Park, Spike Jones Trail, Wilder Ranch |
+| URL | `/trips/<slug>/` | `/spots/<slug>/` |
+| Own fields | `date`, `endDate`, `spots` (links to spots visited) | `lastVisited` |
+| Sorting | newest `date` first | most recent `lastVisited` first |
+
+Rule of thumb: if you'd go back and add to it, it's a spot. To reclassify, `git mv` the folder between
+`trips/` and `spots/` and adjust the type-specific fields. Photo keys don't need to change (see
+[media.md](media.md)). The URL does change, so if the page has been shared, add a redirect in
+`src/data/redirects.json` (`"/trips/<slug>/": "/spots/<slug>/"`, paths without the base).
+
+A trip can list `spots: ["calero-county-park"]`. The trip page then shows "Spots on this trip" and the
+spot page shows "Trips that came here".
+
+Each folder name is the URL slug. Supporting files, such as the GPX track, live in the same folder.
+
+### Shared fields
 
 | Field | Type | Notes |
 | --- | --- | --- |
 | `title` | string | required |
-| `region` | region id | required, e.g. `henry-coe-sp` (file name in `regions/`) |
+| `region` | region id | required, e.g. `henry-coe-grizzly-gulch-zone` (file name in `regions/`) |
 | `area` | string | optional sub-area for grouping on the region page, e.g. "Fort Collins" |
-| `activities` | list | one or more of `hike`, `mtb`, `gravel`, `road`, `scenic` |
-| `date` | date | `2025-06-14`. Sorts trips newest-first. Undated trips keep their old-site order |
+| `activities` | list | one or more of `hike`, `mtb`, `gravel`, `road`, `scenic`. Drives the list-page filters |
 | `summary` | string | card and meta description. If omitted, the first real paragraph of the body is used |
 | `cover` | image | card image. If omitted, the first image in the body |
 | `banner` | image | wide hero image. Falls back to `cover` |
@@ -22,11 +40,25 @@ such as the GPX track, live in the same folder.
 | `stats.elevationGainFeet` | number | overrides the value computed from GPX |
 | `stats.duration` | string | free text, e.g. "4h 30m" |
 | `stats.difficulty` | enum | `easy`, `moderate`, `hard`, `extreme` |
-| `gpx` | string | file name in the trip folder, e.g. `track.gpx`. Shows a map and fills distance and gain |
+| `gpx` | string | file name in the entry folder, e.g. `track.gpx`. Shows a map and fills distance and gain. For a spot, use your usual route |
 | `links` | list | `[{ label: "Strava", url: "https://…" }]` |
 | `tags` | list | free-form. Not shown yet; reserved for future filtering |
 | `draft` | bool | hidden from production builds (still visible in `npm run dev`) |
-| `legacy` | object | `{ page, order }` from the Google Sites import. Keeps the original ordering |
+| `legacy` | object | `{ page, order }` from the Google Sites import. Keeps the original ordering for undated entries |
+
+### Trip-only fields
+
+| Field | Type | Notes |
+| --- | --- | --- |
+| `date` | date | `2025-06-14`. Undated trips sort after dated ones, in old-site order |
+| `endDate` | date | for multi-day trips. Shown as a range |
+| `spots` | list of spot ids | spots visited on this trip |
+
+### Spot-only fields
+
+| Field | Type | Notes |
+| --- | --- | --- |
+| `lastVisited` | date | shown on cards and the page. Sorts spots |
 
 Body conventions:
 - `## Heading` for sections (e.g. each lake or trail segment on a long hike).
@@ -56,8 +88,8 @@ Intro paragraph.
 
 ## Regions: `src/content/regions/<slug>.md`
 
-Places that group trips (parks, areas, states). They can nest via `parent` (e.g. Los Gatos → South Bay).
-Henry Coe uses this for park zones (`henry-coe-grizzly-gulch-zone`, …). The region page lists its sub-regions and its own trips (grouped by `area`). Trip counts include sub-regions.
+Places that group trips and spots (parks, areas, states). They can nest via `parent` (e.g. Los Gatos → South Bay).
+Henry Coe uses this for park zones (`henry-coe-grizzly-gulch-zone`, …). The region page lists its sub-regions, then its own trips and spots (each grouped by `area`). Counts on region cards include sub-regions.
 
 | Field | Notes |
 | --- | --- |

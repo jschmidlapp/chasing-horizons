@@ -1,0 +1,17 @@
+---
+import { render } from 'astro:content';
+import EntryView from '@theme/views/EntryView.astro';
+import { getSpots, type Entry } from '@lib/content';
+import { entryPageProps } from '@lib/entry-page';
+
+export async function getStaticPaths() {
+  return (await getSpots()).map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props as { entry: Entry };
+const { Content } = await render(entry);
+---
+
+<EntryView {...await entryPageProps(entry)}>
+  <Content />
+</EntryView>

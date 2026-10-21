@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { gpx as gpxToGeoJson } from '@tmcw/togeojson';
 import { DOMParser } from '@xmldom/xmldom';
-import type { Trip } from './content';
+import type { Entry } from './content';
 
 export interface Track {
   /** [lat, lon] pairs per track segment, downsampled. */
@@ -18,9 +18,9 @@ function haversineMiles([lon1, lat1]: number[], [lon2, lat2]: number[]) {
   return 3958.8 * 2 * Math.asin(Math.sqrt(a));
 }
 
-export function loadTrack(trip: Trip): Track | undefined {
-  if (!trip.data.gpx) return undefined;
-  const file = path.resolve('src/content/trips', trip.id, trip.data.gpx);
+export function loadTrack(entry: Entry): Track | undefined {
+  if (!entry.data.gpx) return undefined;
+  const file = path.resolve('src/content', entry.collection, entry.id, entry.data.gpx);
   const doc = new DOMParser().parseFromString(fs.readFileSync(file, 'utf8'), 'text/xml');
   const geo = gpxToGeoJson(doc as unknown as Document);
   const segments: number[][][] = [];

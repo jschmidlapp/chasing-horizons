@@ -1,0 +1,33 @@
+---
+// Card for a trip or a spot. data-activities lets EntryListView filter cards client-side.
+import Img from './Img.astro';
+import { ACTIVITY_LABELS, entryUrl, excerpt, formatDate, isTrip, type Entry } from '@lib/content';
+
+interface Props {
+  entry: Entry;
+  /** Shown above the title, e.g. the region name. Defaults to the entry's area. */
+  eyebrow?: string;
+}
+const { entry, eyebrow } = Astro.props;
+const { title, cover, activities, area } = entry.data;
+const text = excerpt(entry, 110);
+const label = eyebrow ?? area;
+const when = isTrip(entry)
+  ? entry.data.date && formatDate(entry.data.date)
+  : entry.data.lastVisited && `Last visited ${formatDate(entry.data.lastVisited)}`;
+---
+
+<a class="card" href={entryUrl(entry)} data-activities={activities.join(' ')}>
+  <div class="card-media">
+    {cover && <Img src={cover} alt="" sizes="(min-width: 1180px) 380px, (min-width: 600px) 45vw, 100vw" />}
+  </div>
+  <div class="card-body">
+    {label && <span class="card-eyebrow">{label}</span>}
+    <h3 class="card-title">{title}</h3>
+    {text && <p class="card-text">{text}</p>}
+    <ul class="chips">
+      {activities.map((a) => <li class="chip">{ACTIVITY_LABELS[a]}</li>)}
+      {when && <li class="chip">{when}</li>}
+    </ul>
+  </div>
+</a>

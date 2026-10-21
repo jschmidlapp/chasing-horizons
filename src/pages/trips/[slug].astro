@@ -1,27 +1,17 @@
 ---
 import { render } from 'astro:content';
-import TripView from '@theme/views/TripView.astro';
-import { excerpt, getRegions, getTrips, regionAncestors, type Trip } from '@lib/content';
-import { loadTrack } from '@lib/gpx';
+import EntryView from '@theme/views/EntryView.astro';
+import { getTrips, type Entry } from '@lib/content';
+import { entryPageProps } from '@lib/entry-page';
 
 export async function getStaticPaths() {
-  const trips = await getTrips();
-  return trips.map((trip) => ({ params: { slug: trip.id }, props: { trip } }));
+  return (await getTrips()).map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
 }
 
-const { trip } = Astro.props as { trip: Trip };
-const [regions, trips] = await Promise.all([getRegions(), getTrips()]);
-const region = regions.find((r) => r.id === trip.data.region.id)!;
-const regionChain = [...regionAncestors(regions, region), region];
-
-// Up to 3 neighbours in the same region, continuing in order after this trip.
-const siblings = trips.filter((t) => t.data.region.id === region.id);
-const i = siblings.findIndex((t) => t.id === trip.id);
-const related = [...siblings.slice(i + 1), ...siblings.slice(0, i)].slice(0, 3);
-
-const { Content } = await render(trip);
+const { entry } = Astro.props as { entry: Entry };
+const { Content } = await render(entry);
 ---
 
-<TripView trip={trip} regionChain={regionChain} track={loadTrack(trip)} related={related} description={excerpt(trip)}>
+<EntryView {...await entryPageProps(entry)}>
   <Content />
-</TripView>
+</EntryView>

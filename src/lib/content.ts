@@ -4,6 +4,9 @@ import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
 import { ACTIVITIES } from '../content.config';
 
 export type Trip = CollectionEntry<'trips'>;
+export type Spot = CollectionEntry<'spots'>;
+/** Anything with a write-up page: a trip (happened once) or a spot (visited regularly). */
+export type Entry = Trip | Spot;
 export type Region = CollectionEntry<'regions'>;
 export type Activity = (typeof ACTIVITIES)[number];
 
@@ -19,9 +22,14 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 /** Prefix an internal path with the deploy base path. */
 export const url = (p: string) => `${base}${p.startsWith('/') ? p : `/${p}`}`;
 
-export const tripUrl = (t: Trip) => url(`/trips/${t.id}/`);
+export const isTrip = (e: Entry): e is Trip => e.collection === 'trips';
+export const entryUrl = (e: Entry) => url(`/${e.collection}/${e.id}/`);
 export const regionUrl = (r: Region) => url(`/places/${r.id}/`);
-export const activityUrl = (a: Activity) => url(`/activities/${a}/`);
+/** List page for a collection, optionally pre-filtered to an activity. */
+export const listUrl = (collection: Entry['collection'], activity?: Activity) =>
+  url(`/${collection}/`) + (activity ? `?activity=${activity}` : '');
+
+const legacyOrder = (e: Entry) => e.data.legacy?.order ?? 1e9;
 
 /** Newest first; undated trips after dated ones, in their original site order. */
 function compareTrips(a: Trip, b: Trip) {
@@ -29,12 +37,26 @@ function compareTrips(a: Trip, b: Trip) {
   if (da !== undefined && db !== undefined) return db - da;
   if (da !== undefined) return -1;
   if (db !== undefined) return 1;
-  return (a.data.legacy?.order ?? 1e9) - (b.data.legacy?.order ?? 1e9);
+  return legacyOrder(a) - legacyOrder(b);
 }
 
+/** Most recently visited first; never-dated spots after, in their original site order. */
+function compareSpots(a: Spot, b: Spot) {
+  const da = a.data.lastVisited?.getTime(), db = b.data.lastVisited?.getTime();
+  if (da !== undefined && db !== undefined) return db - da;
+  if (da !== undefined) return -1;
+  if (db !== undefined) return 1;
+  return legacyOrder(a) - legacyOrder(b);
+}
+
+const published = (e: Entry) => import.meta.env.DEV || !e.data.draft;
+
 export async function getTrips(): Promise<Trip[]> {
-  const trips = await getCollection('trips', (t) => import.meta.env.DEV || !t.data.draft);
-  return trips.sort(compareTrips);
+  return (await getCollection('trips', published)).sort(compareTrips);
+}
+
+export async function getSpots(): Promise<Spot[]> {
+  return (await getCollection('spots', published)).sort(compareSpots);
 }
 
 export async function getRegions(): Promise<Region[]> {
@@ -67,13 +89,22 @@ export function regionAncestors(regions: Region[], region: Region): Region[] {
   return chain;
 }
 
-export const tripsInRegion = (trips: Trip[], regions: Region[], region: Region) => {
+/** Entries in a region or any of its sub-regions. */
+export function inRegion<T extends Entry>(entries: T[], regions: Region[], region: Region): T[] {
   const ids = regionAndDescendants(regions, region);
-  return trips.filter((t) => ids.has(t.data.region.id));
-};
+  return entries.filter((e) => ids.has(e.data.region.id));
+}
+
+/** Group entries by `area`, keeping first-seen order; entries without an area first. */
+export function groupByArea<T extends Entry>(entries: T[]): { heading?: string; entries: T[] }[] {
+  const groups = new Map<string | undefined, T[]>();
+  for (const e of entries) groups.set(e.data.area, [...(groups.get(e.data.area) ?? []), e]);
+  return [...groups].map(([heading, entries]) => ({ heading, entries }))
+    .sort((a, b) => Number(a.heading !== undefined) - Number(b.heading !== undefined));
+}
 
 /** Card/meta-description text: frontmatter summary, else first prose paragraph of the body. */
-export function excerpt(entry: Trip | Region, max = 160): string | undefined {
+export function excerpt(entry: Entry | Region, max = 160): string | undefined {
   if (entry.data.summary) return entry.data.summary;
   const para = (entry.body ?? '')
     .split(/\n\s*\n/)
@@ -96,7 +127,21 @@ export function formatDate(d: Date) {
   return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 }
 
+/** "June 3–5, 2025" style range (or a single date). */
+export function formatDateRange(start: Date, end?: Date) {
+  if (!end || end.getTime() === start.getTime()) return formatDate(start);
+  return `${formatDate(start)} – ${formatDate(end)}`;
+}
+
 export const regionTitles = (regions: Region[]) => Object.fromEntries(regions.map((r) => [r.id, r.data.title]));
 
-export const withCounts = (list: Region[], regions: Region[], trips: Trip[]) =>
-  list.map((region) => ({ region, count: tripsInRegion(trips, regions, region).length }));
+export const withCounts = (list: Region[], regions: Region[], trips: Trip[], spots: Spot[]) =>
+  list.map((region) => ({
+    region,
+    trips: inRegion(trips, regions, region).length,
+    spots: inRegion(spots, regions, region).length,
+  }));
+
+/** Activities that appear in a list, in canonical order. */
+export const activitiesIn = (entries: Entry[]) =>
+  ACTIVITIES.filter((a) => entries.some((e) => e.data.activities.includes(a)));

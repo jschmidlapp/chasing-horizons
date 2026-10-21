@@ -17,9 +17,9 @@ folder first with `npm run media:pull && npm run media:process` (needs R2 creden
 
 | Task | How |
 | --- | --- |
-| Add a trip | Create `src/content/trips/<slug>/index.md` ([content model](docs/content-model.md)) |
-| Add photos | `npm run media:add -- trips/<slug> ~/photos/*.jpg`, paste the printed Markdown, then `npm run media:process && npm run media:upload` ([media](docs/media.md)) |
-| Add a route map | Drop `track.gpx` in the trip folder and set `gpx: "track.gpx"` |
+| Add a trip (one-off) or spot (regular haunt) | Create `src/content/trips/<slug>/index.md` or `src/content/spots/<slug>/index.md` ([content model](docs/content-model.md)) |
+| Add photos | `npm run media:add -- spots/<slug> ~/photos/*.jpg`, paste the printed Markdown, then `npm run media:process && npm run media:upload` ([media](docs/media.md)) |
+| Add a route map | Drop `track.gpx` in the entry folder and set `gpx: "track.gpx"` |
 | Publish | Push to `main`. GitHub Actions builds and deploys ([deployment](docs/deployment.md)) |
 | Change the look | Everything visual is in `src/theme/starter/` ([theming](docs/theming.md)) |
 

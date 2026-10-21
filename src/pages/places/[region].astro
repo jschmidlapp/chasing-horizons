@@ -2,7 +2,7 @@
 import { render } from 'astro:content';
 import RegionView from '@theme/views/RegionView.astro';
 import {
-  childRegions, excerpt, getRegions, getTrips, regionAncestors, regionTitles, withCounts, type Region, type Trip,
+  childRegions, excerpt, getRegions, getSpots, getTrips, groupByArea, regionAncestors, regionTitles, withCounts, type Region,
 } from '@lib/content';
 
 export async function getStaticPaths() {
@@ -11,14 +11,8 @@ export async function getStaticPaths() {
 }
 
 const { region } = Astro.props as { region: Region };
-const [regions, trips] = await Promise.all([getRegions(), getTrips()]);
-const own = trips.filter((t) => t.data.region.id === region.id);
-
-// Group by area, keeping first-seen order; trips without an area first.
-const groups = new Map<string | undefined, Trip[]>();
-for (const t of own) groups.set(t.data.area, [...(groups.get(t.data.area) ?? []), t]);
-const tripGroups = [...groups].map(([heading, trips]) => ({ heading, trips }))
-  .sort((a, b) => Number(a.heading !== undefined) - Number(b.heading !== undefined));
+const [regions, trips, spots] = await Promise.all([getRegions(), getTrips(), getSpots()]);
+const own = <T extends { data: { region: { id: string } } }>(list: T[]) => list.filter((e) => e.data.region.id === region.id);
 
 const { Content } = await render(region);
 ---
@@ -26,8 +20,9 @@ const { Content } = await render(region);
 <RegionView
   region={region}
   ancestors={regionAncestors(regions, region)}
-  subRegions={withCounts(childRegions(regions, region), regions, trips)}
-  tripGroups={tripGroups}
+  subRegions={withCounts(childRegions(regions, region), regions, trips, spots)}
+  tripGroups={groupByArea(own(trips))}
+  spotGroups={groupByArea(own(spots))}
   description={excerpt(region)}
   regionTitles={regionTitles(regions)}
 >

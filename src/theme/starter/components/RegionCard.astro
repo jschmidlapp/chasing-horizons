@@ -1,12 +1,12 @@
 ---
 import Img from './Img.astro';
-import { regionUrl, type Region } from '@lib/content';
+import { regionUrl } from '@lib/content';
+import type { RegionWithCount } from '../../types';
 
-interface Props {
-  region: Region;
-  count?: number;
-}
-const { region, count } = Astro.props;
+type Props = RegionWithCount;
+const { region, trips, spots } = Astro.props;
+const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? '' : 's'}`;
+const counts = [trips && plural(trips, 'trip'), spots && plural(spots, 'spot')].filter(Boolean).join(' · ');
 ---
 
 <a class="card region-card" href={regionUrl(region)}>
@@ -15,6 +15,6 @@ const { region, count } = Astro.props;
   </div>
   <div class="card-body">
     <h3 class="card-title">{region.data.title}</h3>
-    {count !== undefined && <p class="card-text">{count} {count === 1 ? 'trip' : 'trips'}</p>}
+    {counts && <p class="card-text">{counts}</p>}
   </div>
 </a>

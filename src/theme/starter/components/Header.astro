@@ -1,11 +1,11 @@
 ---
 import siteConfig from '../../../../site.config.mjs';
-import { activityUrl, url } from '@lib/content';
+import { url } from '@lib/content';
 
 const nav = [
   { href: url('/places/'), label: 'Places' },
-  { href: activityUrl('hike'), label: 'Hiking' },
-  { href: activityUrl('mtb'), label: 'Biking' },
+  { href: url('/trips/'), label: 'Trips' },
+  { href: url('/spots/'), label: 'Spots' },
   { href: url('/gear/'), label: 'Gear' },
 ];
 const here = Astro.url.pathname;

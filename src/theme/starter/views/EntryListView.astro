@@ -1,0 +1,48 @@
+---
+// All trips or all spots, with activity filter chips. Filtering is client-side; ?activity=<a> preselects.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import EntryCard from '../components/EntryCard.astro';
+import { ACTIVITY_LABELS } from '@lib/content';
+import type { EntryListViewProps } from '../../types';
+
+type Props = EntryListViewProps;
+const { title, subtitle, image, entries, activities, regionTitles } = Astro.props;
+---
+
+<BaseLayout title={title} description={subtitle} image={image}>
+  <Hero image={image} title={title} subtitle={subtitle} />
+  <section class="section wrap">
+    {activities.length > 1 && (
+      <div class="filters chips" role="group" aria-label="Filter by activity">
+        <button class="chip" data-filter="" aria-pressed="true">All</button>
+        {activities.map((a) => <button class="chip" data-filter={a} aria-pressed="false">{ACTIVITY_LABELS[a]}</button>)}
+      </div>
+    )}
+    <div class="card-grid entry-list">
+      {entries.map((e) => <EntryCard entry={e} eyebrow={regionTitles[e.data.region.id]} />)}
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const buttons = [...document.querySelectorAll<HTMLButtonElement>('.filters [data-filter]')];
+  const cards = [...document.querySelectorAll<HTMLElement>('.entry-list > .card')];
+  function apply(filter: string) {
+    for (const b of buttons) b.setAttribute('aria-pressed', String(b.dataset.filter === filter));
+    for (const c of cards) c.hidden = !!filter && !(c.dataset.activities ?? '').split(' ').includes(filter);
+    const u = new URL(location.href);
+    if (filter) u.searchParams.set('activity', filter); else u.searchParams.delete('activity');
+    history.replaceState(null, '', u);
+  }
+  for (const b of buttons) b.addEventListener('click', () => apply(b.dataset.filter ?? ''));
+  const initial = new URLSearchParams(location.search).get('activity') ?? '';
+  if (buttons.some((b) => b.dataset.filter === initial)) apply(initial);
+</script>
+
+<style>
+  .filters { margin-bottom: 24px; gap: 8px; }
+  .filters button { border: 0; cursor: pointer; font: inherit; font-size: 0.85rem; padding: 6px 14px; }
+  .filters button[aria-pressed='true'] { background: var(--accent); color: var(--surface); }
+  .entry-list :global(.card[hidden]) { display: none; }
+</style>

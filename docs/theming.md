@@ -26,9 +26,14 @@ Each theme provides these files in `views/`, accepting the props defined in `src
 | `HomeView.astro` | `/` | none |
 | `PlacesView.astro` | `/places/` | none |
 | `RegionView.astro` | `/places/<region>/` | region intro (rendered Markdown) |
-| `TripView.astro` | `/trips/<slug>/` | trip body (rendered Markdown) |
-| `TripListView.astro` | `/activities/<a>/`, 404 | none |
+| `EntryView.astro` | `/trips/<slug>/`, `/spots/<slug>/` | entry body (rendered Markdown) |
+| `EntryListView.astro` | `/trips/`, `/spots/` | none |
 | `GearView.astro` | `/gear/` | none |
+| `NotFoundView.astro` | 404 | none |
+
+"Entry" means a trip or a spot. Use `isTrip()` from `@lib/content` where they render differently
+(e.g. date vs. last visited). The list view should support filtering by `?activity=<activity>`, since
+activity chips on entry pages link there.
 
 Themes must render images with `imageAttrs()` / `imageUrl()` from `src/lib/media-core.mjs` (see the
 starter's `components/Img.astro`). Rendered Markdown contains `.gallery[data-count]` wrappers and images
@@ -39,8 +44,8 @@ with a `data-full` attribute. A theme should style `.gallery` and may attach a l
 Most commercial Astro themes ship as a whole project with their own `src/content` and pages. To adopt one:
 
 1. Copy the theme's layouts, components and styles into `src/theme/<name>/`. Don't copy its content or routes.
-2. Write the six views in `src/theme/<name>/views/` by composing the theme's components with our props.
-   Map our fields onto theirs (e.g. their "post" card → our `Trip`).
+2. Write the seven views in `src/theme/<name>/views/` by composing the theme's components with our props.
+   Map our fields onto theirs (e.g. their "post" card → our `Entry`).
 3. Replace its image components with `Img.astro`-style rendering via `imageAttrs()`. Theme image
    components often assume Astro's `<Image>` and local files, but ours live on R2.
 4. If the theme uses Tailwind, add `@tailwindcss/vite` in `astro.config.mjs`. The starter uses plain CSS,

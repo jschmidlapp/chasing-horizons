@@ -12,7 +12,7 @@ const { page, regions } = Astro.props;
   <Hero image={page.data.hero} title={page.data.title} subtitle={page.data.tagline} />
   <section class="section wrap">
     <div class="card-grid">
-      {regions.map(({ region, count }) => <RegionCard region={region} count={count} />)}
+      {regions.map((r) => <RegionCard {...r} />)}
     </div>
   </section>
 </BaseLayout>

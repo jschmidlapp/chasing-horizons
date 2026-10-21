@@ -2,6 +2,22 @@
 
 Newest first. Add an entry whenever a choice would be non-obvious to someone picking up the project.
 
+### 2026-10-20: Trips vs. spots
+
+- The owner pointed out that the first model conflated **one-off outings** (Rocky Mountain NP hikes)
+  with **regular local haunts** (Calero, Henry Coe). They're now two collections, `trips` and `spots`,
+  sharing a base schema (`entryFields` in `content.config.ts`). The owner chose the name "Spots".
+- **Two collections, not a `kind` flag**: each can have its own fields (`date`/`endDate` vs.
+  `lastVisited`) and URL space, and they'll show as two clear content types in TinaCMS. The cost is
+  that reclassifying means moving a folder (and a redirect, if the URL was shared).
+- Places (regions) stay the geographic backbone and show both kinds in separate sections.
+- Navigation: Places · Trips · Spots · Gear. The activity pages (`/activities/<a>/`) were replaced
+  by client-side filters on the Trips and Spots lists (`?activity=hike`).
+- Trips can reference spots (`spots: [...]`), shown in both directions.
+- Deferred: a **visit log** (dated mini-entries attached to a spot). See [roadmap.md](roadmap.md).
+- Media keys were not renamed for the moved entries: keys are opaque IDs, and renaming would mean
+  re-uploading to R2 for no visible benefit.
+
 ### 2026-10-18: Initial architecture
 
 - **Astro 7, static output, GitHub Pages.** The owner asked for Astro. Static output fits a photo journal

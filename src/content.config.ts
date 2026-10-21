@@ -22,37 +22,55 @@ const regions = defineCollection({
   }),
 });
 
+/** Fields shared by trips and spots (anything you can write up with photos, stats and a map). */
+const entryFields = {
+  title: z.string(),
+  region: reference('regions'),
+  /** Sub-area within the region, e.g. "Fort Collins" in Colorado. */
+  area: z.string().optional(),
+  activities: z.array(z.enum(ACTIVITIES)).min(1),
+  summary: z.string().optional(),
+  cover: image.optional(),
+  banner: image.optional(),
+  stats: z
+    .object({
+      distanceMiles: z.number().optional(),
+      elevationGainFeet: z.number().optional(),
+      duration: z.string().optional(),
+      difficulty: z.enum(['easy', 'moderate', 'hard', 'extreme']).optional(),
+    })
+    .optional(),
+  /** GPX file name, relative to the entry folder (e.g. "track.gpx"). */
+  gpx: z.string().optional(),
+  links: z.array(z.object({ label: z.string(), url: z.url() })).default([]),
+  tags: z.array(z.string()).default([]),
+  draft: z.boolean().default(false),
+  legacy: z.object({ page: z.string(), order: z.number() }).optional(),
+};
+
+/** One folder per entry: src/content/<collection>/<slug>/index.md (+ optional track.gpx). Id = <slug>. */
+const folderLoader = (collection: string) =>
+  glob({ pattern: '*/index.md', base: `./src/content/${collection}`, generateId: ({ entry }) => entry.split('/')[0] });
+
+/** Trips: something that happened once (a hike, ride, or outing), usually on a trip away. */
 const trips = defineCollection({
-  // One folder per trip: src/content/trips/<slug>/index.md (+ optional track.gpx). Id = <slug>.
-  loader: glob({
-    pattern: '*/index.md',
-    base: './src/content/trips',
-    generateId: ({ entry }) => entry.split('/')[0],
-  }),
+  loader: folderLoader('trips'),
   schema: z.object({
-    title: z.string(),
-    region: reference('regions'),
-    /** Sub-area within the region, e.g. "Fort Collins" in Colorado. */
-    area: z.string().optional(),
-    activities: z.array(z.enum(ACTIVITIES)).min(1),
+    ...entryFields,
     date: z.coerce.date().optional(),
-    summary: z.string().optional(),
-    cover: image.optional(),
-    banner: image.optional(),
-    stats: z
-      .object({
-        distanceMiles: z.number().optional(),
-        elevationGainFeet: z.number().optional(),
-        duration: z.string().optional(),
-        difficulty: z.enum(['easy', 'moderate', 'hard', 'extreme']).optional(),
-      })
-      .optional(),
-    /** GPX file name, relative to the trip folder (e.g. "track.gpx"). */
-    gpx: z.string().optional(),
-    links: z.array(z.object({ label: z.string(), url: z.url() })).default([]),
-    tags: z.array(z.string()).default([]),
-    draft: z.boolean().default(false),
-    legacy: z.object({ page: z.string(), order: z.number() }).optional(),
+    /** Last day, for multi-day trips. */
+    endDate: z.coerce.date().optional(),
+    /** Spots visited on this trip (shown on both pages). */
+    spots: z.array(reference('spots')).default([]),
+  }),
+});
+
+/** Spots: parks and trails visited regularly. Evergreen pages, updated over time. */
+const spots = defineCollection({
+  loader: folderLoader('spots'),
+  schema: z.object({
+    ...entryFields,
+    lastVisited: z.coerce.date().optional(),
   }),
 });
 
@@ -79,4 +97,4 @@ const pages = defineCollection({
   }),
 });
 
-export const collections = { regions, trips, gear, pages };
+export const collections = { regions, trips, spots, gear, pages };

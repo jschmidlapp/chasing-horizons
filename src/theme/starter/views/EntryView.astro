@@ -1,0 +1,46 @@
+---
+// Page for a single trip or spot.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import EntryMeta from '../components/EntryMeta.astro';
+import TripMap from '../components/TripMap.astro';
+import EntryCard from '../components/EntryCard.astro';
+import { isTrip, regionUrl, url } from '@lib/content';
+import type { EntryViewProps } from '../../types';
+
+type Props = EntryViewProps;
+const { entry, regionChain, track, linked, related, description } = Astro.props;
+const { title, banner, cover, area } = entry.data;
+const crumbs = [
+  { href: url('/places/'), label: 'Places' },
+  ...regionChain.map((r) => ({ href: regionUrl(r), label: r.data.title })),
+];
+const kind = isTrip(entry) ? 'trips' : 'spots';
+---
+
+<BaseLayout title={title} description={description} image={cover ?? banner}>
+  <Hero image={banner ?? cover} title={title} subtitle={area}>
+    <Breadcrumbs slot="eyebrow" items={crumbs} />
+  </Hero>
+
+  <article class="wrap section">
+    <EntryMeta entry={entry} track={track} />
+    {track && <TripMap track={track} />}
+    <div class="prose"><slot /></div>
+  </article>
+
+  {linked.length > 0 && (
+    <section class="wrap section">
+      <h2 class="section-title">{isTrip(entry) ? 'Spots on this trip' : 'Trips that came here'}</h2>
+      <div class="card-grid">{linked.map((e) => <EntryCard entry={e} />)}</div>
+    </section>
+  )}
+
+  {related.length > 0 && (
+    <section class="wrap section">
+      <h2 class="section-title">More {kind} in {regionChain.at(-1)?.data.title}</h2>
+      <div class="card-grid">{related.map((e) => <EntryCard entry={e} />)}</div>
+    </section>
+  )}
+</BaseLayout>

@@ -1,0 +1,15 @@
+---
+import EntryListView from '@theme/views/EntryListView.astro';
+import { activitiesIn, getRegions, getTrips, regionTitles } from '@lib/content';
+
+const [regions, trips] = await Promise.all([getRegions(), getTrips()]);
+---
+
+<EntryListView
+  title="Trips"
+  subtitle="Hikes and rides from trips away"
+  image={trips.find((t) => t.data.banner)?.data.banner ?? trips[0]?.data.cover}
+  entries={trips}
+  activities={activitiesIn(trips)}
+  regionTitles={regionTitles(regions)}
+/>

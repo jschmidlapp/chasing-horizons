@@ -3,12 +3,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import RegionCard from '../components/RegionCard.astro';
-import TripCard from '../components/TripCard.astro';
+import EntryGroups from '../components/EntryGroups.astro';
 import { regionUrl, url } from '@lib/content';
 import type { RegionViewProps } from '../../types';
 
 type Props = RegionViewProps;
-const { region, ancestors, subRegions, tripGroups, description, regionTitles } = Astro.props;
+const { region, ancestors, subRegions, tripGroups, spotGroups, description, regionTitles } = Astro.props;
 const { title, banner, cover } = region.data;
 const crumbs = [{ href: url('/places/'), label: 'Places' }, ...ancestors.map((r) => ({ href: regionUrl(r), label: r.data.title }))];
 ---
@@ -23,18 +23,12 @@ const crumbs = [{ href: url('/places/'), label: 'Places' }, ...ancestors.map((r)
     {subRegions.length > 0 && (
       <section class="section">
         <h2 class="section-title">Areas</h2>
-        <div class="card-grid">{subRegions.map(({ region, count }) => <RegionCard region={region} count={count} />)}</div>
+        <div class="card-grid">{subRegions.map((r) => <RegionCard {...r} />)}</div>
       </section>
     )}
 
-    {tripGroups.map((g) => (
-      <section class="section">
-        {(g.heading || tripGroups.length > 1 || subRegions.length > 0) && <h2 class="section-title">{g.heading ?? 'Other trips'}</h2>}
-        <div class="card-grid">
-          {g.trips.map((t) => <TripCard trip={t} eyebrow={t.data.region.id !== region.id ? regionTitles[t.data.region.id] : undefined} />)}
-        </div>
-      </section>
-    ))}
+    <EntryGroups title="Trips" groups={tripGroups} regionId={region.id} regionTitles={regionTitles} />
+    <EntryGroups title={subRegions.length ? 'Other spots' : 'Spots'} groups={spotGroups} regionId={region.id} regionTitles={regionTitles} />
   </div>
 </BaseLayout>
 

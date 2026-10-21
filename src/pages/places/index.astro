@@ -1,8 +1,8 @@
 ---
 import PlacesView from '@theme/views/PlacesView.astro';
-import { getPage, getRegions, getTrips, topLevelRegions, withCounts } from '@lib/content';
+import { getPage, getRegions, getSpots, getTrips, topLevelRegions, withCounts } from '@lib/content';
 
-const [page, regions, trips] = await Promise.all([getPage('places'), getRegions(), getTrips()]);
+const [page, regions, trips, spots] = await Promise.all([getPage('places'), getRegions(), getTrips(), getSpots()]);
 ---
 
-<PlacesView page={page} regions={withCounts(topLevelRegions(regions), regions, trips)} />
+<PlacesView page={page} regions={withCounts(topLevelRegions(regions), regions, trips, spots)} />

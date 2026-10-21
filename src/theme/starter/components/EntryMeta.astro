@@ -1,19 +1,22 @@
 ---
-// Facts strip under a trip's hero: activities, date, stats, external links.
-import { ACTIVITY_LABELS, activityUrl, formatDate, type Trip } from '@lib/content';
+// Facts strip under a trip/spot hero: activities, date, stats, external links.
+import { ACTIVITY_LABELS, formatDate, formatDateRange, isTrip, listUrl, type Entry } from '@lib/content';
 import type { Track } from '@lib/gpx';
 
 interface Props {
-  trip: Trip;
+  entry: Entry;
   track?: Track;
 }
-const { trip, track } = Astro.props;
-const { activities, date, stats, links } = trip.data;
+const { entry, track } = Astro.props;
+const { activities, stats, links } = entry.data;
 // Frontmatter stats win; fall back to values computed from the GPX track.
 const distance = stats?.distanceMiles ?? track?.distanceMiles;
 const gain = stats?.elevationGainFeet ?? track?.elevationGainFeet;
+const when = isTrip(entry)
+  ? entry.data.date && { label: 'Date', value: formatDateRange(entry.data.date, entry.data.endDate) }
+  : entry.data.lastVisited && { label: 'Last visited', value: formatDate(entry.data.lastVisited) };
 const facts = [
-  date && { label: 'Date', value: formatDate(date) },
+  when,
   distance && { label: 'Distance', value: `${distance} mi` },
   gain && { label: 'Elevation gain', value: `${gain.toLocaleString('en-US')} ft` },
   stats?.duration && { label: 'Time', value: stats.duration },
@@ -21,9 +24,9 @@ const facts = [
 ].filter(Boolean) as { label: string; value: string }[];
 ---
 
-<div class="trip-meta">
+<div class="entry-meta">
   <ul class="chips">
-    {activities.map((a) => <li><a class="chip" href={activityUrl(a)}>{ACTIVITY_LABELS[a]}</a></li>)}
+    {activities.map((a) => <li><a class="chip" href={listUrl(entry.collection, a)}>{ACTIVITY_LABELS[a]}</a></li>)}
   </ul>
   {facts.length > 0 && (
     <dl class="facts">
@@ -38,7 +41,7 @@ const facts = [
 </div>
 
 <style>
-  .trip-meta { max-width: var(--prose); margin: 0 auto 28px; display: grid; gap: 16px; }
+  .entry-meta { max-width: var(--prose); margin: 0 auto 28px; display: grid; gap: 16px; }
   .facts { display: flex; flex-wrap: wrap; gap: 12px 32px; margin: 0; padding: 16px 0; border-block: 1px solid var(--line); }
   dt { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
   dd { margin: 2px 0 0; font-weight: 600; font-size: 1.05rem; }

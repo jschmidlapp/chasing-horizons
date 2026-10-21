@@ -6,7 +6,10 @@ Cloudflare R2 is the source of truth. Git only holds the small manifest `src/dat
 ## Keys and references
 
 Each image has a **key**, a path like `trips/hike-to-sky-pond/2ebd7ab4be.jpg`. The file name is the first
-10 hex digits of the MD5 of the original file, so re-adding the same photo is a no-op. Content
+10 hex digits of the MD5 of the original file, so re-adding the same photo is a no-op. Treat keys as
+**opaque IDs**: the folder prefix only records where the photo was first added. Spots moved from
+`trips/` still use `trips/...` keys, and that's fine. Never rename keys of uploaded photos; R2 and
+the manifest would get out of sync. Content
 references images as `/media/<key>`, in Markdown bodies and frontmatter alike.
 
 At render time, `src/lib/media-core.mjs` turns `/media/<key>` into
