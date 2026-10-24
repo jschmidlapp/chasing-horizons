@@ -2,6 +2,15 @@
 
 Newest first. Add an entry whenever a choice would be non-obvious to someone picking up the project.
 
+### 2026-10-23: Henry Coe zones are spots, not regions
+
+- The 30 per-trail spots were too granular: you go to "the Grizzly Gulch side", not to one connector
+  trail. Each zone is now one spot, with its trails as `##` sections. Henry Coe is a single region again.
+- Trade-off: per-trail structured data (difficulty, GPX, last visited) now lives at zone level. If
+  per-trail ratings are wanted later, add a small `trails: [{ name, difficulty, notes }]` list to the zone
+  spot rather than splitting the pages again.
+- Added an automatic section jump list (3 or more `##` headings) for long entries.
+
 ### 2026-10-20: Trips vs. spots
 
 - The owner pointed out that the first model conflated **one-off outings** (Rocky Mountain NP hikes)

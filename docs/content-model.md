@@ -15,7 +15,8 @@ There are two kinds of write-up. Both live in Places (regions) and share most fi
 | Own fields | `date`, `endDate`, `spots` (links to spots visited) | `lastVisited` |
 | Sorting | newest `date` first | most recent `lastVisited` first |
 
-Rule of thumb: if you'd go back and add to it, it's a spot. To reclassify, `git mv` the folder between
+Rule of thumb: if you'd go back and add to it, it's a spot. Size a spot as "where I'd say I'm going today":
+a park, or a zone of a big park (Henry Coe has one spot per zone, with its trails as sections), not a single connector trail. To reclassify, `git mv` the folder between
 `trips/` and `spots/` and adjust the type-specific fields. Photo keys don't need to change (see
 [media.md](media.md)). The URL does change, so if the page has been shared, add a redirect in
 `src/data/redirects.json` (`"/trips/<slug>/": "/spots/<slug>/"`, paths without the base).
@@ -30,7 +31,7 @@ Each folder name is the URL slug. Supporting files, such as the GPX track, live 
 | Field | Type | Notes |
 | --- | --- | --- |
 | `title` | string | required |
-| `region` | region id | required, e.g. `henry-coe-grizzly-gulch-zone` (file name in `regions/`) |
+| `region` | region id | required, e.g. `henry-coe-sp` (file name in `regions/`) |
 | `area` | string | optional sub-area for grouping on the region page, e.g. "Fort Collins" |
 | `activities` | list | one or more of `hike`, `mtb`, `gravel`, `road`, `scenic`. Drives the list-page filters |
 | `summary` | string | card and meta description. If omitted, the first real paragraph of the body is used |
@@ -61,7 +62,8 @@ Each folder name is the URL slug. Supporting files, such as the GPX track, live 
 | `lastVisited` | date | shown on cards and the page. Sorts spots |
 
 Body conventions:
-- `## Heading` for sections (e.g. each lake or trail segment on a long hike).
+- `## Heading` for sections (e.g. each lake on a long hike, or each trail in a park zone). With 3 or more
+  sections, the page shows a jump list at the top, and each section can be linked as `…/#heading-slug`.
 - Consecutive image lines with no blank line between them form one gallery row (2–3 per row looks best).
 - An image on its own line, separated by blank lines, shows as a single photo.
 
@@ -89,7 +91,7 @@ Intro paragraph.
 ## Regions: `src/content/regions/<slug>.md`
 
 Places that group trips and spots (parks, areas, states). They can nest via `parent` (e.g. Los Gatos → South Bay).
-Henry Coe uses this for park zones (`henry-coe-grizzly-gulch-zone`, …). The region page lists its sub-regions, then its own trips and spots (each grouped by `area`). Counts on region cards include sub-regions.
+The region page lists its sub-regions, then its own trips and spots (each grouped by `area`). Counts on region cards include sub-regions.
 
 | Field | Notes |
 | --- | --- |

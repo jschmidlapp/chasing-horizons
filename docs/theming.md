@@ -31,7 +31,8 @@ Each theme provides these files in `views/`, accepting the props defined in `src
 | `GearView.astro` | `/gear/` | none |
 | `NotFoundView.astro` | 404 | none |
 
-"Entry" means a trip or a spot. Use `isTrip()` from `@lib/content` where they render differently
+"Entry" means a trip or a spot. `EntryView` receives `toc` (the `##` sections, empty if fewer than 3) for a jump list.
+ Use `isTrip()` from `@lib/content` where they render differently
 (e.g. date vs. last visited). The list view should support filtering by `?activity=<activity>`, since
 activity chips on entry pages link there.
 

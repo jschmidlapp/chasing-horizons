@@ -10,7 +10,7 @@ import { isTrip, regionUrl, url } from '@lib/content';
 import type { EntryViewProps } from '../../types';
 
 type Props = EntryViewProps;
-const { entry, regionChain, track, linked, related, description } = Astro.props;
+const { entry, regionChain, track, linked, related, description, toc } = Astro.props;
 const { title, banner, cover, area } = entry.data;
 const crumbs = [
   { href: url('/places/'), label: 'Places' },
@@ -27,6 +27,12 @@ const kind = isTrip(entry) ? 'trips' : 'spots';
   <article class="wrap section">
     <EntryMeta entry={entry} track={track} />
     {track && <TripMap track={track} />}
+    {toc.length > 0 && (
+      <nav class="toc" aria-label="On this page">
+        <h2 class="toc-title">{isTrip(entry) ? 'Sections' : 'Trails'}</h2>
+        <ol>{toc.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol>
+      </nav>
+    )}
     <div class="prose"><slot /></div>
   </article>
 
@@ -44,3 +50,14 @@ const kind = isTrip(entry) ? 'trips' : 'spots';
     </section>
   )}
 </BaseLayout>
+
+<style>
+  .toc { max-width: var(--prose); margin: 0 auto 32px; padding: 16px 20px; background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); }
+  .toc-title { font-size: 0.8rem; font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 0 0 10px; }
+  .toc ol { margin: 0; padding: 0; list-style: none; columns: 2 220px; column-gap: 24px; }
+  .toc li { break-inside: avoid; padding: 3px 0; }
+  .toc a { text-decoration: none; font-weight: 500; }
+  .toc a:hover { text-decoration: underline; }
+  /* Keep headings clear of the sticky header when jumping to them. */
+  :global(.prose h2) { scroll-margin-top: 80px; }
+</style>

@@ -12,7 +12,8 @@ Status key: ✅ done · 🔜 next · 💡 idea
 - ✅ R2 bucket `chasing-horizons-media` (r2.dev public URL), media uploaded, `MEDIA_BASE_URL` set
 - ✅ GitHub Pages enabled (source: GitHub Actions)
 - ✅ Henry Coe split into park zones; 17-Mile Drive fixed
-- ✅ Trips vs. spots split (see [decisions.md](decisions.md))
+- ✅ Trips vs. spots split; Henry Coe zones merged into 6 spots (see [decisions.md](decisions.md))
+- 🔜 Write real descriptions for the Henry Coe zones (summaries are placeholder trail lists)
 - 🔜 Content review pass (see [migration.md](migration.md) → "Needs human review")
 
 ## Phase 2: polish

@@ -56,6 +56,8 @@ export interface EntryViewProps {
   /** More of the same kind from the same region. */
   related: Entry[];
   description?: string;
+  /** Section headings (## level) for a jump list; empty when the page has fewer than 3 sections. */
+  toc: { slug: string; text: string }[];
 }
 
 /** All trips or all spots, with client-side activity filter (?activity=hike). */

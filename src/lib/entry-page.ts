@@ -1,9 +1,11 @@
 // Shared data loading for /trips/<slug>/ and /spots/<slug>/ (EntryView props, minus the body slot).
 import { excerpt, getRegions, getSpots, getTrips, isTrip, regionAncestors, type Entry } from './content';
 import { loadTrack } from './gpx';
+import type { MarkdownHeading } from 'astro';
 import type { EntryViewProps } from '../theme/types';
 
-export async function entryPageProps(entry: Entry): Promise<EntryViewProps> {
+/** `headings` comes from render(entry). */
+export async function entryPageProps(entry: Entry, headings: MarkdownHeading[]): Promise<EntryViewProps> {
   const [regions, trips, spots] = await Promise.all([getRegions(), getTrips(), getSpots()]);
   const region = regions.find((r) => r.id === entry.data.region.id)!;
 
@@ -18,6 +20,8 @@ export async function entryPageProps(entry: Entry): Promise<EntryViewProps> {
   const i = siblings.findIndex((e) => e.id === entry.id);
   const related = [...siblings.slice(i + 1), ...siblings.slice(0, i)].slice(0, 3);
 
+  const sections = headings.filter((h) => h.depth === 2).map(({ slug, text }) => ({ slug, text }));
+
   return {
     entry,
     regionChain: [...regionAncestors(regions, region), region],
@@ -25,5 +29,6 @@ export async function entryPageProps(entry: Entry): Promise<EntryViewProps> {
     linked,
     related,
     description: excerpt(entry),
+    toc: sections.length >= 3 ? sections : [],
   };
 }
