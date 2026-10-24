@@ -34,7 +34,7 @@ Each folder name is the URL slug. Supporting files, such as the GPX track, live 
 | `region` | region id | required, e.g. `henry-coe-sp` (file name in `regions/`) |
 | `area` | string | optional sub-area for grouping on the region page, e.g. "Fort Collins" |
 | `activities` | list | one or more of `hike`, `mtb`, `gravel`, `road`, `scenic`. Drives the list-page filters |
-| `summary` | string | card and meta description. If omitted, the first real paragraph of the body is used |
+| `description` | string | one or two sentences, ideally ≤160 chars, for cards, lists, and search/link previews. If omitted, the first full sentence of the body is used |
 | `cover` | image | card image. If omitted, the first image in the body |
 | `banner` | image | wide hero image. Falls back to `cover` |
 | `stats.distanceMiles` | number | overrides the value computed from GPX |
@@ -46,6 +46,13 @@ Each folder name is the URL slug. Supporting files, such as the GPX track, live 
 | `tags` | list | free-form. Not shown yet; reserved for future filtering |
 | `draft` | bool | hidden from production builds (still visible in `npm run dev`) |
 | `legacy` | object | `{ page, order }` from the Google Sites import. Keeps the original ordering for undated entries |
+
+### Descriptions
+
+Write `description` by hand. It's the blurb people see on cards and in search results. Drafts written
+by Claude carry a YAML comment, `description: "…" # draft`. Edit the text if needed, then delete the
+`# draft` comment. `npm run content:check` lists entries that have no description, a description over
+160 characters, or a draft still awaiting review. It never fails the build.
 
 ### Trip-only fields
 
@@ -98,7 +105,7 @@ The region page lists its sub-regions, then its own trips and spots (each groupe
 | `title` | required |
 | `parent` | optional region id |
 | `order` | sort order on the Places page (lower first) |
-| `summary`, `cover`, `banner` | as for trips |
+| `description`, `cover`, `banner` | as for trips |
 
 The body (optional) is the intro text shown on the region page (e.g. the Henry Coe overview).
 

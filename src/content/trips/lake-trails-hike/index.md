@@ -1,5 +1,6 @@
 ---
 title: "Lake Trails Hike"
+description: "Lakes Trail from Wolverton past alpine lakes to the Watchtower, just after the snowmelt opened things up." # draft
 region: "sequoia-np"
 activities: ["hike"]
 cover: "/media/trips/lake-trails-hike/3e85616836.jpg"

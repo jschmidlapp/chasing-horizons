@@ -1,5 +1,6 @@
 ---
 title: "Mt Umunhum"
+description: "A forested doubletrack climb most of the way, with a cool old Cold War-era radar station at the top." # draft
 region: "san-jose"
 activities: ["mtb"]
 cover: "/media/trips/mt-umunhum-san-jose/1cc5db44f3.jpg"

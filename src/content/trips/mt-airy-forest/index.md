@@ -1,5 +1,6 @@
 ---
 title: "Mt Airy Forest"
+description: "Urban park with easy hiking trails. We went in the winter, but I bet it's very pretty in the fall." # draft
 region: "ohio"
 area: "Cincinnati"
 activities: ["hike"]

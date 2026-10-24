@@ -1,5 +1,6 @@
 ---
 title: "Ft Ord"
+description: "More than 85 miles of sandy, cross-country-style trails just a bit from the Monterey coast." # draft
 region: "monterey"
 activities: ["mtb"]
 cover: "/media/trips/ft-ord/0b0128532e.jpg"

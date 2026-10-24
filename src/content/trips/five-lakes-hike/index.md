@@ -1,5 +1,6 @@
 ---
 title: "Five Lakes Hike"
+description: "A chill but no less beautiful hike past Nymph, Dream and Emerald lakes to Lake Haiyaha." # draft
 region: "rocky-mountain-np"
 activities: ["hike"]
 cover: "/media/trips/five-lakes-hike/145c6029f9.jpg"

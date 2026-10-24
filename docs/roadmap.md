@@ -13,7 +13,7 @@ Status key: ✅ done · 🔜 next · 💡 idea
 - ✅ GitHub Pages enabled (source: GitHub Actions)
 - ✅ Henry Coe split into park zones; 17-Mile Drive fixed
 - ✅ Trips vs. spots split; Henry Coe zones merged into 6 spots (see [decisions.md](decisions.md))
-- 🔜 Write real descriptions for the Henry Coe zones (summaries are placeholder trail lists)
+- 🔜 Review the 34 draft descriptions and write the 25 missing ones (`npm run content:check`)
 - 🔜 Content review pass (see [migration.md](migration.md) → "Needs human review")
 
 ## Phase 2: polish

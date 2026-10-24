@@ -10,7 +10,7 @@ interface Props {
 }
 const { entry, eyebrow } = Astro.props;
 const { title, cover, activities, area } = entry.data;
-const text = excerpt(entry, 110);
+const text = excerpt(entry);
 const label = eyebrow ?? area;
 const when = isTrip(entry)
   ? entry.data.date && formatDate(entry.data.date)

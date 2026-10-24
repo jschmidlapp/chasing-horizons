@@ -1,5 +1,6 @@
 ---
 title: "Mt Umunhum"
+description: "One of the highest peaks in the South Bay, with some nice doubletrack (almost) to the top." # draft
 region: "los-gatos"
 activities: ["mtb"]
 cover: "/media/trips/mt-umunhum/b1254b192f.jpg"

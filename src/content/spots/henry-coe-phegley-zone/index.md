@@ -2,7 +2,7 @@
 title: "Phegley Zone"
 region: "henry-coe-sp"
 activities: ["mtb"]
-summary: "Trails: Fish Pond, Vasquez Road, Long Dam Trail and 2 more."
+description: "Steep, loose fire roads and barely marked singletrack, from Fish Pond to the harrowing Redfern descent." # draft
 cover: "/media/trips/fish-pond/f03ade4ca9.jpg"
 legacy:
   page: "Henry Coe SP.html"

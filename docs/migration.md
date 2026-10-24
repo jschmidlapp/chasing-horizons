@@ -33,9 +33,11 @@ Result: 68 trips, 15 regions, 4 gear items.
   Grizzly Gulch, Phegley, Coit, Kelly, Mahoney, and Western (hiking trails). Rodeo Pond → Grizzly Gulch,
   Manzanita Point Road → Western (assigned 2026-10-21).
 
+- **Descriptions** (2026-10-24): `summary` renamed to `description`. Claude drafted 34 descriptions from
+  the existing text, marked `# draft`. Run `npm run content:check` for the review list.
 - **Henry Coe zones → spots** (2026-10-23): the 30 per-trail spots were merged into 6 zone spots
   (`spots/henry-coe-<zone>-zone/`, trails as `##` sections), and the zone sub-regions were removed. Old trail
-  URLs redirect to `…/#<trail>` anchors. Zone `summary` lists the trails as a placeholder.
+  URLs redirect to `…/#<trail>` anchors. (The placeholder trail-list summaries were replaced by draft descriptions on 2026-10-24.)
 - **Trips vs. spots** (2026-10-20): entries in Henry Coe, South Bay (and sub-regions), Santa Cruz,
   North Bay and Monterey moved from `trips/` to `spots/` (54 spots, 14 trips).
 

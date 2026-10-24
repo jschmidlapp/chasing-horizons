@@ -11,7 +11,8 @@
     "media:process": "node scripts/media/process.mjs",
     "media:upload": "node scripts/media/r2.mjs upload",
     "media:add": "node scripts/media/add.mjs",
-    "media:pull": "node scripts/media/r2.mjs pull"
+    "media:pull": "node scripts/media/r2.mjs pull",
+    "content:check": "node scripts/content/check.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",
@@ -29,7 +30,8 @@
     "@types/node": "^26.6.5",
     "cheerio": "^1.2.0",
     "dotenv": "^18.0.8",
-    "sharp": "^0.35.5"
+    "sharp": "^0.35.5",
+    "yaml": "^2.9.1"
   },
   "engines": {
     "node": ">=22"

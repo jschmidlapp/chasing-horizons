@@ -103,9 +103,15 @@ export function groupByArea<T extends Entry>(entries: T[]): { heading?: string; 
     .sort((a, b) => Number(a.heading !== undefined) - Number(b.heading !== undefined));
 }
 
-/** Card/meta-description text: frontmatter summary, else first prose paragraph of the body. */
-export function excerpt(entry: Entry | Region, max = 160): string | undefined {
-  if (entry.data.summary) return entry.data.summary;
+/** Max length of the auto-generated fallback (explicit descriptions are used as written). */
+const FALLBACK_MAX = 160;
+
+/**
+ * Card/meta-description text: the frontmatter `description`, else the first full sentence of the
+ * body's first prose paragraph (cut at a word boundary only if that sentence is very long).
+ */
+export function excerpt(entry: Entry | Region): string | undefined {
+  if (entry.data.description) return entry.data.description;
   const para = (entry.body ?? '')
     .split(/\n\s*\n/)
     .map((p) => p.trim())
@@ -114,7 +120,9 @@ export function excerpt(entry: Entry | Region, max = 160): string | undefined {
     .find((p, _, all) => p.length >= 40 || all.every((q) => q.length < 40));
   if (!para) return undefined;
   const text = para.replace(/\\([\\*_[\]<>#])/g, '$1').replace(/\s+/g, ' ');
-  return text.length <= max ? text : text.slice(0, text.lastIndexOf(' ', max)) + '…';
+  const sentence = text.match(/^.+?[.!?](?=\s|$)/)?.[0] ?? text;
+  if (sentence.length <= FALLBACK_MAX) return sentence;
+  return sentence.slice(0, sentence.lastIndexOf(' ', FALLBACK_MAX)) + '…';
 }
 
 export async function getPage(id: 'home' | 'places' | 'gear') {

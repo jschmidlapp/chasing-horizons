@@ -1,5 +1,6 @@
 ---
 title: "Dead Horse State Park"
+description: "Fun trails and incredible views, and just the right difficulty for a rental bike on terrain I wasn't familiar with." # draft
 region: "utah"
 area: "Moab"
 activities: ["mtb"]

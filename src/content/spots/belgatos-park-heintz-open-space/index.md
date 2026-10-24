@@ -1,5 +1,6 @@
 ---
 title: "Belgatos Park / Heintz Open Space"
+description: "Probably the closest trails to me. The official trails are... fine." # draft
 region: "los-gatos"
 activities: ["mtb"]
 cover: "/media/trips/belgatos-park-heintz-open-space/4ab0f860ff.jpg"

@@ -2,7 +2,7 @@
 title: "Kelly Zone"
 region: "henry-coe-sp"
 activities: ["mtb"]
-summary: "Notes on Kelly Lake."
+description: "Nice lake, with a catch: Kelly Lake Trail is crazy steep in either direction." # draft
 cover: "/media/trips/kelly-lake/b81e53f310.jpg"
 legacy:
   page: "Henry Coe SP.html"

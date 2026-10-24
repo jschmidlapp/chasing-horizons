@@ -15,7 +15,8 @@ const regions = defineCollection({
     title: z.string(),
     parent: reference('regions').optional(),
     order: z.number().default(100),
-    summary: z.string().optional(),
+    /** One or two sentences (≤160 chars) for cards, lists, and search/link previews. */
+    description: z.string().optional(),
     cover: image.optional(),
     banner: image.optional(),
     legacy: z.object({ page: z.string() }).optional(),
@@ -29,7 +30,8 @@ const entryFields = {
   /** Sub-area within the region, e.g. "Fort Collins" in Colorado. */
   area: z.string().optional(),
   activities: z.array(z.enum(ACTIVITIES)).min(1),
-  summary: z.string().optional(),
+  /** One or two sentences (≤160 chars) for cards, lists, and search/link previews. */
+  description: z.string().optional(),
   cover: image.optional(),
   banner: image.optional(),
   stats: z

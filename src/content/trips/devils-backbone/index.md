@@ -1,5 +1,6 @@
 ---
 title: "Devil's Backbone"
+description: "A quick ride; I didn't get to explore much before I ran out of sunshine." # draft
 region: "colorado"
 area: "Fort Collins"
 activities: ["mtb"]

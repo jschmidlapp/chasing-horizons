@@ -1,5 +1,6 @@
 ---
 title: "Santa Teresa County Park"
+description: "Local county park with some relatively technical MTB trails." # draft
 region: "san-jose"
 activities: ["mtb"]
 cover: "/media/trips/santa-teresa-county-park/55d16e2571.jpg"

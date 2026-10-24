@@ -1,5 +1,6 @@
 ---
 title: "Rim Rock Open Space"
+description: "I rented a bike here and liked it so much I bought basically the same model when I got home." # draft
 region: "colorado"
 area: "Fort Collins"
 activities: ["mtb"]

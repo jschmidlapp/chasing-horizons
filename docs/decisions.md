@@ -2,6 +2,16 @@
 
 Newest first. Add an entry whenever a choice would be non-obvious to someone picking up the project.
 
+### 2026-10-24: Explicit descriptions
+
+- Renamed `summary` to `description`: it's the owner's word for it, and the name most Astro themes and
+  TinaCMS templates expect.
+- The fallback is now the first full sentence, not a 110-character cut. Card text is clamped to 3 lines in CSS.
+- AI-drafted text is marked with a `# draft` YAML comment rather than a schema field, so it costs
+  nothing to clear. Note that TinaCMS will drop YAML comments when it saves a file, so finish reviewing
+  the drafts before adopting Tina, or switch to a `descriptionDraft: true` field then.
+- `npm run content:check` reports content gaps without failing the build.
+
 ### 2026-10-23: Henry Coe zones are spots, not regions
 
 - The 30 per-trail spots were too granular: you go to "the Grizzly Gulch side", not to one connector

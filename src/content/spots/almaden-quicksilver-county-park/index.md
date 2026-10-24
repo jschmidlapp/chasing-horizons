@@ -1,5 +1,6 @@
 ---
 title: "Almaden Quicksilver County Park"
+description: "County park at the site of an old mercury mine. All multi-use double track, but still fun, with interesting surroundings." # draft
 region: "san-jose"
 activities: ["mtb"]
 cover: "/media/trips/almaden-quicksilver-county-park/c6621a3bcc.jpg"

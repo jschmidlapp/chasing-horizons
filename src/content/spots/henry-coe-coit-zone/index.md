@@ -2,7 +2,7 @@
 title: "Coit Zone"
 region: "henry-coe-sp"
 activities: ["mtb"]
-summary: "Trails: Coit Lake, Crest Rd / Willow Ridge Rd and Coit Road."
+description: "Coit Lake near the center of the park, plus Coit Road and Crest Road: mostly reasonable grades by Henry Coe standards." # draft
 cover: "/media/trips/coit-lake/e87726e803.jpg"
 legacy:
   page: "Henry Coe SP.html"

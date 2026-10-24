@@ -1,5 +1,6 @@
 ---
 title: "South Mountain Park"
+description: "Trails just south of Phoenix. I only had an afternoon on a rental bike, but it would be fun to explore more." # draft
 region: "arizona"
 activities: ["mtb"]
 cover: "/media/trips/south-mountain-park/b5010aec98.jpg"

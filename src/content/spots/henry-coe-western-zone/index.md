@@ -2,7 +2,7 @@
 title: "Western Zone"
 region: "henry-coe-sp"
 activities: ["hike", "mtb"]
-summary: "Trails: Corral Trail, Springs Trail, Manzanita Point Road and 5 more."
+description: "Hiking trails from HQ down to Soda Springs and China Hole, plus the long Manzanita Point fire road." # draft
 cover: "/media/trips/corral-trail/eec04d0668.jpg"
 legacy:
   page: "Henry Coe SP.html"
