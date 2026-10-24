@@ -2,6 +2,15 @@
 
 Newest first. Add an entry whenever a choice would be non-obvious to someone picking up the project.
 
+### 2026-10-24: Local-first media in dev
+
+- The dev server always links images to itself and serves local files, falling back to an R2
+  redirect. This means new photos can be previewed before upload, even with `PUBLIC_MEDIA_BASE_URL` set in `.env`.
+  Unprocessed photos preview from their originals.
+- The manifest is read from disk (mtime-cached) instead of a JSON import, so `media:process` output is
+  picked up by a running dev server. Content-layer render caching still means an unchanged page keeps
+  its old render until the page is edited or the server restarts. Accepted as minor.
+
 ### 2026-10-24: Explicit descriptions
 
 - Renamed `summary` to `description`: it's the owner's word for it, and the name most Astro themes and

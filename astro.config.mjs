@@ -5,21 +5,50 @@ import fs from 'node:fs';
 import path from 'node:path';
 import siteConfig from './site.config.mjs';
 import rehypeMedia from './src/lib/rehype-media.mjs';
-import { LOCAL_MEDIA_PREFIX } from './src/lib/media-core.mjs';
+import { DEV_LOCAL_MEDIA_ENV, LOCAL_MEDIA_PREFIX, remoteMediaBase } from './src/lib/media-core.mjs';
 import redirects from './src/data/redirects.json' with { type: 'json' };
 
-/** Dev-only: serve .media/variants at /_media so the site works before/without R2. */
+/** @type {Record<string, string>} */
+const TYPES = { '.webp': 'image/webp', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png' };
+
+/**
+ * Serve `<dir>/<request path>` if it exists; returns false otherwise.
+ * @param {string} dir
+ * @param {import('node:http').IncomingMessage} req
+ * @param {import('node:http').ServerResponse} res
+ */
+function serveFrom(dir, req, res) {
+  const file = path.join(dir, decodeURIComponent((req.url ?? '').split('?')[0]));
+  if (!file.startsWith(dir + path.sep) || !fs.existsSync(file) || !fs.statSync(file).isFile()) return false;
+  res.setHeader('Content-Type', TYPES[path.extname(file).toLowerCase()] ?? 'application/octet-stream');
+  fs.createReadStream(file).pipe(res);
+  return true;
+}
+
+/**
+ * Dev-only media serving, so photos can be previewed before (or without) uploading to R2:
+ *  - /_media/<variant>  local .media/variants file, else redirect to the same file on R2
+ *  - /media/<key>       local original, used for photos referenced in Markdown but not yet processed
+ */
 /** @type {import('astro').AstroIntegration} */
 const localMedia = {
   name: 'local-media',
   hooks: {
+    'astro:config:setup': ({ command }) => {
+      if (command === 'dev') process.env[DEV_LOCAL_MEDIA_ENV] = '1';
+    },
     'astro:server:setup': ({ server }) => {
-      const dir = path.resolve('.media/variants');
+      const variants = path.resolve('.media/variants');
+      const originals = path.resolve('.media/originals');
       server.middlewares.use(LOCAL_MEDIA_PREFIX, (req, res, next) => {
-        const file = path.join(dir, decodeURIComponent((req.url ?? '').split('?')[0]));
-        if (!file.startsWith(dir) || !fs.existsSync(file)) return next();
-        res.setHeader('Content-Type', 'image/webp');
-        fs.createReadStream(file).pipe(res);
+        if (serveFrom(variants, req, res)) return;
+        if (!remoteMediaBase) return next();
+        res.statusCode = 302;
+        res.setHeader('Location', remoteMediaBase + (req.url ?? ''));
+        res.end();
+      });
+      server.middlewares.use('/media', (req, res, next) => {
+        if (!serveFrom(originals, req, res)) next();
       });
     },
     'astro:build:start': ({ logger }) => {
