@@ -21,3 +21,12 @@ legacy:
 
 ![Stevens Canyon Trail](/media/trips/monte-bello-open-space-preserve/e468ba8560.jpg)
 ![Stevens Canyon Trail](/media/trips/monte-bello-open-space-preserve/bce6b4360c.jpg)
+
+## White Oak Trail
+
+Surprisingly fun and flowy trail
+
+![White Oak Trail](/media/spots/monte-bello-open-space-preserve/2336c00d3b.jpg)
+
+![White Oak Trail](/media/spots/monte-bello-open-space-preserve/72d33a7f8d.jpg)
+![White Oak Trail](/media/spots/monte-bello-open-space-preserve/552b6e0c67.jpg)
