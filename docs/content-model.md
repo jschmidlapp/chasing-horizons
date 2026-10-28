@@ -42,6 +42,7 @@ Each folder name is the URL slug. Supporting files, such as the GPX track, live 
 | `stats.duration` | string | free text, e.g. "4h 30m" |
 | `stats.difficulty` | enum | `easy`, `moderate`, `hard`, `extreme` |
 | `gpx` | string | file name in the entry folder, e.g. `track.gpx`. Shows a map and fills distance and gain. For a spot, use your usual route |
+| `map` | string | GeoJSON file name in the entry folder, e.g. `route.geojson`, for a multi-day route map (see [Route maps](#route-maps)). Shown instead of the GPX map when both are set; GPX still fills the stats |
 | `links` | list | `[{ label: "Strava", url: "https://…" }]` |
 | `tags` | list | free-form. Not shown yet; reserved for future filtering |
 | `draft` | bool | hidden from production builds (still visible in `npm run dev`) |
@@ -94,6 +95,29 @@ Intro paragraph.
 ![The Loch](/media/trips/hike-to-sky-pond/c348bfce0d.jpg)
 ![The Loch](/media/trips/hike-to-sky-pond/be5e78ac74.jpg)
 ```
+
+### Route maps
+
+For road trips, `map: "route.geojson"` draws a map with one colour per day and a legend that toggles days
+on and off. The file is a GeoJSON `FeatureCollection` with an extra top-level `days` list:
+
+```json
+{
+  "type": "FeatureCollection",
+  "days": [{ "id": "day1", "label": "Day 1: San Jose to Gualala", "miles": 177 }],
+  "features": [
+    { "type": "Feature", "properties": { "day": "day1", "kind": "drive" }, "geometry": { "type": "LineString", "coordinates": [[-121.85, 37.34], "…"] } },
+    { "type": "Feature", "properties": { "day": "day1", "kind": "ride" }, "geometry": { "type": "LineString", "coordinates": ["…"] } },
+    { "type": "Feature", "properties": { "day": "day1", "kind": "stop", "name": "Gualala", "note": "Overnight" }, "geometry": { "type": "Point", "coordinates": [-123.53, 38.77] } }
+  ]
+}
+```
+
+- `days` sets the legend order and labels. `miles` is optional and shown as written (it isn't computed).
+- Each feature's `day` must match a day `id`, or the build fails.
+- Lines: `kind` is `drive` (solid) or `ride` (dashed, for bike rides). `LineString` or `MultiLineString`.
+- Points are stops. `name` and the optional `note` show as a tooltip.
+- Keep lines simplified (a few hundred points in total). The whole file goes into the page.
 
 ## Regions: `src/content/regions/<slug>.md`
 

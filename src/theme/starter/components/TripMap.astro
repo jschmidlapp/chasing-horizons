@@ -1,34 +1,98 @@
 ---
-// Route map from a trip's GPX track (computed at build time in @lib/gpx). Leaflet + OpenTopoMap tiles.
+// Route map: a multi-day RouteMap (@lib/route-map) or a single GPX track (@lib/gpx), both computed at
+// build time. Leaflet + OpenTopoMap tiles. Multi-day maps get one colour per day and a legend below the
+// map whose buttons toggle days on and off.
 import type { Track } from '@lib/gpx';
+import type { RouteMap } from '@lib/route-map';
 
 interface Props {
-  track: Track;
+  track?: Track;
+  routeMap?: RouteMap;
 }
-const { track } = Astro.props;
+const { track, routeMap } = Astro.props;
+
+const COLORS = ['#d9480f', '#2f9e44', '#1c7ed6', '#ae3ec9', '#f59f00', '#0c8599'];
+// A GPX track is a one-day route with no stops.
+const route: RouteMap = routeMap ?? {
+  days: [{ id: 'route', label: 'Route' }],
+  lines: (track?.lines ?? []).map((points) => ({ day: 'route', kind: 'drive' as const, points })),
+  stops: [],
+};
+const days = route.days.map((d, i) => ({ ...d, color: COLORS[i % COLORS.length] }));
+const hasRides = route.lines.some((l) => l.kind === 'ride');
 ---
 
 <figure class="trip-map">
-  <div class="map" data-track={JSON.stringify(track.lines)}></div>
+  <div class="map" data-route={JSON.stringify({ ...route, days })}></div>
+  {days.length > 1 && (
+    <figcaption class="legend">
+      {days.map((d) => (
+        <button type="button" class="legend-row" data-day={d.id} aria-pressed="true">
+          <span class="swatch" style={`background:${d.color}`}></span>
+          <span>{d.label}{d.miles && <span class="miles"> · {d.miles} mi</span>}</span>
+        </button>
+      ))}
+      {hasRides && <span class="legend-row"><span class="swatch ride"></span>Bike rides</span>}
+    </figcaption>
+  )}
 </figure>
 
 <script>
   import L from 'leaflet';
   import 'leaflet/dist/leaflet.css';
+  import type { RouteMap } from '@lib/route-map';
 
-  for (const el of document.querySelectorAll<HTMLElement>('.trip-map .map')) {
-    const lines = JSON.parse(el.dataset.track ?? '[]') as [number, number][][];
+  for (const figure of document.querySelectorAll<HTMLElement>('.trip-map')) {
+    const el = figure.querySelector<HTMLElement>('.map')!;
+    const route = JSON.parse(el.dataset.route ?? '{}') as Omit<RouteMap, 'days'> & { days: { id: string; color: string }[] };
     const map = L.map(el, { scrollWheelZoom: false });
     L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
       maxZoom: 17,
       attribution: 'Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, SRTM | Style © <a href="https://opentopomap.org">OpenTopoMap</a> (CC-BY-SA)',
     }).addTo(map);
-    const route = L.polyline(lines, { color: '#d9480f', weight: 4, opacity: 0.9 }).addTo(map);
-    map.fitBounds(route.getBounds(), { padding: [20, 20] });
+
+    const color = new Map(route.days.map((d) => [d.id, d.color]));
+    const groups = new Map(route.days.map((d) => [d.id, L.featureGroup().addTo(map)]));
+    for (const line of route.lines) {
+      const ride = line.kind === 'ride';
+      L.polyline(line.points, { color: color.get(line.day), weight: ride ? 3 : 4, opacity: 0.9, dashArray: ride ? '6 6' : undefined })
+        .addTo(groups.get(line.day)!);
+    }
+    for (const stop of route.stops) {
+      const tip = document.createElement('div');
+      const name = document.createElement('strong');
+      name.textContent = stop.name;
+      tip.append(name);
+      if (stop.note) tip.append(document.createElement('br'), stop.note);
+      L.circleMarker(stop.at, { radius: 7, color: '#fff', weight: 2, fillColor: color.get(stop.day), fillOpacity: 1 })
+        .bindTooltip(tip)
+        .addTo(groups.get(stop.day)!);
+    }
+    map.fitBounds(L.featureGroup([...groups.values()]).getBounds(), { padding: [20, 20] });
+
+    for (const button of figure.querySelectorAll<HTMLButtonElement>('button[data-day]')) {
+      button.addEventListener('click', () => {
+        const group = groups.get(button.dataset.day!)!;
+        const on = !map.hasLayer(group);
+        if (on) map.addLayer(group);
+        else map.removeLayer(group);
+        button.setAttribute('aria-pressed', String(on));
+      });
+    }
   }
 </script>
 
 <style>
   .trip-map { max-width: var(--prose); margin: 0 auto 32px; }
   .map { height: clamp(280px, 50vw, 440px); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .legend { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 10px; font-size: 14px; color: var(--text); }
+  .legend-row {
+    display: inline-flex; align-items: center; gap: 8px; padding: 2px 0;
+    background: none; border: 0; color: inherit; font: inherit; text-align: left;
+  }
+  button.legend-row { cursor: pointer; }
+  .legend-row[aria-pressed='false'] { opacity: 0.4; text-decoration: line-through; }
+  .miles { color: var(--muted); }
+  .swatch { flex: none; width: 20px; height: 4px; border-radius: 2px; }
+  .swatch.ride { height: 0; border-top: 3px dashed var(--muted); }
 </style>

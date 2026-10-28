@@ -44,6 +44,8 @@ const entryFields = {
     .optional(),
   /** GPX file name, relative to the entry folder (e.g. "track.gpx"). */
   gpx: z.string().optional(),
+  /** Multi-day route map (GeoJSON) file name, relative to the entry folder (e.g. "route.geojson"). */
+  map: z.string().optional(),
   links: z.array(z.object({ label: z.string(), url: z.url() })).default([]),
   tags: z.array(z.string()).default([]),
   draft: z.boolean().default(false),

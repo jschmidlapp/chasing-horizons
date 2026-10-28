@@ -65,3 +65,6 @@ Newest first. Add an entry whenever a choice would be non-obvious to someone pic
 - **Theme behind a view contract** (`src/theme/types.ts` plus the `@theme` alias) so a paid theme can be
   dropped in without touching content or routes.
 - **Leaflet + OpenTopoMap** for route maps: free, no API key. Revisit for heavy traffic (tile usage policy).
+- **Multi-day route maps as GeoJSON** (`map:` frontmatter) rather than iframing a standalone HTML map.
+  The data stays content (with day labels in a top-level `days` member) and the theme picks colours and
+  draws the legend, so these maps match the GPX maps and follow light/dark mode.

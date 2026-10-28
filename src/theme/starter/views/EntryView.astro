@@ -10,7 +10,7 @@ import { isTrip, regionUrl, url } from '@lib/content';
 import type { EntryViewProps } from '../../types';
 
 type Props = EntryViewProps;
-const { entry, regionChain, track, linked, related, description, toc } = Astro.props;
+const { entry, regionChain, track, routeMap, linked, related, description, toc } = Astro.props;
 const { title, banner, cover, area } = entry.data;
 const crumbs = [
   { href: url('/places/'), label: 'Places' },
@@ -26,7 +26,7 @@ const kind = isTrip(entry) ? 'trips' : 'spots';
 
   <article class="wrap section">
     <EntryMeta entry={entry} track={track} />
-    {track && <TripMap track={track} />}
+    {(routeMap || track) && <TripMap track={track} routeMap={routeMap} />}
     {toc.length > 0 && (
       <nav class="toc" aria-label="On this page">
         <h2 class="toc-title">{isTrip(entry) ? 'Sections' : 'Trails'}</h2>

@@ -3,6 +3,7 @@
 import type { CollectionEntry } from 'astro:content';
 import type { Activity, Entry, Region, Spot, Trip } from '../lib/content';
 import type { Track } from '../lib/gpx';
+import type { RouteMap } from '../lib/route-map';
 
 export interface RegionWithCount {
   region: Region;
@@ -51,6 +52,8 @@ export interface EntryViewProps {
   /** Top-level region down to the entry's own region. */
   regionChain: Region[];
   track?: Track;
+  /** Multi-day route (days, drives, rides, stops). Shown instead of the GPX track when both are set. */
+  routeMap?: RouteMap;
   /** Trip → spots it visited; spot → trips that visited it. */
   linked: Entry[];
   /** More of the same kind from the same region. */

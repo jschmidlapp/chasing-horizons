@@ -1,6 +1,7 @@
 // Shared data loading for /trips/<slug>/ and /spots/<slug>/ (EntryView props, minus the body slot).
 import { excerpt, getRegions, getSpots, getTrips, isTrip, regionAncestors, type Entry } from './content';
 import { loadTrack } from './gpx';
+import { loadRouteMap } from './route-map';
 import type { MarkdownHeading } from 'astro';
 import type { EntryViewProps } from '../theme/types';
 
@@ -26,6 +27,7 @@ export async function entryPageProps(entry: Entry, headings: MarkdownHeading[]):
     entry,
     regionChain: [...regionAncestors(regions, region), region],
     track: loadTrack(entry),
+    routeMap: loadRouteMap(entry),
     linked,
     related,
     description: excerpt(entry),
