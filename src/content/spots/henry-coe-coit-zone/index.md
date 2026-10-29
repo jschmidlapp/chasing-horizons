@@ -2,7 +2,7 @@
 title: "Coit Zone"
 region: "henry-coe-sp"
 activities: ["mtb"]
-description: "Coit Lake near the center of the park, plus Coit Road and Crest Road: mostly reasonable grades by Henry Coe standards." # draft
+description: "Coit Lake near the center of the park"
 cover: "/media/trips/coit-lake/e87726e803.jpg"
 legacy:
   page: "Henry Coe SP.html"

@@ -1,6 +1,6 @@
 ---
 title: "Flattop Mountain Hike"
-description: "Up toward Flattop's summit; we turned around just past the snow bank when it looked like a storm was coming in." # draft
+description: 
 region: "rocky-mountain-np"
 activities: ["hike"]
 cover: "/media/trips/flattop-mountain-hike/4e505a0a39.jpg"

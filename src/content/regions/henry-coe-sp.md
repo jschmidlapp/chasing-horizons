@@ -1,6 +1,6 @@
 ---
 title: "Henry Coe State Park"
-description: "87,000 acres with 120 miles of bike-legal singletrack. Only about 20 minutes from Morgan Hill, but it feels very remote." # draft
+description: "87,000 acres with 120 miles of bike-legal singletrack. Only about 20 minutes from Morgan Hill, but it feels very remote."
 order: 2
 cover: "/media/trips/wilson-peak/a237e2c0a5.jpg"
 banner: "/media/trips/jim-connelly-trail/5fadac88bf.jpg"

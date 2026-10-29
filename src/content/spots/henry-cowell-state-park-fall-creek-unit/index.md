@@ -1,8 +1,8 @@
 ---
 title: "Henry Cowell State Park - Fall Creek Unit"
-description: "Old lime kiln ruins, and a banana slug!" # draft
+description: "Old lime kiln ruins and redwoods"
 region: "santa-cruz"
-activities: ["mtb"]
+activities: ["hike"]
 cover: "/media/trips/henry-cowell-state-park-fall-creek-unit/a76cd6f4ce.jpg"
 legacy:
   page: "Santa Cruz.html"

@@ -1,6 +1,6 @@
 ---
 title: "Marble Falls Hike"
-description: "A misty, overcast hike through the foothills to Marble Falls. Pictures don't capture the scale, and it's very loud." # draft
+description:
 region: "sequoia-np"
 activities: ["hike"]
 cover: "/media/trips/marble-falls-hike/2ca3bb8972.jpg"
@@ -9,6 +9,7 @@ legacy:
   page: "Marble Falls Hike.html"
   order: 5
 ---
+
 Hike through the foothills of the park. The day we went was overcast and misty which was pretty cool.
 
 ![Marble Falls Hike](/media/trips/marble-falls-hike/9c7d6cd051.jpg)

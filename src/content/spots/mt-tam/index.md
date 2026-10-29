@@ -6,6 +6,7 @@ cover: "/media/trips/mt-tam/9a93df055d.jpg"
 legacy:
   page: "North Bay.html"
   order: 50
+description:
 ---
 ![Mt Tam](/media/trips/mt-tam/9a93df055d.jpg)
 ![Mt Tam](/media/trips/mt-tam/c5246449de.jpg)

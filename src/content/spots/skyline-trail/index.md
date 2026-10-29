@@ -6,6 +6,7 @@ cover: "/media/trips/skyline-trail/51466b9edc.jpg"
 legacy:
   page: "Saratoga.html"
   order: 65
+description: "Trails parallel to Skyline Blvd that connect to other Midpen preserves"
 ---
 ![Skyline Trail](/media/trips/skyline-trail/51466b9edc.jpg)
 

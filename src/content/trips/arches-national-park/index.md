@@ -2,11 +2,12 @@
 title: "Arches National Park"
 region: "utah"
 area: "Moab"
-activities: ["hike"]
+activities: ["scenic"]
 cover: "/media/trips/arches-national-park/914f18e661.jpg"
 legacy:
   page: "Utah.html"
   order: 67
+description:
 ---
 ![Arches National Park](/media/trips/arches-national-park/914f18e661.jpg)
 

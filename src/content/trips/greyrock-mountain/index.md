@@ -1,6 +1,6 @@
 ---
 title: "Greyrock Mountain Hike"
-description: "A steep climb up from Poudre Canyon to the granite dome of Greyrock, with big views over the foothills." # draft
+description:
 region: "colorado"
 area: "Fort Collins"
 activities: ["hike"]

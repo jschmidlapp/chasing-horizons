@@ -1,6 +1,6 @@
 ---
 title: "El Sereno Open Space Preserve"
-description: "Fire roads up to El Sereno peak above Los Gatos. Good workout, nice views." # draft
+description: "Fire roads up to El Sereno peak above Los Gatos"
 region: "los-gatos"
 activities: ["mtb"]
 cover: "/media/trips/el-sereno-open-space-preserve/dd6cf613f7.jpg"

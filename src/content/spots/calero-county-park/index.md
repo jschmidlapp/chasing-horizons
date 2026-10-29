@@ -1,6 +1,6 @@
 ---
 title: "Calero County Park"
-description: "One of my most frequented local parks: relatively mellow trails down low, with some fun forest trails in the upper half." # draft
+description: "Super popular south bay MTB trails"
 region: "san-jose"
 activities: ["mtb"]
 cover: "/media/trips/calero-county-park/f5209a9a92.jpg"

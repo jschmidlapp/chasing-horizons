@@ -6,6 +6,7 @@ cover: "/media/trips/john-nicholas-trail/cea51f37c8.jpg"
 legacy:
   page: "Saratoga.html"
   order: 64
+description: "Probably my favorite local trail"
 ---
 ![John Nicholas Trail](/media/trips/john-nicholas-trail/cea51f37c8.jpg)
 ![John Nicholas Trail](/media/trips/john-nicholas-trail/bedcc489bc.jpg)

@@ -6,6 +6,7 @@ cover: "/media/trips/wilder-ranch/b908622962.jpg"
 legacy:
   page: "Santa Cruz.html"
   order: 63
+description:
 ---
 ![Wilder Ranch](/media/trips/wilder-ranch/b908622962.jpg)
 

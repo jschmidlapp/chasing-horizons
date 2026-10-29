@@ -1,6 +1,6 @@
 ---
 title: "Horsetooth Mountain"
-description: "Blue trails here felt harder than at home: not quite black diamond, but definitely challenging." # draft
+description:
 region: "colorado"
 area: "Fort Collins"
 activities: ["mtb"]

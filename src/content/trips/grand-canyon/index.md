@@ -1,11 +1,12 @@
 ---
 title: "Grand Canyon"
 region: "arizona"
-activities: ["hike"]
+activities: ["scenic"]
 cover: "/media/trips/grand-canyon/2c2936cfd4.jpg"
 legacy:
   page: "Arizona.html"
   order: 7
+description:
 ---
 ![Grand Canyon](/media/trips/grand-canyon/2c2936cfd4.jpg)
 

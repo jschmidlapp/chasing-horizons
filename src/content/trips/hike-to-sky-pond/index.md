@@ -1,6 +1,6 @@
 ---
 title: "Hike to Sky Pond"
-description: "Up Glacier Gorge past Alberta Falls and The Loch to Lake of Glass and Sky Pond." # draft
+description:
 region: "rocky-mountain-np"
 activities: ["hike"]
 cover: "/media/trips/hike-to-sky-pond/2ebd7ab4be.jpg"
@@ -9,6 +9,9 @@ legacy:
   page: "Hike to Sky Pond.html"
   order: 0
 ---
+
+Up Glacier Gorge past Alberta Falls and The Loch to Lake of Glass and Sky Pond
+
 ![Hike to Sky Pond](/media/trips/hike-to-sky-pond/82c937b169.jpg)
 
 ![Hike to Sky Pond](/media/trips/hike-to-sky-pond/3592668ec6.jpg)

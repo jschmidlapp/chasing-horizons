@@ -2,7 +2,7 @@
 title: "Western Zone"
 region: "henry-coe-sp"
 activities: ["hike", "mtb"]
-description: "Hiking trails from HQ down to Soda Springs and China Hole, plus the long Manzanita Point fire road." # draft
+description: "Near HQ entrance, popular with hikers"
 cover: "/media/trips/corral-trail/eec04d0668.jpg"
 legacy:
   page: "Henry Coe SP.html"

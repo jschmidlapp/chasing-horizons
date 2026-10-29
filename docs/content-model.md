@@ -34,7 +34,7 @@ Each folder name is the URL slug. Supporting files, such as the GPX track, live 
 | `region` | region id | required, e.g. `henry-coe-sp` (file name in `regions/`) |
 | `area` | string | optional sub-area for grouping on the region page, e.g. "Fort Collins" |
 | `activities` | list | one or more of `hike`, `mtb`, `gravel`, `road`, `scenic`. Drives the list-page filters |
-| `description` | string | one or two sentences, ideally ≤160 chars, for cards, lists, and search/link previews. If omitted, the first full sentence of the body is used |
+| `description` | string | one or two sentences, ideally ≤160 chars, for cards, lists, and search/link previews. If omitted, the first full sentence of the body is used. Leave it blank (`description:`) for no blurb at all |
 | `cover` | image | card image. If omitted, the first image in the body |
 | `banner` | image | wide hero image. Falls back to `cover` |
 | `stats.distanceMiles` | number | overrides the value computed from GPX |
@@ -53,7 +53,9 @@ Each folder name is the URL slug. Supporting files, such as the GPX track, live 
 Write `description` by hand. It's the blurb people see on cards and in search results. Drafts written
 by Claude carry a YAML comment, `description: "…" # draft`. Edit the text if needed, then delete the
 `# draft` comment. `npm run content:check` lists entries that have no description, a description over
-160 characters, or a draft still awaiting review. It never fails the build.
+160 characters, or a draft still awaiting review. It never fails the build. Entries that don't need a
+blurb (e.g. a photo-only trip) can say so with a blank `description:`. The check skips them, and cards and
+link previews show no text (previews use the site description).
 
 ### Trip-only fields
 

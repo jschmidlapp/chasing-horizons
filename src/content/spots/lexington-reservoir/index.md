@@ -1,6 +1,6 @@
 ---
 title: "Lexington Reservoir"
-description: "Reservoir at the end of the Los Gatos Creek Trail, with access to Sierra Azul or an easy road ride up to Old Santa Cruz Highway." # draft
+description: "Reservoir at the end of the Los Gatos Creek Trail, with access to Sierra Azul and Old SC Highway"
 region: "los-gatos"
 activities: ["mtb"]
 cover: "/media/trips/lexington-reservoir/6d231563ec.jpg"

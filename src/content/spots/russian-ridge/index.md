@@ -6,6 +6,7 @@ cover: "/media/trips/russian-ridge/1ee447b023.jpg"
 legacy:
   page: "Palo Alto.html"
   order: 54
+description:
 ---
 ![Russian Ridge](/media/trips/russian-ridge/1ee447b023.jpg)
 

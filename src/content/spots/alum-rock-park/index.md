@@ -1,6 +1,6 @@
 ---
 title: "Alum Rock Park"
-description: "Probably fine if I lived closer, but it's steep and hot, so not really worth the drive." # draft
+description:
 region: "san-jose"
 activities: ["mtb"]
 cover: "/media/trips/alum-rock-park/f7b86d7417.jpg"

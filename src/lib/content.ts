@@ -109,9 +109,11 @@ const FALLBACK_MAX = 160;
 /**
  * Card/meta-description text: the frontmatter `description`, else the first full sentence of the
  * body's first prose paragraph (cut at a word boundary only if that sentence is very long).
+ * A blank `description:` (or `""`) means "none on purpose": no blurb and no fallback.
  */
 export function excerpt(entry: Entry | Region): string | undefined {
-  if (entry.data.description) return entry.data.description;
+  const { description } = entry.data;
+  if (description !== undefined) return description?.trim() || undefined;
   const para = (entry.body ?? '')
     .split(/\n\s*\n/)
     .map((p) => p.trim())

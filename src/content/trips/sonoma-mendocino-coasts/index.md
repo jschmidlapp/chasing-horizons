@@ -1,11 +1,15 @@
 ---
 title: "Sonoma and Mendocino Coasts"
-description: "Exploring the coast along Highway 1." # draft
+description: 
 region: "north-coast"
-activities: ["hike"]
+activities: ["hike","mtb"]
 map: "route.geojson"
 draft: true
+banner: /media/trips/sonoma-mendocino-coasts/765706be73.jpg
+cover: /media/trips/sonoma-mendocino-coasts/765706be73.jpg
 ---
+
+Exploring the northern California coast along Highway 1
 
 ![](/media/trips/sonoma-mendocino-coasts/765706be73.jpg)
 ![](/media/trips/sonoma-mendocino-coasts/8422f8ea08.jpg)

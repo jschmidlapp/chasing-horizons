@@ -1,11 +1,12 @@
 ---
 title: "Henry Cowell State Park"
 region: "santa-cruz"
-activities: ["mtb"]
+activities: ["hike"]
 cover: "/media/trips/henry-cowell-state-park/b52ef3e410.jpg"
 legacy:
   page: "Santa Cruz.html"
   order: 61
+description:
 ---
 ![Henry Cowell State Park](/media/trips/henry-cowell-state-park/b52ef3e410.jpg)
 

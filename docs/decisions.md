@@ -2,6 +2,12 @@
 
 Newest first. Add an entry whenever a choice would be non-obvious to someone picking up the project.
 
+### 2026-10-27: Blank description = none on purpose
+
+- A blank `description:` (YAML null or `""`) is different from an omitted one. It means "no blurb": the
+  first-sentence fallback is skipped and `content:check` doesn't report it. A `none: true` flag was
+  avoided because the empty key already says this, and it's what people naturally type.
+
 ### 2026-10-24: Local-first media in dev
 
 - The dev server always links images to itself and serves local files, falling back to an R2

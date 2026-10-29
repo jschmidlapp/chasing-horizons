@@ -6,6 +6,7 @@ cover: "/media/trips/17-mile-drive/b26faeea7e.jpg"
 legacy:
   page: "Monterey.html"
   order: 49
+description: Scenic drive around Monterey peninsula
 ---
 ![17-Mile Drive](/media/trips/17-mile-drive/b26faeea7e.jpg)
 

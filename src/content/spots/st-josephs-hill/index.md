@@ -1,6 +1,6 @@
 ---
 title: "St. Joseph's Hill"
-description: "Nice park in Los Gatos. Mostly multi-use double track, but still fun." # draft
+description: "Multi-use trails near downtown Los Gatos"
 region: "los-gatos"
 activities: ["mtb"]
 cover: "/media/trips/st-josephs-hill/70024cb1c5.jpg"

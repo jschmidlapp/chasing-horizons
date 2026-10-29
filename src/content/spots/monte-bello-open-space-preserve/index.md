@@ -6,6 +6,7 @@ cover: "/media/trips/monte-bello-open-space-preserve/3a8534ac8b.jpg"
 legacy:
   page: "Palo Alto.html"
   order: 53
+description:
 ---
 ![Monte Bello Open Space Preserve](/media/trips/monte-bello-open-space-preserve/3a8534ac8b.jpg)
 
@@ -21,6 +22,7 @@ legacy:
 
 ![Stevens Canyon Trail](/media/trips/monte-bello-open-space-preserve/e468ba8560.jpg)
 ![Stevens Canyon Trail](/media/trips/monte-bello-open-space-preserve/bce6b4360c.jpg)
+
 
 ## White Oak Trail
 

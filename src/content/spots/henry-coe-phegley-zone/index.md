@@ -2,7 +2,7 @@
 title: "Phegley Zone"
 region: "henry-coe-sp"
 activities: ["mtb"]
-description: "Steep, loose fire roads and barely marked singletrack, from Fish Pond to the harrowing Redfern descent." # draft
+description: "Southernmost part of the park"
 cover: "/media/trips/fish-pond/f03ade4ca9.jpg"
 legacy:
   page: "Henry Coe SP.html"

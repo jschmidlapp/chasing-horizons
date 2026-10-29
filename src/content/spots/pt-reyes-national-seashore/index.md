@@ -6,6 +6,7 @@ cover: "/media/trips/pt-reyes-national-seashore/55fae64f33.jpg"
 legacy:
   page: "North Bay.html"
   order: 51
+description:
 ---
 ![Pt Reyes National Seashore](/media/trips/pt-reyes-national-seashore/55fae64f33.jpg)
 ![Pt Reyes National Seashore](/media/trips/pt-reyes-national-seashore/2d782b6f0c.jpg)

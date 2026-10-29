@@ -1,6 +1,6 @@
 ---
 title: "Sequoias and Moro Rock Hike"
-description: "Giant sequoias on the Sherman Tree and Congress trails, meadow loops, Tharp's Log, and Moro Rock." # draft
+description:
 region: "sequoia-np"
 activities: ["hike"]
 cover: "/media/trips/sequoias-and-moro-rock-hike/46f4fb8047.jpg"
@@ -9,6 +9,9 @@ legacy:
   page: "Sequoias and Moro Rock.html"
   order: 3
 ---
+
+Giant sequoias on the Sherman Tree and Congress trails, meadow loops, Tharp's Log, and Moro Rock.
+
 ![Sequoias and Moro Rock Hike](/media/trips/sequoias-and-moro-rock-hike/4df1dc335b.jpg)
 
 ![Sequoias and Moro Rock Hike](/media/trips/sequoias-and-moro-rock-hike/0a797de24d.jpg)

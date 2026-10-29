@@ -1,6 +1,6 @@
 ---
 title: "Sierra Azul Open Space"
-description: "Fire roads and double track in the hills south of Los Gatos. Nothing special, but you can't beat the views 15 minutes from home." # draft
+description: "Fire roads and double track in the hills south of Los Gatos"
 region: "los-gatos"
 activities: ["mtb"]
 cover: "/media/trips/sierra-azul-open-space/e2d55c8ed3.jpg"

@@ -1,6 +1,6 @@
 ---
 title: "Big Sur"
-description: "Various stops on Highway 1 along the California coast." # draft
+description: "Various stops on Highway 1 along the California coast"
 region: "monterey"
 activities: ["scenic"]
 cover: "/media/trips/big-sur/f1b8463d0a.jpg"

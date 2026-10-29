@@ -2,7 +2,7 @@
 title: "Grizzly Gulch Zone"
 region: "henry-coe-sp"
 activities: ["mtb"]
-description: "The southern end of the park from Hunting Hollow: Wilson Peak, the Jim Connelly climb, and Spike Jones, my favorite descent at Henry Coe." # draft
+description: "Near Hunting Hollow entrance with access to lots of trails"
 cover: "/media/trips/grizzly-gulch-trail/da4749f861.jpg"
 legacy:
   page: "Henry Coe SP.html"

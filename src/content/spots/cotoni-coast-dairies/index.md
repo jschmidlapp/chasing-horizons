@@ -1,6 +1,6 @@
 ---
 title: "Cotoni-Coast Dairies"
-description: "New bike-legal singletrack in Santa Cruz!" # draft
+description: "New bike-legal singletrack in Santa Cruz"
 region: "santa-cruz"
 activities: ["mtb"]
 cover: "/media/trips/cotoni-coast-dairies/22c6e11509.jpg"

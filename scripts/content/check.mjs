@@ -5,6 +5,7 @@
 //
 // Lists trips, spots and places that have no `description`, have one longer than 160 characters,
 // or have one still marked `# draft` (written by Claude, awaiting the owner's review).
+// A blank `description:` (or `""`) means "none on purpose" and is not reported.
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -26,8 +27,8 @@ for (const f of files) {
   const head = raw.match(/^---\n([\s\S]*?)\n---/)?.[1] ?? '';
   const data = parse(head) ?? {};
   const label = `${f.kind}/${f.id}`;
-  if (!data.description) missing.push(label);
-  else {
+  if (!('description' in data)) missing.push(label);
+  else if (data.description) {
     if (data.description.length > MAX) tooLong.push(`${label} (${data.description.length} chars)`);
     if (/^description:.*#\s*draft\s*$/m.test(head)) drafts.push(label);
   }

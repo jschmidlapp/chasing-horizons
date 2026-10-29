@@ -2,7 +2,7 @@
 title: "Mahoney Zone"
 region: "henry-coe-sp"
 activities: ["mtb"]
-description: "Classic Henry Coe singletrack: brutal climbs like Jackson and flowy descents like Cattle Duster that are over too soon." # draft
+description: "Large area near Hunting Hollow entrance"
 cover: "/media/trips/anza-trail/f21260bbb4.jpg"
 legacy:
   page: "Henry Coe SP.html"
