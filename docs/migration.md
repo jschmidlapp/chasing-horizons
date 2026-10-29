@@ -54,7 +54,7 @@ Result: 68 trips, 15 regions, 4 gear items.
 - **Trips with no text** (photos only): Grand Canyon, Rodeo Pond, 17-Mile Drive, Mt Tam, Pt Reyes,
   Monte Bello, Russian Ridge, Henry Cowell, Wilder Ranch, John Nicholas Trail, Skyline Trail, Arches.
 - **Trips with no photos**: Grapevine Trail.
-- **Slug collision**: Mt Umunhum appears under both Los Gatos and San Jose, so the second became
-  `mt-umunhum-san-jose`. Consider merging them.
+- **Slug collision** (resolved 2026-10-28): Mt Umunhum appeared under both Los Gatos and San Jose, so the
+  second became `mt-umunhum-san-jose`. They're now merged into `mt-umunhum` (San Jose region), with a redirect.
 - Several Sky Pond and Lake Trails photos are screenshots of maps or elevation profiles. A GPX file
   would replace them with a live map.

@@ -2,6 +2,12 @@
 
 Newest first. Add an entry whenever a choice would be non-obvious to someone picking up the project.
 
+### 2026-10-28: One Mt Umunhum spot, in San Jose
+
+- The two imported Mt Umunhum spots (Los Gatos and San Jose) were merged into `mt-umunhum`, region
+  `san-jose`. The shorter slug was kept and `/spots/mt-umunhum-san-jose/` redirects to it. Photo keys under
+  `trips/mt-umunhum-san-jose/` were left as they are (keys are opaque IDs).
+
 ### 2026-10-27: Blank description = none on purpose
 
 - A blank `description:` (YAML null or `""`) is different from an omitted one. It means "no blurb": the
