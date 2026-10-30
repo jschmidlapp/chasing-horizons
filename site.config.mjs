@@ -8,8 +8,7 @@ const env = process.env;
 
 export default {
   title: 'Chasing Horizons',
-  description: 'Hikes, mountain bike rides, and interesting places.',
-  author: 'Jason Schmidlapp',
+  description: '',
 
   // Where the site is served. GitHub Pages project site for now; when a custom domain is added,
   // set SITE_URL=https://example.com and BASE_PATH=/ (see docs/deployment.md).
