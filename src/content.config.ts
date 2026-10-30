@@ -89,15 +89,15 @@ const gear = defineCollection({
   }),
 });
 
-/** Singleton pages (home, places, gear) — hero images, taglines, optional body text. */
+/** Singleton pages (home, places, gear, snacks) — hero images, taglines, optional body text. */
 const pages = defineCollection({
   loader: glob({ pattern: '*.md', base: './src/content/pages' }),
   schema: z.object({
     title: z.string(),
     tagline: z.string().optional(),
     hero: image.optional(),
-    placesCard: image.optional(),
-    gearCard: image.optional(),
+    /** Captioned photos shown as a wall (the snacks page). */
+    photos: z.array(z.object({ image, caption: z.string().optional() })).default([]),
   }),
 });
 

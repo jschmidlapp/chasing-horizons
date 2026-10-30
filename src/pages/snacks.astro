@@ -1,0 +1,8 @@
+---
+import SnacksView from '@theme/views/SnacksView.astro';
+import { getPage } from '@lib/content';
+
+const page = await getPage('snacks');
+---
+
+<SnacksView page={page} />

@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Img from '../components/Img.astro';
+import type { SnacksViewProps } from '../../types';
+
+type Props = SnacksViewProps;
+const { page } = Astro.props;
+const { title, tagline, hero, photos } = page.data;
+---
+
+<BaseLayout title={title} description={tagline} image={hero ?? photos[0]?.image}>
+  <Hero image={hero} title={title} subtitle={tagline} />
+  <section class="section wrap">
+    {photos.length === 0 && <p class="muted">Nothing here yet.</p>}
+    <div class="wall">
+      {photos.map((p) => (
+        <figure>
+          <Img src={p.image} alt={p.caption ?? ''} sizes="(min-width: 1180px) 380px, (min-width: 600px) 45vw, 100vw" zoom />
+          {p.caption && <figcaption>{p.caption}</figcaption>}
+        </figure>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .wall { display: grid; gap: 28px 20px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
+  figure { margin: 0; }
+  figure :global(img) { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius); cursor: zoom-in; }
+  figcaption { margin-top: 8px; color: var(--muted); font-size: 0.95rem; }
+</style>

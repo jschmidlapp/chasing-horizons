@@ -29,6 +29,7 @@ Each theme provides these files in `views/`, accepting the props defined in `src
 | `EntryView.astro` | `/trips/<slug>/`, `/spots/<slug>/` | entry body (rendered Markdown) |
 | `EntryListView.astro` | `/trips/`, `/spots/` | none |
 | `GearView.astro` | `/gear/` | none |
+| `SnacksView.astro` | `/snacks/` | none |
 | `NotFoundView.astro` | 404 | none |
 
 "Entry" means a trip or a spot. `EntryView` receives `toc` (the `##` sections, empty if fewer than 3) for a jump list.
@@ -38,7 +39,7 @@ activity chips on entry pages link there.
 
 Themes must render images with `imageAttrs()` / `imageUrl()` from `src/lib/media-core.mjs` (see the
 starter's `components/Img.astro`). Rendered Markdown contains `.gallery[data-count]` wrappers and images
-with a `data-full` attribute. A theme should style `.gallery` and may attach a lightbox to `[data-full]`.
+with a `data-full` attribute. A theme should style `.gallery` and may attach a lightbox to `[data-full]` (the starter also sets it on `<Img zoom>`, e.g. the snacks photo wall).
 
 ## Adopting a paid Astro theme
 

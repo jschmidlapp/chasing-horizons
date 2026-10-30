@@ -8,8 +8,8 @@ import { url } from '@lib/content';
 import type { HomeViewProps } from '../../types';
 
 type Props = HomeViewProps;
-const { page, regions, featuredTrips, featuredSpots, regionTitles } = Astro.props;
-const { title, tagline, hero, placesCard, gearCard } = page.data;
+const { page, regions, featuredTrips, featuredSpots, regionTitles, more } = Astro.props;
+const { title, tagline, hero } = page.data;
 ---
 
 <BaseLayout image={hero}>
@@ -42,37 +42,27 @@ const { title, tagline, hero, placesCard, gearCard } = page.data;
     </div>
   </section>
 
-  <section class="section wrap tiles">
-    <a class="tile photo" href={url('/places/')}>
-      {placesCard && <Img src={placesCard} alt="" sizes="(min-width: 900px) 50vw, 100vw" />}
-      <strong>All places</strong>
-    </a>
-    <a class="tile photo" href={url('/gear/')}>
-      {gearCard && <Img src={gearCard} alt="" sizes="(min-width: 900px) 50vw, 100vw" />}
-      <strong>Gear I use</strong>
-    </a>
-  </section>
+  {more.length > 0 && (
+    <section class="section wrap">
+      <h2 class="section-title">More</h2>
+      <div class="card-grid">
+        {more.map(({ href, title, text, image }) => (
+          <a class="card" href={href}>
+            <div class="card-media">
+              {image && <Img src={image} alt="" sizes="(min-width: 1180px) 380px, (min-width: 600px) 45vw, 100vw" />}
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">{title}</h3>
+              {text && <p class="card-text">{text}</p>}
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
 </BaseLayout>
 
 <style>
   .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
   .section-head a { font-weight: 500; text-decoration: none; white-space: nowrap; }
-  .tiles { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
-  .tile {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    min-height: 180px;
-    padding: 18px;
-    border-radius: var(--radius);
-    background: var(--accent);
-    color: #fff;
-    text-decoration: none;
-    overflow: hidden;
-  }
-  .tile:hover { color: #fff; filter: brightness(1.08); }
-  .tile strong { position: relative; z-index: 1; font-family: var(--font-display); font-size: 1.35rem; }
-  .tile.photo :global(img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .tile.photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgb(0 0 0 / 0.6), transparent 60%); }
 </style>

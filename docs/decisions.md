@@ -2,6 +2,17 @@
 
 Newest first. Add an entry whenever a choice would be non-obvious to someone picking up the project.
 
+### 2026-10-29: Home page "More" cards; snacks page
+
+- Removed the "All places" tile from the home page (Places is in the nav and already the first home section).
+- The Gear tile used a Google Sites collage (white gutters baked in) as a short overlaid banner, which
+  looked out of place. It's now a normal card in a "More" section using the gear page's own hero and
+  tagline, so there is no separate `gearCard` image to maintain. `placesCard` and `gearCard` were dropped.
+- New `/snacks/` page: favourite places to stop for a snack *during* a hike or ride (a bench, a viewpoint).
+  It's only photos with one-line captions, so it's a `photos` list in `pages/snacks.md`, not a collection with
+  one file per item, and there are no detail pages. Photos open in the shared lightbox (`<Img zoom>`).
+  Navigation is now Places · Trips · Spots · Gear · Snacks.
+
 ### 2026-10-28: One Mt Umunhum spot, in San Jose
 
 - The two imported Mt Umunhum spots (Los Gatos and San Jose) were merged into `mt-umunhum`, region
@@ -51,7 +62,7 @@ Newest first. Add an entry whenever a choice would be non-obvious to someone pic
   `lastVisited`) and URL space, and they'll show as two clear content types in TinaCMS. The cost is
   that reclassifying means moving a folder (and a redirect, if the URL was shared).
 - Places (regions) stay the geographic backbone and show both kinds in separate sections.
-- Navigation: Places · Trips · Spots · Gear. The activity pages (`/activities/<a>/`) were replaced
+- Navigation: Places · Trips · Spots · Gear (Snacks added 2026-10-29). The activity pages (`/activities/<a>/`) were replaced
   by client-side filters on the Trips and Spots lists (`?activity=hike`).
 - Trips can reference spots (`spots: [...]`), shown in both directions.
 - Deferred: a **visit log** (dated mini-entries attached to a spot). See [roadmap.md](roadmap.md).

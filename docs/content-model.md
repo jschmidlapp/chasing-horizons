@@ -139,9 +139,19 @@ The body (optional) is the intro text shown on the region page (e.g. the Henry C
 
 `title`, `description`, `image`, `order`, `retired` (hides it). Currently body-less.
 
-## Pages: `src/content/pages/{home,places,gear}.md`
+## Pages: `src/content/pages/{home,places,gear,snacks}.md`
 
-Singleton settings for those pages: `title`, `tagline`, `hero`, plus `placesCard` and `gearCard` on home.
+Singleton settings for those pages: `title`, `tagline`, `hero`. The home page's "More" cards for gear and
+snacks use those pages' own `title`, `tagline` and `hero` (falling back to the first photo).
+
+`snacks.md` also has `photos`: favourite places to stop for a snack mid-hike or mid-ride, shown as a
+photo wall in list order. Each has an `image` and an optional one-line `caption`. There are no detail pages.
+
+```yaml
+photos:
+  - image: "/media/pages/snacks/<key>.jpg"
+    caption: "Eagles Point overlooking the Rockies"
+```
 
 ## Changing the schema
 

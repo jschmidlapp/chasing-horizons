@@ -1,5 +1,5 @@
 ---
-// Click any photo with data-full (set by rehype-media) to view it full screen. Arrow keys / swipe to move.
+// Click any photo with data-full (set by rehype-media, or <Img zoom>) to view it full screen. Arrow keys / swipe to move.
 ---
 
 <dialog class="lightbox" aria-label="Photo viewer">
@@ -12,7 +12,7 @@
 <script>
   const dialog = document.querySelector<HTMLDialogElement>('dialog.lightbox')!;
   const view = dialog.querySelector('img')!;
-  const photos = [...document.querySelectorAll<HTMLImageElement>('.prose img[data-full]')];
+  const photos = [...document.querySelectorAll<HTMLImageElement>('img[data-full]')];
   let index = 0;
 
   function show(i: number) {

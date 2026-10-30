@@ -21,12 +21,22 @@ export interface EntryGroup<T extends Entry> {
   entries: T[];
 }
 
+/** A link to another page, shown as a card. */
+export interface PageLink {
+  href: string;
+  title: string;
+  text?: string;
+  image?: string;
+}
+
 export interface HomeViewProps {
   page: CollectionEntry<'pages'>;
   regions: RegionWithCount[];
   featuredTrips: Trip[];
   featuredSpots: Spot[];
   regionTitles: RegionTitles;
+  /** Extra pages (gear, snacks) linked from the bottom of the home page. */
+  more: PageLink[];
 }
 
 export interface PlacesViewProps {
@@ -76,6 +86,11 @@ export interface EntryListViewProps {
 export interface GearViewProps {
   page: CollectionEntry<'pages'>;
   items: CollectionEntry<'gear'>[];
+}
+
+/** Photo wall: `page.data.photos` (image + caption), click to enlarge. */
+export interface SnacksViewProps {
+  page: CollectionEntry<'pages'>;
 }
 
 export interface NotFoundViewProps {

@@ -1,8 +1,10 @@
 ---
 import HomeView from '@theme/views/HomeView.astro';
-import { getPage, getRegions, getSpots, getTrips, regionTitles, topLevelRegions, withCounts, type Entry } from '@lib/content';
+import { getPage, getRegions, getSpots, getTrips, regionTitles, topLevelRegions, url, withCounts, type Entry } from '@lib/content';
 
-const [page, regions, trips, spots] = await Promise.all([getPage('home'), getRegions(), getTrips(), getSpots()]);
+const [page, regions, trips, spots, gear, snacks] = await Promise.all([
+  getPage('home'), getRegions(), getTrips(), getSpots(), getPage('gear'), getPage('snacks'),
+]);
 
 // Until entries have dates, feature the richest write-ups (longest bodies); afterwards, the newest.
 const richest = <T extends Entry>(list: T[]) => [...list].sort((a, b) => (b.body?.length ?? 0) - (a.body?.length ?? 0));
@@ -16,4 +18,10 @@ const featuredSpots = (spots.some((s) => s.data.lastVisited) ? spots : richest(s
   featuredTrips={featuredTrips}
   featuredSpots={featuredSpots}
   regionTitles={regionTitles(regions)}
+  more={[gear, snacks].map((p) => ({
+    href: url(`/${p.id}/`),
+    title: p.data.title,
+    text: p.data.tagline,
+    image: p.data.hero ?? p.data.photos[0]?.image,
+  }))}
 />

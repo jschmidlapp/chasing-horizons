@@ -127,7 +127,7 @@ export function excerpt(entry: Entry | Region): string | undefined {
   return sentence.slice(0, sentence.lastIndexOf(' ', FALLBACK_MAX)) + '…';
 }
 
-export async function getPage(id: 'home' | 'places' | 'gear') {
+export async function getPage(id: 'home' | 'places' | 'gear' | 'snacks') {
   const page = await getEntry('pages', id);
   if (!page) throw new Error(`Missing src/content/pages/${id}.md`);
   return page;
