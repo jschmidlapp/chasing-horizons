@@ -105,3 +105,8 @@ Newest first. Add an entry whenever a choice would be non-obvious to someone pic
   centring text under wider photos because many sections are just a heading and photos, and centred text
   made headings line up with nothing. The `sizes` hint in `rehype-media.mjs` is 1000px to match,
   because lone photos (`width: auto`) take it as their natural width.
+- **Photo captions use the Markdown image title** (`![alt](src "Caption")`) and render as
+  `<figure>`/`<figcaption>` under the photo. It's standard Markdown (no HTML in bodies, CMS-friendly),
+  ties the caption to one photo even inside a gallery row, and keeps alt text separate. Gallery photos
+  now use `height: auto` with `align-items: start`, so a captioned photo stays the same size as its
+  uncaptioned neighbours.

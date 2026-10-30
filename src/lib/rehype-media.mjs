@@ -2,6 +2,8 @@
 //  1. <img src="/media/..."> -> responsive img (srcset/sizes/width/height, lazy loading).
 //  2. A paragraph containing only images -> <div class="gallery" data-count="N">, so themes can
 //     lay out photo groups (from consecutive image lines in Markdown) as a grid.
+//  3. In those galleries, an image with a Markdown title (`![alt](src "Caption")`) is wrapped in
+//     <figure> with a <figcaption>, so a caption stays attached to its photo.
 // Theme-agnostic: the theme only needs CSS for .gallery and an optional lightbox on [data-full].
 
 import { visit } from 'unist-util-visit';
@@ -35,9 +37,21 @@ export default function rehypeMedia() {
         if (kids.length && kids.every((c) => c.type === 'element' && c.tagName === 'img')) {
           node.tagName = 'div';
           node.properties = { className: ['gallery'], dataCount: kids.length };
-          node.children = kids;
+          node.children = kids.map(figure);
         }
       }
     });
+  };
+}
+
+function figure(img) {
+  const caption = img.properties.title;
+  if (!caption) return img;
+  delete img.properties.title;
+  return {
+    type: 'element',
+    tagName: 'figure',
+    properties: {},
+    children: [img, { type: 'element', tagName: 'figcaption', properties: {}, children: [{ type: 'text', value: String(caption) }] }],
   };
 }

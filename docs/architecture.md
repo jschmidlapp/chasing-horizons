@@ -13,7 +13,7 @@ src/lib/                Theme-independent logic
   content.ts            Querying, sorting, region tree, URLs, excerpts (trips + spots = "entries")
   entry-page.ts         Props for a trip/spot page (linked entries, related, GPX track, route map)
   media-core.mjs        "/media/<key>" → responsive R2 URLs (srcset), shared by components and Markdown
-  rehype-media.mjs      Markdown plugin: responsive <img>, and image-only paragraphs → .gallery
+  rehype-media.mjs      Markdown plugin: responsive <img>, image-only paragraphs → .gallery, titles → captions
   gpx.ts                Build-time GPX → simplified polyline + distance and elevation gain
   route-map.ts          Build-time multi-day route map (GeoJSON → days, drives, rides, stops)
 src/theme/types.ts      The view contract (props for each view)
@@ -47,7 +47,8 @@ base path (`/chasing-horizons` on GitHub Pages; `/` once a custom domain is in p
 1. Astro loads the collections (`content.config.ts`) and validates the frontmatter. A bad field fails the build.
 2. A page in `src/pages` queries data through `src/lib/content.ts` and passes typed props to a view.
 3. The Markdown body is rendered with the `unified()` processor plus `rehype-media`. Inline images become
-   `srcset` images on R2. Consecutive image lines become a `.gallery` grid.
+   `srcset` images on R2. Consecutive image lines become a `.gallery` grid. An image with a Markdown
+   title is wrapped in `<figure>` + `<figcaption>`.
 4. The theme's views lay everything out. `Lightbox.astro` makes body photos clickable.
 
 ## Markdown processor

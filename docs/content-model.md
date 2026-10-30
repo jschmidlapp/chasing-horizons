@@ -79,6 +79,9 @@ Body conventions:
   sections, the page shows a jump list at the top, and each section can be linked as `…/#heading-slug`.
 - Consecutive image lines with no blank line between them form one gallery row (2–3 per row looks best).
 - An image on its own line, separated by blank lines, shows as a single photo.
+- To caption a photo, add a quoted title after the URL: `![Lake of Glass](/media/… "Lake of Glass")`.
+  The caption shows in small muted text under that photo (also inside a gallery row). The `[…]` part is
+  alt text for screen readers: describe the photo, don't repeat the section name.
 
 ```markdown
 ---
