@@ -11,7 +11,7 @@ Newest first. Add an entry whenever a choice would be non-obvious to someone pic
 - New `/snacks/` page: favourite places to stop for a snack *during* a hike or ride (a bench, a viewpoint).
   It's only photos with one-line captions, so it's a `photos` list in `pages/snacks.md`, not a collection with
   one file per item, and there are no detail pages. Photos open in the shared lightbox (`<Img zoom>`).
-  Navigation is now Places · Trips · Spots · Gear · Snacks.
+  It's linked from the home page "More" section only, not the top nav (briefly in the nav, removed same day).
 
 ### 2026-10-28: One Mt Umunhum spot, in San Jose
 
@@ -62,7 +62,7 @@ Newest first. Add an entry whenever a choice would be non-obvious to someone pic
   `lastVisited`) and URL space, and they'll show as two clear content types in TinaCMS. The cost is
   that reclassifying means moving a folder (and a redirect, if the URL was shared).
 - Places (regions) stay the geographic backbone and show both kinds in separate sections.
-- Navigation: Places · Trips · Spots · Gear (Snacks added 2026-10-29). The activity pages (`/activities/<a>/`) were replaced
+- Navigation: Places · Trips · Spots · Gear. The activity pages (`/activities/<a>/`) were replaced
   by client-side filters on the Trips and Spots lists (`?activity=hike`).
 - Trips can reference spots (`spots: [...]`), shown in both directions.
 - Deferred: a **visit log** (dated mini-entries attached to a spot). See [roadmap.md](roadmap.md).
