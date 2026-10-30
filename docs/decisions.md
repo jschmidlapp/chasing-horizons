@@ -117,3 +117,5 @@ Newest first. Add an entry whenever a choice would be non-obvious to someone pic
   ties the caption to one photo even inside a gallery row, and keeps alt text separate. Gallery photos
   now use `height: auto` with `align-items: start`, so a captioned photo stays the same size as its
   uncaptioned neighbours.
+- **No "Last visited" chip on place cards.** It made the cards too busy. The date still shows on the
+  place page and still sorts places; trip cards keep their date chip.

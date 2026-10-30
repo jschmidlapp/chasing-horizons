@@ -12,9 +12,8 @@ const { entry, eyebrow } = Astro.props;
 const { title, cover, activities, area } = entry.data;
 const text = excerpt(entry);
 const label = eyebrow ?? area;
-const when = isTrip(entry)
-  ? entry.data.date && formatDate(entry.data.date)
-  : entry.data.lastVisited && `Last visited ${formatDate(entry.data.lastVisited)}`;
+// Places don't show their last visit here; it's on the place page (EntryMeta).
+const when = isTrip(entry) && entry.data.date && formatDate(entry.data.date);
 ---
 
 <a class="card" href={entryUrl(entry)} data-activities={activities.join(' ')}>

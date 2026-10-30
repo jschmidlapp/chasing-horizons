@@ -73,7 +73,7 @@ link previews show no text (previews use the site description).
 
 | Field | Type | Notes |
 | --- | --- | --- |
-| `lastVisited` | date | shown on cards and the page. Sorts spots |
+| `lastVisited` | date | shown on the spot page (not on cards). Sorts spots |
 
 Body conventions:
 - `## Heading` for sections (e.g. each lake on a long hike, or each trail in a park zone). With 3 or more
