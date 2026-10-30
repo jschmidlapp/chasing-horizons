@@ -7,6 +7,7 @@ cover: "/media/trips/calero-county-park/f5209a9a92.jpg"
 legacy:
   page: "San Jose.html"
   order: 59
+lastVisited: 10/10/2026
 ---
 One of my most frequented local parks. Relatively mellow trails in the lower part, with some fun forest trails in the upper half.
 

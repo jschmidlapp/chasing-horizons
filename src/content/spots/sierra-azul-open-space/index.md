@@ -7,6 +7,7 @@ cover: "/media/trips/sierra-azul-open-space/e2d55c8ed3.jpg"
 legacy:
   page: "Los Gatos.html"
   order: 44
+lastVisited:  9/12/2026
 ---
 A set of trails in the hills south of Los Gatos. Nothing terribly special - all fire roads or double track but you can't beat the views 15 minutes from home.
 

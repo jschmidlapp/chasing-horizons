@@ -7,6 +7,7 @@ cover: "/media/trips/st-josephs-hill/70024cb1c5.jpg"
 legacy:
   page: "Los Gatos.html"
   order: 45
+lastVisited: 9/27/2026
 ---
 Nice park in Los Gatos. Mostly multi-use double track but still fun.
 

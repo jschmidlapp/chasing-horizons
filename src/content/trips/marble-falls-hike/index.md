@@ -8,6 +8,7 @@ banner: "/media/trips/sequoias-and-moro-rock-hike/32b4d2118f.jpg"
 legacy:
   page: "Marble Falls Hike.html"
   order: 5
+date: 5/26/2026
 ---
 
 Hike through the foothills of the park. The day we went was overcast and misty which was pretty cool.

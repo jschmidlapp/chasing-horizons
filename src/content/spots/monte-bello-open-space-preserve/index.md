@@ -7,6 +7,7 @@ legacy:
   page: "Palo Alto.html"
   order: 53
 description:
+lastVisited: 10/10/2026
 ---
 ![Monte Bello Open Space Preserve](/media/trips/monte-bello-open-space-preserve/3a8534ac8b.jpg)
 

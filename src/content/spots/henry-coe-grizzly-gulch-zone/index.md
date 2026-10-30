@@ -7,6 +7,7 @@ cover: "/media/trips/grizzly-gulch-trail/da4749f861.jpg"
 legacy:
   page: "Henry Coe SP.html"
   order: 11
+lastVisited: 10/25/2026
 ---
 ## Grizzly Gulch Trail
 

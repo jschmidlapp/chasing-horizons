@@ -8,6 +8,7 @@ legacy:
   page: "Utah.html"
   order: 67
 description:
+date: 10/20/2025
 ---
 ![Arches National Park](/media/trips/arches-national-park/914f18e661.jpg)
 

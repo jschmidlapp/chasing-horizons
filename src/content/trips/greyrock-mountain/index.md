@@ -4,9 +4,9 @@ description:
 region: "colorado"
 area: "Fort Collins"
 activities: ["hike"]
-draft: true
 header: /media/trips/greyrock-mountain/c6ffd3c100.jpg
 cover: /media/trips/greyrock-mountain/b0dc1b4bbd.jpg
+date: 10/4/2026
 ---
 
 ![Greyrock Mountain Hike](/media/trips/greyrock-mountain/9572d8412d.jpg)

@@ -4,9 +4,9 @@ description:
 region: "north-coast"
 activities: ["hike","mtb"]
 map: "route.geojson"
-draft: true
 banner: /media/trips/sonoma-mendocino-coasts/765706be73.jpg
 cover: /media/trips/sonoma-mendocino-coasts/765706be73.jpg
+date: 7/13/2026
 ---
 
 Exploring the northern California coast along Highway 1

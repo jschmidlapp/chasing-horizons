@@ -8,6 +8,7 @@ banner: "/media/trips/sequoias-and-moro-rock-hike/32b4d2118f.jpg"
 legacy:
   page: "Sequoias and Moro Rock.html"
   order: 3
+date: 5/24/2026
 ---
 
 Giant sequoias on the Sherman Tree and Congress trails, meadow loops, Tharp's Log, and Moro Rock.

@@ -8,6 +8,7 @@ banner: "/media/trips/sequoias-and-moro-rock-hike/32b4d2118f.jpg"
 legacy:
   page: "Lake Trails Hike.html"
   order: 4
+date: 5/25/2026
 ---
 
 Much of the snow had just melted and so some trails were just recently opened. Very cool to see all of the melting snow in distant waterfalls.

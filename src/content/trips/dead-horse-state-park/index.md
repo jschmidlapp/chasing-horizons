@@ -8,6 +8,7 @@ cover: "/media/trips/dead-horse-state-park/3a895be11a.jpg"
 legacy:
   page: "Utah.html"
   order: 66
+date: 10/20/2026
 ---
 Fun trails, incredible views. Just the right difficulty for a rental bike and terrain I wasn't familiar with.
 
