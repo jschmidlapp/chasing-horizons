@@ -1,6 +1,6 @@
 ---
 title: "Mt Umunhum"
-description: "One of the highest peaks in the South Bay, with forested doubletrack most of the way and an old Cold War-era radar station at the top." # draft
+description: "One of the highest peaks in the South Bay, with forested doubletrack most of the way and an old Cold War-era radar station at the top."
 region: "san-jose"
 activities: ["mtb"]
 cover: "/media/trips/mt-umunhum/b1254b192f.jpg"

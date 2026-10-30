@@ -10,7 +10,7 @@ legacy:
   order: 0
 ---
 
-Up Glacier Gorge past Alberta Falls and The Loch to Lake of Glass and Sky Pond
+Hike up Glacier Gorge past Alberta Falls and The Loch to Lake of Glass and Sky Pond
 
 ![Hike to Sky Pond](/media/trips/hike-to-sky-pond/82c937b169.jpg)
 
@@ -68,9 +68,7 @@ Up Glacier Gorge past Alberta Falls and The Loch to Lake of Glass and Sky Pond
 ![Sky Pond Trail](/media/trips/hike-to-sky-pond/a12fe5cfb4.jpg)
 ![Sky Pond Trail](/media/trips/hike-to-sky-pond/f8934ce522.jpg)
 
-![Sky Pond Trail](/media/trips/hike-to-sky-pond/a894aa88ed.jpg)
-
-Lake of Glass
+![Sky Pond Trail](/media/trips/hike-to-sky-pond/a894aa88ed.jpg "Lake Of Glass")
 
 ![Sky Pond Trail](/media/trips/hike-to-sky-pond/cf053a1e9d.jpg)
 ![Sky Pond Trail](/media/trips/hike-to-sky-pond/bf0658f0df.jpg)
