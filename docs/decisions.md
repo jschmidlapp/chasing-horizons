@@ -119,3 +119,5 @@ Newest first. Add an entry whenever a choice would be non-obvious to someone pic
   uncaptioned neighbours.
 - **No "Last visited" chip on place cards.** It made the cards too busy. The date still shows on the
   place page and still sorts places; trip cards keep their date chip.
+- **`content:check` lists unpublished entries** (`draft: true`). They show in `npm run dev` but not on
+  the live site, which was easy to miss. Note this flag is separate from the `# draft` description comment.

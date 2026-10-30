@@ -49,7 +49,7 @@ Each folder name is the URL slug. Supporting files, such as the GPX track, live 
 | `links` | list | `[{ label: "Strava", url: "https://…" }]` |
 | `tags` | list | free-form. Not shown yet; reserved for future filtering |
 | `featured` | bool | pin to the home page. Featured entries fill the 6 home slots first (in the usual sort order); remaining slots go to the newest entries, or the longest write-ups until entries have dates. More than 6 featured: only the first 6 show |
-| `draft` | bool | hidden from production builds (still visible in `npm run dev`) |
+| `draft` | bool | hidden from production builds (still visible in `npm run dev`). Listed by `npm run content:check` |
 | `legacy` | object | `{ page, order }` from the Google Sites import. Keeps the original ordering for undated entries |
 
 ### Descriptions
@@ -57,7 +57,8 @@ Each folder name is the URL slug. Supporting files, such as the GPX track, live 
 Write `description` by hand. It's the blurb people see on cards and in search results. Drafts written
 by Claude carry a YAML comment, `description: "…" # draft`. Edit the text if needed, then delete the
 `# draft` comment. `npm run content:check` lists entries that have no description, a description over
-160 characters, or a draft still awaiting review. It never fails the build. Entries that don't need a
+160 characters, or a draft still awaiting review. It also lists unpublished entries (`draft: true`),
+which is a separate flag from the `# draft` comment. It never fails the build. Entries that don't need a
 blurb (e.g. a photo-only trip) can say so with a blank `description:`. The check skips them, and cards and
 link previews show no text (previews use the site description).
 

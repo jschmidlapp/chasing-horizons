@@ -24,7 +24,7 @@ npm run dev                 # http://localhost:4321/chasing-horizons/ (serves .m
 npm run build               # astro check + static build to dist/
 npm run media:process       # originals → WebP variants + manifest
 npm run media:upload        # push new media to R2
-npm run content:check       # content to-do list (descriptions)
+npm run content:check       # content to-do list (descriptions, unpublished drafts)
 ```
 
 ## Local screenshots (WSL)
