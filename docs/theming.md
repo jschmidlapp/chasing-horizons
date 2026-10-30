@@ -37,6 +37,9 @@ Each theme provides these files in `views/`, accepting the props defined in `src
 (e.g. date vs. last visited). The list view should support filtering by `?activity=<activity>`, since
 activity chips on entry pages link there.
 
+The starter's `HomeView` turns each section into a sideways-swiping row on phones (under 600px wide), so
+the home page reads as a short list of sections. Wider screens get the normal card grid.
+
 Themes must render images with `imageAttrs()` / `imageUrl()` from `src/lib/media-core.mjs` (see the
 starter's `components/Img.astro`). Rendered Markdown contains `.gallery[data-count]` wrappers and images
 with a `data-full` attribute. A theme should style `.gallery` and may attach a lightbox to `[data-full]` (the starter also sets it on `<Img zoom>`, e.g. the snacks photo wall).

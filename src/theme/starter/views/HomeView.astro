@@ -16,8 +16,11 @@ const { title, tagline, hero } = page.data;
   <Hero image={hero} title={title} subtitle={tagline} size="tall" />
 
   <section class="section wrap">
-    <h2 class="section-title">Regions</h2>
-    <div class="card-grid">
+    <div class="section-head">
+      <h2 class="section-title">Regions</h2>
+      <a href={url('/places/')}>All regions →</a>
+    </div>
+    <div class="card-grid regions">
       {regions.map((r) => <RegionCard {...r} />)}
     </div>
   </section>
@@ -65,4 +68,27 @@ const { title, tagline, hero } = page.data;
 <style>
   .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
   .section-head a { font-weight: 500; text-decoration: none; white-space: nowrap; }
+
+  /* Phones: each section becomes a sideways-swiping row, so the page reads as a short list of
+     sections instead of one long column of cards. The peek of the next card hints that it scrolls. */
+  @media (max-width: 599px) {
+    .section { padding-block: 24px; }
+    .card-grid {
+      grid-template-columns: none;
+      grid-auto-flow: column;
+      grid-auto-columns: 80%;
+      gap: 14px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      /* Bleed to the screen edges while the first card still lines up with the heading. */
+      margin-inline: calc(-1 * var(--gutter));
+      padding: 4px var(--gutter) 14px;
+      scroll-padding-inline: var(--gutter);
+    }
+    .card-grid::-webkit-scrollbar { display: none; }
+    .card-grid > :global(*) { scroll-snap-align: start; }
+    /* Regions only carry a name and counts, so they can be smaller. */
+    .card-grid.regions { grid-auto-columns: 58%; }
+  }
 </style>

@@ -125,3 +125,9 @@ Newest first. Add an entry whenever a choice would be non-obvious to someone pic
   the same pill read like another activity. The date is now muted text with a small calendar icon on
   its own line under the title (`.card-date`). Sharing the chip row looked jumbled: it fit on some
   cards and wrapped on others. Cards show just month and year ("July 2026"); the trip page keeps the full date.
+- **Home page sections swipe sideways on phones** (starter theme, under 600px). Stacked full-width
+  cards made the home page about 13 screens tall, and you lost sight of the section headings, so it
+  was hard to tell Regions, Trips, Places and More apart. Each section is now one row that scrolls
+  horizontally (CSS scroll-snap, no JavaScript), with the next card peeking in to show it scrolls.
+  Region cards are narrower since they only carry a name and counts. Regions also got an
+  "All regions →" link to match Trips and Places.
