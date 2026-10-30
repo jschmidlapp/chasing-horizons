@@ -13,7 +13,9 @@ export default function rehypeMedia() {
   return (tree) => {
     visit(tree, 'element', (node) => {
       if (node.tagName === 'img') {
-        const attrs = imageAttrs(node.properties.src, { sizes: '(min-width: 960px) 880px, 100vw' });
+        // Matches the starter's widest photo row (--column in global.css, 1000px). Lone photos
+        // with `width: auto` take this as their natural width, so it must agree with the gallery CSS.
+        const attrs = imageAttrs(node.properties.src, { sizes: '(min-width: 1100px) 1000px, 100vw' });
         if (attrs.srcset) {
           node.properties = {
             ...node.properties,

@@ -99,3 +99,9 @@ Newest first. Add an entry whenever a choice would be non-obvious to someone pic
 - **Multi-day route maps as GeoJSON** (`map:` frontmatter) rather than iframing a standalone HTML map.
   The data stays content (with day labels in a top-level `days` member) and the theme picks colours and
   draws the legend, so these maps match the GPX maps and follow light/dark mode.
+- **One left edge for entry pages** (starter theme, screens ≥1100px). The content column (`--column`) is
+  1000px so photos and maps get room. Text, the Sections box and meta keep the 760px `--prose` width
+  for readable line length, but sit at the column's left edge rather than centred. This was chosen over
+  centring text under wider photos because many sections are just a heading and photos, and centred text
+  made headings line up with nothing. The `sizes` hint in `rehype-media.mjs` is 1000px to match,
+  because lone photos (`width: auto`) take it as their natural width.

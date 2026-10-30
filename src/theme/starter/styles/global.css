@@ -17,6 +17,7 @@
   --radius: 10px;
   --wrap: 1180px;
   --prose: 760px;
+  --column: var(--prose);
   --gutter: clamp(16px, 4vw, 32px);
   color-scheme: light;
 }
@@ -105,8 +106,16 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 }
 a.chip:hover { background: var(--accent); color: var(--surface); }
 
+/* On large screens the content column is wider than the text, so photos get more room. Everything
+   shares the column's left edge; text stays at --prose for comfortable line length. Keep --column in
+   step with `sizes` in src/lib/rehype-media.mjs. */
+@media (min-width: 1100px) {
+  :root { --column: 1000px; }
+}
+
 /* ---------- prose (Markdown bodies) ---------- */
-.prose { max-width: var(--prose); margin-inline: auto; font-size: 1.06rem; }
+.prose { max-width: var(--column); margin-inline: auto; font-size: 1.06rem; }
+.prose > :not(.gallery) { max-width: var(--prose); }
 .prose h2 { font-size: 1.6rem; margin: 2.2em 0 0.6em; }
 .prose h3 { font-size: 1.25rem; margin: 1.8em 0 0.5em; }
 .prose p { margin: 0 0 1.1em; }
@@ -134,8 +143,4 @@ a.chip:hover { background: var(--accent); color: var(--surface); }
 @media (max-width: 560px) {
   .prose .gallery[data-count='3'] { grid-template-columns: repeat(2, 1fr); }
   .prose .gallery[data-count='3'] img:first-child { grid-column: span 2; }
-}
-/* Let the photos breathe wider than the text column on large screens. */
-@media (min-width: 1100px) {
-  .prose .gallery { margin-inline: -120px; }
 }

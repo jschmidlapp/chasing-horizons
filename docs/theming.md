@@ -40,6 +40,9 @@ activity chips on entry pages link there.
 Themes must render images with `imageAttrs()` / `imageUrl()` from `src/lib/media-core.mjs` (see the
 starter's `components/Img.astro`). Rendered Markdown contains `.gallery[data-count]` wrappers and images
 with a `data-full` attribute. A theme should style `.gallery` and may attach a lightbox to `[data-full]` (the starter also sets it on `<Img zoom>`, e.g. the snacks photo wall).
+The Markdown `sizes` hint in `src/lib/rehype-media.mjs` assumes body photos are at most 1000px wide (the
+starter's `--column`). A theme with a different photo width should update it, since lone photos sized
+`width: auto` take that hint as their natural width.
 
 ## Adopting a paid Astro theme
 

@@ -25,15 +25,17 @@ const kind = isTrip(entry) ? 'trips' : 'places';
   </Hero>
 
   <article class="wrap section">
-    <EntryMeta entry={entry} track={track} />
-    {(routeMap || track) && <TripMap track={track} routeMap={routeMap} />}
-    {toc.length > 0 && (
-      <nav class="toc" aria-label="On this page">
-        <h2 class="toc-title">{isTrip(entry) ? 'Sections' : 'Trails'}</h2>
-        <ol>{toc.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol>
-      </nav>
-    )}
-    <div class="prose"><slot /></div>
+    <div class="column">
+      <EntryMeta entry={entry} track={track} />
+      {(routeMap || track) && <TripMap track={track} routeMap={routeMap} />}
+      {toc.length > 0 && (
+        <nav class="toc" aria-label="On this page">
+          <h2 class="toc-title">{isTrip(entry) ? 'Sections' : 'Trails'}</h2>
+          <ol>{toc.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol>
+        </nav>
+      )}
+      <div class="prose"><slot /></div>
+    </div>
   </article>
 
   {linked.length > 0 && (
@@ -52,7 +54,9 @@ const kind = isTrip(entry) ? 'trips' : 'places';
 </BaseLayout>
 
 <style>
-  .toc { max-width: var(--prose); margin: 0 auto 32px; padding: 16px 20px; background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); }
+  /* One left edge for everything: text-like blocks at --prose, maps and photos at the full column. */
+  .column { max-width: var(--column); margin-inline: auto; }
+  .toc { max-width: var(--prose); margin: 0 0 32px; padding: 16px 20px; background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); }
   .toc-title { font-size: 0.8rem; font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 0 0 10px; }
   .toc ol { margin: 0; padding: 0; list-style: none; columns: 2 220px; column-gap: 24px; }
   .toc li { break-inside: avoid; padding: 3px 0; }
