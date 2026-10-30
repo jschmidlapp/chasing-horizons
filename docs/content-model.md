@@ -5,7 +5,10 @@ diffs, theme swaps, and TinaCMS. Images are referenced as `/media/<key>` (see [m
 
 ## Trips vs. spots
 
-There are two kinds of write-up. Both live in Places (regions) and share most fields:
+There are two kinds of write-up. Both live in regions and share most fields.
+
+> **Naming:** the UI calls spots **Places** and regions **Regions** (nav: Regions · Trips · Places · Gear).
+> URLs, collection names and fields still say `spots` and `/places/<region>/`. See decisions.md, 2026-10-29.
 
 | | **Trips**: `src/content/trips/<slug>/index.md` | **Spots**: `src/content/spots/<slug>/index.md` |
 | --- | --- | --- |
@@ -21,7 +24,7 @@ a park, or a zone of a big park (Henry Coe has one spot per zone, with its trail
 [media.md](media.md)). The URL does change, so if the page has been shared, add a redirect in
 `src/data/redirects.json` (`"/trips/<slug>/": "/spots/<slug>/"`, paths without the base).
 
-A trip can list `spots: ["calero-county-park"]`. The trip page then shows "Spots on this trip" and the
+A trip can list `spots: ["calero-county-park"]`. The trip page then shows "Places on this trip" and the
 spot page shows "Trips that came here".
 
 Each folder name is the URL slug. Supporting files, such as the GPX track, live in the same folder.
@@ -130,7 +133,7 @@ The region page lists its sub-regions, then its own trips and spots (each groupe
 | --- | --- |
 | `title` | required |
 | `parent` | optional region id |
-| `order` | sort order on the Places page (lower first) |
+| `order` | sort order on the Regions page (`/places/`) (lower first) |
 | `description`, `cover`, `banner` | as for trips |
 
 The body (optional) is the intro text shown on the region page (e.g. the Henry Coe overview).

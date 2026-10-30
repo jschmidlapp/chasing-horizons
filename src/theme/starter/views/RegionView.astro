@@ -10,7 +10,7 @@ import type { RegionViewProps } from '../../types';
 type Props = RegionViewProps;
 const { region, ancestors, subRegions, tripGroups, spotGroups, description, regionTitles } = Astro.props;
 const { title, banner, cover } = region.data;
-const crumbs = [{ href: url('/places/'), label: 'Places' }, ...ancestors.map((r) => ({ href: regionUrl(r), label: r.data.title }))];
+const crumbs = [{ href: url('/places/'), label: 'Regions' }, ...ancestors.map((r) => ({ href: regionUrl(r), label: r.data.title }))];
 ---
 
 <BaseLayout title={title} description={description} image={cover ?? banner}>
@@ -28,7 +28,7 @@ const crumbs = [{ href: url('/places/'), label: 'Places' }, ...ancestors.map((r)
     )}
 
     <EntryGroups title="Trips" groups={tripGroups} regionId={region.id} regionTitles={regionTitles} />
-    <EntryGroups title={subRegions.length ? 'Other spots' : 'Spots'} groups={spotGroups} regionId={region.id} regionTitles={regionTitles} />
+    <EntryGroups title={subRegions.length ? 'Other places' : 'Places'} groups={spotGroups} regionId={region.id} regionTitles={regionTitles} />
   </div>
 </BaseLayout>
 

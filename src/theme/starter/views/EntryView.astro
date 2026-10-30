@@ -13,10 +13,10 @@ type Props = EntryViewProps;
 const { entry, regionChain, track, routeMap, linked, related, description, toc } = Astro.props;
 const { title, banner, cover, area } = entry.data;
 const crumbs = [
-  { href: url('/places/'), label: 'Places' },
+  { href: url('/places/'), label: 'Regions' },
   ...regionChain.map((r) => ({ href: regionUrl(r), label: r.data.title })),
 ];
-const kind = isTrip(entry) ? 'trips' : 'spots';
+const kind = isTrip(entry) ? 'trips' : 'places';
 ---
 
 <BaseLayout title={title} description={description} image={cover ?? banner}>
@@ -38,7 +38,7 @@ const kind = isTrip(entry) ? 'trips' : 'spots';
 
   {linked.length > 0 && (
     <section class="wrap section">
-      <h2 class="section-title">{isTrip(entry) ? 'Spots on this trip' : 'Trips that came here'}</h2>
+      <h2 class="section-title">{isTrip(entry) ? 'Places on this trip' : 'Trips that came here'}</h2>
       <div class="card-grid">{linked.map((e) => <EntryCard entry={e} />)}</div>
     </section>
   )}

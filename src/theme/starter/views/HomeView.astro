@@ -16,7 +16,7 @@ const { title, tagline, hero } = page.data;
   <Hero image={hero} title={title} subtitle={tagline} size="tall" />
 
   <section class="section wrap">
-    <h2 class="section-title">Places</h2>
+    <h2 class="section-title">Regions</h2>
     <div class="card-grid">
       {regions.map((r) => <RegionCard {...r} />)}
     </div>
@@ -34,8 +34,8 @@ const { title, tagline, hero } = page.data;
 
   <section class="section wrap">
     <div class="section-head">
-      <h2 class="section-title">Spots</h2>
-      <a href={url('/spots/')}>All spots →</a>
+      <h2 class="section-title">Places</h2>
+      <a href={url('/spots/')}>All places →</a>
     </div>
     <div class="card-grid">
       {featuredSpots.map((s) => <EntryCard entry={s} eyebrow={regionTitles[s.data.region.id]} />)}

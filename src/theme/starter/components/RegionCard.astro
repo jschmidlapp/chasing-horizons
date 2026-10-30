@@ -6,7 +6,7 @@ import type { RegionWithCount } from '../../types';
 type Props = RegionWithCount;
 const { region, trips, spots } = Astro.props;
 const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? '' : 's'}`;
-const counts = [trips && plural(trips, 'trip'), spots && plural(spots, 'spot')].filter(Boolean).join(' · ');
+const counts = [trips && plural(trips, 'trip'), spots && plural(spots, 'place')].filter(Boolean).join(' · ');
 ---
 
 <a class="card region-card" href={regionUrl(region)}>

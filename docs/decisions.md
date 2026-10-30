@@ -2,6 +2,14 @@
 
 Newest first. Add an entry whenever a choice would be non-obvious to someone picking up the project.
 
+### 2026-10-29: UI labels: Spots → Places, Places → Regions
+
+- The owner never liked "Spots". In the UI, spots are now **Places** and the old Places (regions) page is
+  **Regions**, which also matches the code's `regions` collection. Nav: Regions · Trips · Places · Gear.
+- Label-only: URLs (`/spots/`, `/places/`), collection names, the `spots:` frontmatter field and code
+  identifiers are unchanged. Moving spots to `/places/` would collide with the existing region URLs and
+  need a pile of redirects; revisit if the names stick.
+
 ### 2026-10-29: Home page "More" cards; snacks page
 
 - Removed the "All places" tile from the home page (Places is in the nav and already the first home section).
