@@ -1,7 +1,7 @@
 ---
 // Card for a trip or a spot. data-activities lets EntryListView filter cards client-side.
 import Img from './Img.astro';
-import { ACTIVITY_LABELS, entryUrl, excerpt, formatDate, isTrip, type Entry } from '@lib/content';
+import { ACTIVITY_LABELS, entryUrl, excerpt, formatMonth, isTrip, type Entry } from '@lib/content';
 
 interface Props {
   entry: Entry;
@@ -13,7 +13,7 @@ const { title, cover, activities, area } = entry.data;
 const text = excerpt(entry);
 const label = eyebrow ?? area;
 // Places don't show their last visit here; it's on the place page (EntryMeta).
-const when = isTrip(entry) && entry.data.date && formatDate(entry.data.date);
+const date = isTrip(entry) ? entry.data.date : undefined;
 ---
 
 <a class="card" href={entryUrl(entry)} data-activities={activities.join(' ')}>
@@ -23,10 +23,15 @@ const when = isTrip(entry) && entry.data.date && formatDate(entry.data.date);
   <div class="card-body">
     {label && <span class="card-eyebrow">{label}</span>}
     <h3 class="card-title">{title}</h3>
+    {date && (
+      <time class="card-date" datetime={date.toISOString().slice(0, 7)}>
+        <svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="3" width="12" height="11" rx="2" /><path d="M2 7h12M5 1.5v3M11 1.5v3" /></svg>
+        {formatMonth(date)}
+      </time>
+    )}
     {text && <p class="card-text">{text}</p>}
     <ul class="chips">
       {activities.map((a) => <li class="chip">{ACTIVITY_LABELS[a]}</li>)}
-      {when && <li class="chip">{when}</li>}
     </ul>
   </div>
 </a>

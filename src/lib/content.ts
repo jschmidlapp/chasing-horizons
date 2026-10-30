@@ -137,6 +137,11 @@ export function formatDate(d: Date) {
   return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 }
 
+/** "July 2026": for compact places like cards. */
+export function formatMonth(d: Date) {
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', timeZone: 'UTC' });
+}
+
 /** "June 3–5, 2025" style range (or a single date). */
 export function formatDateRange(start: Date, end?: Date) {
   if (!end || end.getTime() === start.getTime()) return formatDate(start);

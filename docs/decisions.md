@@ -118,6 +118,10 @@ Newest first. Add an entry whenever a choice would be non-obvious to someone pic
   now use `height: auto` with `align-items: start`, so a captioned photo stays the same size as its
   uncaptioned neighbours.
 - **No "Last visited" chip on place cards.** It made the cards too busy. The date still shows on the
-  place page and still sorts places; trip cards keep their date chip.
+  place page and still sorts places; trip cards keep their date (see below).
 - **`content:check` lists unpublished entries** (`draft: true`). They show in `npm run dev` but not on
   the live site, which was easy to miss. Note this flag is separate from the `# draft` description comment.
+- **Trip card dates aren't chips.** Chips mean "kind of outing" (Hiking, Mountain Biking), so a date in
+  the same pill read like another activity. The date is now muted text with a small calendar icon on
+  its own line under the title (`.card-date`). Sharing the chip row looked jumbled: it fit on some
+  cards and wrapped on others. Cards show just month and year ("July 2026"); the trip page keeps the full date.
