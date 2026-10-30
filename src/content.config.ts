@@ -48,6 +48,8 @@ const entryFields = {
   map: z.string().optional(),
   links: z.array(z.object({ label: z.string(), url: z.url() })).default([]),
   tags: z.array(z.string()).default([]),
+  /** Pin to the home page. Featured entries come first; the rest of the 6 slots fill as usual. */
+  featured: z.boolean().default(false),
   draft: z.boolean().default(false),
   legacy: z.object({ page: z.string(), order: z.number() }).optional(),
 };

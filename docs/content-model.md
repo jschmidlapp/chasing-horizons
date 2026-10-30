@@ -48,6 +48,7 @@ Each folder name is the URL slug. Supporting files, such as the GPX track, live 
 | `map` | string | GeoJSON file name in the entry folder, e.g. `route.geojson`, for a multi-day route map (see [Route maps](#route-maps)). Shown instead of the GPX map when both are set; GPX still fills the stats |
 | `links` | list | `[{ label: "Strava", url: "https://…" }]` |
 | `tags` | list | free-form. Not shown yet; reserved for future filtering |
+| `featured` | bool | pin to the home page. Featured entries fill the 6 home slots first (in the usual sort order); remaining slots go to the newest entries, or the longest write-ups until entries have dates. More than 6 featured: only the first 6 show |
 | `draft` | bool | hidden from production builds (still visible in `npm run dev`) |
 | `legacy` | object | `{ page, order }` from the Google Sites import. Keeps the original ordering for undated entries |
 

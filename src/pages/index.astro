@@ -6,10 +6,15 @@ const [page, regions, trips, spots, gear, snacks] = await Promise.all([
   getPage('home'), getRegions(), getTrips(), getSpots(), getPage('gear'), getPage('snacks'),
 ]);
 
-// Until entries have dates, feature the richest write-ups (longest bodies); afterwards, the newest.
+// `featured: true` entries come first (in list order). Remaining slots: until entries have dates, the
+// richest write-ups (longest bodies); afterwards, the newest.
 const richest = <T extends Entry>(list: T[]) => [...list].sort((a, b) => (b.body?.length ?? 0) - (a.body?.length ?? 0));
-const featuredTrips = (trips.some((t) => t.data.date) ? trips : richest(trips)).slice(0, 6);
-const featuredSpots = (spots.some((s) => s.data.lastVisited) ? spots : richest(spots)).slice(0, 6);
+const pickFeatured = <T extends Entry>(list: T[], dated: boolean) => {
+  const rest = dated ? list : richest(list);
+  return [...list.filter((e) => e.data.featured), ...rest.filter((e) => !e.data.featured)].slice(0, 6);
+};
+const featuredTrips = pickFeatured(trips, trips.some((t) => t.data.date));
+const featuredSpots = pickFeatured(spots, spots.some((s) => s.data.lastVisited));
 ---
 
 <HomeView

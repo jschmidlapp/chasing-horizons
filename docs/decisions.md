@@ -2,6 +2,13 @@
 
 Newest first. Add an entry whenever a choice would be non-obvious to someone picking up the project.
 
+### 2026-10-29: `featured` flag for the home page
+
+- Home page Trips and Places rows were purely automatic (longest write-ups until dates exist, then newest),
+  so the owner couldn't choose what's shown. A boolean `featured` on trips and spots pins entries first;
+  the automatic rule fills any remaining of the 6 slots. A boolean rather than a numeric rank keeps the
+  frontmatter simple; featured entries keep the normal sort order among themselves.
+
 ### 2026-10-29: UI labels: Spots → Places, Places → Regions
 
 - The owner never liked "Spots". In the UI, spots are now **Places** and the old Places (regions) page is
