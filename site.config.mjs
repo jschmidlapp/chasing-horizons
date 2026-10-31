@@ -10,8 +10,8 @@ export default {
   title: 'Chasing Horizons',
   description: '',
 
-  // Where the site is served. GitHub Pages project site for now; when a custom domain is added,
-  // set SITE_URL=https://example.com and BASE_PATH=/ (see docs/deployment.md).
+  // Where the site is served. Production sets SITE_URL=https://broadcastfrequency.net and BASE_PATH=/
+  // through repo variables (see docs/deployment.md); these defaults are the old github.io project URL.
   siteUrl: env.SITE_URL || 'https://jschmidlapp.github.io',
   basePath: env.BASE_PATH || '/chasing-horizons',
 

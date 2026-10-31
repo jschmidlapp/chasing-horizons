@@ -54,8 +54,8 @@ originals/<key>      archival originals (lets us regenerate variants on any mach
 w/<variant>          what the site links to; uploaded with Cache-Control: immutable
 ```
 
-`PUBLIC_MEDIA_BASE_URL` = public bucket URL + `/w`, e.g. `https://pub-abc123.r2.dev/w` or later
-`https://img.example.com/w`.
+`PUBLIC_MEDIA_BASE_URL` = public bucket URL + `/w`, currently
+`https://img.broadcastfrequency.net/w` (R2 custom domain). The bucket's r2.dev URL was only for setup.
 
 ## Commands
 
@@ -98,8 +98,8 @@ CI does not need these; it only needs the public URL (see [deployment.md](deploy
 
 ## Future options
 
-- Cloudflare Image Transformations or Images instead of pre-generated variants. This would require a
-  custom domain on Cloudflare.
+- Cloudflare Image Transformations or Images instead of pre-generated variants. Now possible, since
+  `img.broadcastfrequency.net` is a custom domain on Cloudflare.
 - TinaCMS media: Tina's media manager expects a repo folder or a cloud provider (there's an S3-compatible
   adapter). Plan: a custom media store that uploads to R2 `originals/` and triggers variant generation
   (see [roadmap.md](roadmap.md)).

@@ -40,7 +40,7 @@ site.config.mjs         Site title, URLs, media base URL (env overrides)
 | 404 | `pages/404.astro` | `NotFoundView` |
 
 All internal links go through `url()` / `entryUrl()` / `regionUrl()` / `listUrl()` in `src/lib/content.ts`, which add the deploy
-base path (`/chasing-horizons` on GitHub Pages; `/` once a custom domain is in place).
+base path (`/` on broadcastfrequency.net; `/chasing-horizons` if built with the github.io defaults).
 
 ## Rendering flow
 

@@ -87,7 +87,7 @@ Newest first. Add an entry whenever a choice would be non-obvious to someone pic
 ### 2026-10-18: Initial architecture
 
 - **Astro 7, static output, GitHub Pages.** The owner asked for Astro. Static output fits a photo journal
-  and GitHub Pages is free. No custom domain yet, so the base path is `/chasing-horizons`.
+  and GitHub Pages is free. Moved to the custom domain broadcastfrequency.net on 2026-10-30 (see below).
 - **Images on Cloudflare R2, never in git.** The 0.9 GB of originals would bloat git history permanently
   and approach the Pages 1 GB limit. R2 has free egress and 10 GB of free storage. During development
   the dev server serves local variants, so we never needed a temporary git copy.
@@ -131,3 +131,9 @@ Newest first. Add an entry whenever a choice would be non-obvious to someone pic
   horizontally (CSS scroll-snap, no JavaScript), with the next card peeking in to show it scrolls.
   Region cards are narrower since they only carry a name and counts. Regions also got an
   "All regions →" link to match Trips and Places.
+- **Custom domain: broadcastfrequency.net, bare domain as the main address** (2026-10-30). The site stays
+  on GitHub Pages; Cloudflare is registrar and DNS. The bare domain is shorter, and `www` redirects to it.
+  Photos moved from the rate-limited r2.dev URL to `img.broadcastfrequency.net` (an R2 custom domain).
+  This needs the domain's DNS on Cloudflare, which is why the domain was registered there. GitHub's A
+  records are "DNS only" so GitHub can issue and renew the HTTPS certificate. The defaults in
+  `site.config.mjs` still point at github.io; production gets its values from repo variables.

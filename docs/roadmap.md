@@ -11,6 +11,7 @@ Status key: ✅ done · 🔜 next · 💡 idea
 - ✅ GitHub Actions → GitHub Pages workflow
 - ✅ R2 bucket `chasing-horizons-media` (r2.dev public URL), media uploaded, `MEDIA_BASE_URL` set
 - ✅ GitHub Pages enabled (source: GitHub Actions)
+- ✅ Custom domain broadcastfrequency.net + `img.` for photos (see [deployment.md](deployment.md))
 - ✅ Henry Coe split into park zones; 17-Mile Drive fixed
 - ✅ Trips vs. spots split; Henry Coe zones merged into 6 spots (see [decisions.md](decisions.md))
 - 🔜 Review the 34 draft descriptions and write the 25 missing ones (`npm run content:check`)
@@ -19,7 +20,6 @@ Status key: ✅ done · 🔜 next · 💡 idea
 ## Phase 2: polish
 
 - 💡 Backfill dates, stats and GPX tracks (Strava/Garmin export). Date-sorted "latest trips" on home
-- 💡 Custom domain on Cloudflare: site + `img.` subdomain (see [deployment.md](deployment.md))
 - 💡 Overview map of all trips (needs a lat/lon per trip, e.g. a `location` field or the GPX start)
 - 💡 Search (Pagefind works well with static Astro sites)
 - 💡 RSS feed, sitemap (`@astrojs/sitemap`)
